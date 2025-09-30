@@ -1,3 +1,5 @@
+import styles from './SiteFooter.module.css';
+
 export default function SiteFooter() {
-  return <div>Site Footer</div>;
+  return <div className={styles['site-footer']}>Site Footer</div>;
 }
