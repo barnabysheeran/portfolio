@@ -13,3 +13,9 @@
   cursor: pointer;
   pointer-events: auto;
 }
+
+.button-development:hover {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
