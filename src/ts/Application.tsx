@@ -1,6 +1,6 @@
 import styles from './Application.module.css'
 
-import { UI } from './ui/UI';
+import UI from './ui/UI';
 
 import { ButtonDevelopment } from './ui/component/button/ButtonDevelopment';
 
