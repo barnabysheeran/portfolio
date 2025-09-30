@@ -1,6 +1,6 @@
-import './App.css'
+import './Application.module.css'
 
-import { ButtonDevelopment } from './ts/component/button/ButtonDevelopment';
+import { ButtonDevelopment } from './component/button/ButtonDevelopment';
 
 function App() {
 
