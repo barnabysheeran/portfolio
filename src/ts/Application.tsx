@@ -1,6 +1,6 @@
 import styles from './Application.module.css'
 
-import { ButtonDevelopment } from './component/button/ButtonDevelopment';
+import { ButtonDevelopment } from './ui/component/button/ButtonDevelopment';
 
 export default function Application() {
   return (
