@@ -1,3 +1,5 @@
+import styles from './SiteHeader.module.css';
+
 export default function SiteHeader() {
-  return <div>Site Header</div>;
+  return <div className={styles['site-header']}>Site Header</div>;
 }
