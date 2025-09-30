@@ -1,13 +1,15 @@
-.button {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
+.button-development {
+  width: calc(var(--grid-cell-width) * 20);
+  height: calc(var(--grid-cell-height) * 6);
+
   border: 0;
-  border-radius: 3em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background: var(--color-background);
+  color: var(--color-text);
+
   cursor: pointer;
-  display: inline-block;
-  line-height: 1;
-  color: white;
-  background-color: #1ea7fd;
-  font-size: 14px;
-  padding: 11px 20px;
+  pointer-events: auto;
 }

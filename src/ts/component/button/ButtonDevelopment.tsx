@@ -1,12 +1,9 @@
 import styles from './ButtonDevelopment.module.css';
 
 interface ButtonDevelopmentProps {
-
   label: string;
   onClick?: () => void;
 }
-
-
 
 export const ButtonDevelopment = ({
   label,
@@ -22,7 +19,7 @@ export const ButtonDevelopment = ({
   return (
     <button
       type="button"
-      className={styles.button}
+      className={styles['button-development']}
       onClick={handleClick}
       {...props}
     >
