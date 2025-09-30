@@ -1,0 +1,6 @@
+.site-progress {
+    width: 100%;
+    height: calc(var(--grid-cell-height) * 5);
+
+    background: #ff6600;
+}
