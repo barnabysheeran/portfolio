@@ -15,13 +15,13 @@ export default class ComponentGlyphLineCentered extends Component {
 
 	constructor(
 		shapeManager,
-		text,
-		gridY,
-		delay,
-		delayGlyph,
-		fillType,
-		fillStrategyType,
-		drawType,
+		text: string,
+		gridY: number,
+		delay: number,
+		delayGlyph: number,
+		fillType: number,
+		fillStrategyType: number,
+		drawType: number,
 	) {
 		super(
 			shapeManager,

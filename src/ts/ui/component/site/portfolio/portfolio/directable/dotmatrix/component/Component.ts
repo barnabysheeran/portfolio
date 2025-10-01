@@ -4,28 +4,32 @@ import FillType from '../enum/FillType.ts';
 import FillStrategyType from '../enum/FillStrategyType.ts';
 import DrawType from '../enum/DrawType.ts';
 
+import type Shape from '../shape/Shape.ts';
+import type ShapeManager from '../shape/ShapeManager.ts';
+
 export default class Component {
 	SHAPE_MANAGER;
-	SHAPES = [];
+	SHAPES: Shape[] = [];
 
 	GRID_X = 0;
 	GRID_Y = 0;
 
-	FILL_TYPE;
-	FILL_STRATEGY_TYPE;
+	FILL_TYPE: number;
+	FILL_STRATEGY_TYPE: number;
 
-	DRAW_TYPE;
+	DRAW_TYPE: number;
 
-	DELAY = 0;
+	DELAY: number;
+	DELAY_GLYPH: number;
 
-	#LOG_LEVEL = -1; // 4;
+	#LOG_LEVEL: number = 1;
 
 	// _________________________________________________________________________
 
 	constructor(
-		shapeManager,
-		gridX,
-		gridY,
+		shapeManager: ShapeManager,
+		gridX: number,
+		gridY: number,
 		delay = 0,
 		delayGlyph = 0,
 		fillType = FillType.PassThrough,
@@ -35,7 +39,7 @@ export default class Component {
 		ApplicationLogger.log(
 			`Component gridX ${gridX} gridY ${gridY}` +
 				` delay ${delay}` +
-				` fillType ${fillType} fillStrategyType ${this.FILL_STRATEGY_TYPE}` +
+				` fillType ${fillType} fillStrategyType ${fillStrategyType}` +
 				` drawType ${drawType}`,
 			this.#LOG_LEVEL,
 		);

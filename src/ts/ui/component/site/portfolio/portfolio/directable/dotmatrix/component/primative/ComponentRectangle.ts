@@ -9,14 +9,14 @@ export default class ComponentRectangle extends Component {
 
 	constructor(
 		shapeManager,
-		gridX,
-		gridY,
-		gridWidth,
-		gridHeight,
-		delay,
-		fillType,
-		fillStrategyType,
-		drawType,
+		gridX: number,
+		gridY: number,
+		gridWidth: number,
+		gridHeight: number,
+		delay: number,
+		fillType: number,
+		fillStrategyType: number,
+		drawType: number,
 	) {
 		super(
 			shapeManager,

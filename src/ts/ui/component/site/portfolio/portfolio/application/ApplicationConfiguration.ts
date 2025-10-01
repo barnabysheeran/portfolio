@@ -1,5 +1,8 @@
 import ApplicationLogger from './ApplicationLogger.ts';
 
+import type { CreationParameters } from './../types/types.ts'; // Add this import
+
+
 export default class ApplicationConfiguration {
 	static #applicationContainer: HTMLElement;
 	static #assetPath: string;
@@ -9,7 +12,7 @@ export default class ApplicationConfiguration {
 
 	// _________________________________________________________________________
 
-	static initialise(creationParameters) {
+	static initialise(creationParameters: CreationParameters) {
 		ApplicationLogger.log('ApplicationConfiguration', this.#LOG_LEVEL);
 
 		// Store

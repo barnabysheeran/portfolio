@@ -7,11 +7,11 @@ export default class ComponentLineWidthFull extends Component {
 
 	constructor(
 		shapeManager,
-		gridY,
-		delay,
-		fillType,
-		fillStrategyType,
-		drawType,
+		gridY: number,
+		delay: number,
+		fillType: number,
+		fillStrategyType: number,
+		drawType: number,
 	) {
 		super(
 			shapeManager,

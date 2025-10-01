@@ -2,12 +2,7 @@ import ApplicationConfiguration from './application/ApplicationConfiguration.ts'
 import ApplicationLogger from './application/ApplicationLogger.ts';
 
 import Controller from './controller/Controller.ts';
-
-interface CreationParameters {
-  isDebug: boolean;
-  assetPath: string;
-  applicationContainer: HTMLElement;
-}
+import type { CreationParameters } from './types/types.ts'; // Add this import
 
 export default class Portfolio {
   #CONTROLLER;

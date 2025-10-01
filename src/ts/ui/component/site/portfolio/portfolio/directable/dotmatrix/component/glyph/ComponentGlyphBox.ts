@@ -16,16 +16,16 @@ export default class ComponentGlyphBox extends Component {
 
 	constructor(
 		shapeManager,
-		text,
-		gridX,
-		gridY,
-		gridWidth,
-		gridHeight,
-		delay,
-		delayGlyph,
-		fillType,
-		fillStrategyType,
-		drawType,
+		text: string,
+		gridX: number,
+		gridY: number,
+		gridWidth: number,
+		gridHeight: number,
+		delay: number,
+		delayGlyph: number,
+		fillType: number,
+		fillStrategyType: number,
+		drawType: number,
 	) {
 		super(
 			shapeManager,

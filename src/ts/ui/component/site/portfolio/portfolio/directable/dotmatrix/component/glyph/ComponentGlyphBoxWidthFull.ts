@@ -12,14 +12,14 @@ export default class ComponentGlyphBoxWidthFull extends Component {
 
 	constructor(
 		shapeManager,
-		text,
-		gridX,
-		gridY,
-		delay,
-		delayGlyph,
-		fillType,
-		fillStrategyType,
-		drawType,
+		text: string,
+		gridX: number,
+		gridY: number,
+		delay: number,
+		delayGlyph: number,
+		fillType: number,
+		fillStrategyType: number,
+		drawType: number,
 	) {
 		super(
 			shapeManager,
