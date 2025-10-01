@@ -58,7 +58,7 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames, drawType) {
+	draw(delayFrames: number, drawType) {
 		super.draw(delayFrames, drawType);
 
 		// Get Height
@@ -115,12 +115,12 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 		// Toggle Menu
 		if (this.#isMenuOpen === true) {
 			// Project Menu Close
-			ApplicationDispatcher.dispatch('project-menu-close');
+			ApplicationDispatcher.dispatch('project-menu-close', {});
 			// Inactive
 			this.#isMenuOpen = false;
 		} else {
 			// Project Menu Open
-			ApplicationDispatcher.dispatch('project-menu-open');
+			ApplicationDispatcher.dispatch('project-menu-open', {});
 			// Active
 			this.#isMenuOpen = true;
 		}
@@ -144,7 +144,7 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 
 	// ____________________________________________________________ Is Menu Open
 
-	setIsMenuOpen(isMenuOpen) {
+	setIsMenuOpen(isMenuOpen: boolean) {
 		// Store
 		this.#isMenuOpen = isMenuOpen;
 
@@ -176,7 +176,7 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 
 	// _______________________________________________________________ Rectangle
 
-	#drawSurroundingRectangle(delayFrames, drawType) {
+	#drawSurroundingRectangle(delayFrames: number, drawType) {
 		// Get Height
 		const LINE_HEIGHT = DirectableDotMatrixConstants.getLineHeightInGridCells();
 

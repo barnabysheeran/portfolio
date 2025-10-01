@@ -3,6 +3,7 @@ import ApplicationLogger from '../../../../application/ApplicationLogger.ts';
 import Component from '../Component.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
+import type ShapeManager from '../../shape/ShapeManager.ts';
 
 export default class ComponentGlyphBox extends Component {
 	// Unique Parameters
@@ -15,7 +16,7 @@ export default class ComponentGlyphBox extends Component {
 	// _________________________________________________________________________
 
 	constructor(
-		shapeManager,
+		shapeManager: ShapeManager,
 		text: string,
 		gridX: number,
 		gridY: number,

@@ -5,7 +5,7 @@ import Display from '../display/Display.ts';
 import styles from './InteractiveSurface.module.css';
 
 export default class InteractiveSurface {
-	static #CONTAINER;
+	static #CONTAINER: HTMLDivElement;
 
 	static #ELEMENTS = new Map();
 

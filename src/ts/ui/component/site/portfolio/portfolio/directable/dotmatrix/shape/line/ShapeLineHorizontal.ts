@@ -15,9 +15,9 @@ export default class ShapeLineHorizontal extends Shape {
 
 	constructor(
 		dotManager,
-		gridX,
-		gridY,
-		gridLength,
+		gridX: number,
+		gridY: number,
+		gridLength: number,
 		delay = 0,
 		fillType = FillType.PassThrough,
 		fillStrategyType = FillStrategyType.PassThrough,

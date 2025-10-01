@@ -3,7 +3,7 @@ import ApplicationLogger from '../application/ApplicationLogger.ts';
 import DirectableDotMatrix from '../directable/dotmatrix/DirectableDotMatrix.ts';
 
 export default class Director {
-	static #DIRECTABLE_DOT_MATRIX;
+	static #DIRECTABLE_DOT_MATRIX: DirectableDotMatrix | null = null;
 
 	static #LOG_LEVEL = 2;
 
@@ -26,7 +26,9 @@ export default class Director {
 		// this.#DIRECTABLE_TITLE.tick(frameDeltaMS);
 
 		// Dot Matrix
-		this.#DIRECTABLE_DOT_MATRIX.tick(frameDeltaMS);
+		if (this.#DIRECTABLE_DOT_MATRIX) {
+			this.#DIRECTABLE_DOT_MATRIX.tick(frameDeltaMS);
+		}
 	}
 
 	// _______________________________________________________________ On Events
@@ -35,21 +37,27 @@ export default class Director {
 		ApplicationLogger.log(`Director onProjectMenuOpen`, this.#LOG_LEVEL);
 
 		// Dot Matrix
-		this.#DIRECTABLE_DOT_MATRIX.projectMenuOpen();
+		if (this.#DIRECTABLE_DOT_MATRIX) {
+			this.#DIRECTABLE_DOT_MATRIX.projectMenuOpen();
+		}
 	}
 
 	static onProjectMenuClose() {
 		ApplicationLogger.log(`Director onProjectMenuClose`, this.#LOG_LEVEL);
 
 		// Dot Matrix
-		this.#DIRECTABLE_DOT_MATRIX.projectMenuClose();
+		if (this.#DIRECTABLE_DOT_MATRIX) {
+			this.#DIRECTABLE_DOT_MATRIX.projectMenuClose();
+		}
 	}
 
 	static onViewProjectMenuSelect(data) {
 		ApplicationLogger.log(`Director onViewProjectMenuSelect`, this.#LOG_LEVEL);
 
 		// Dot Matrix
-		this.#DIRECTABLE_DOT_MATRIX.projectShow(data.projectId);
+		if (this.#DIRECTABLE_DOT_MATRIX) {
+			this.#DIRECTABLE_DOT_MATRIX.projectShow(data.projectId);
+		}
 	}
 
 	// ____________________________________________________________________ Size

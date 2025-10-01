@@ -17,7 +17,7 @@ export default class Shape {
 
 	// _________________________________________________________________________
 
-	constructor(dotManager, delay, drawType) {
+	constructor(dotManager, delay: number, drawType) {
 		ApplicationLogger.log('Shape', this.#LOG_LEVEL);
 
 		// Store Delay
@@ -52,7 +52,7 @@ export default class Shape {
 		const POSITION_GRID = this.positionGrids[this.#positionGridsIndex];
 
 		// Get Dot Index
-		let DOT_INDEX = this.#dotManager.getDotIndexAtGrid(
+		const DOT_INDEX = this.#dotManager.getDotIndexAtGrid(
 			POSITION_GRID[0],
 			POSITION_GRID[1],
 		);

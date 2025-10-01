@@ -59,9 +59,9 @@ export default class ShapeManager {
 	// _________________________________________________________ Line Horizontal
 
 	addShapeLineHorizontal(
-		gridX,
-		gridY,
-		length,
+		gridX: number,
+		gridY: number,
+		length: number,
 		delay = 0,
 		fillType = FillType.PassThrough,
 		fillStrategyType = FillStrategyType.PassThrough,

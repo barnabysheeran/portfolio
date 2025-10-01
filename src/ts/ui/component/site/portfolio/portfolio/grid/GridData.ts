@@ -40,7 +40,7 @@ export default class GridData {
 		return y * this.#gridWidthInCells + x;
 	}
 
-	static setGridCell(x, y, data) {
+	static setGridCell(x: number, y: number, data) {
 		const intX = Math.floor(x);
 		const intY = Math.floor(y);
 		if (
@@ -54,7 +54,7 @@ export default class GridData {
 		}
 	}
 
-	static getGridCell(x, y) {
+	static getGridCell(x: number, y: number) {
 		const intX = Math.floor(x);
 		const intY = Math.floor(y);
 		if (
@@ -92,7 +92,7 @@ export default class GridData {
 		return undefined;
 	}
 
-	static getRandomEmptyRectangle(rectangleWidthCells, rectangleHeightCells) {
+	static getRandomEmptyRectangle(rectangleWidthCells: number, rectangleHeightCells: number) {
 		const randomIndexes = this.#generateRandomOrderCellIndexes();
 
 		for (const index of randomIndexes) {
@@ -125,7 +125,7 @@ export default class GridData {
 
 	// ________________________________________________________________ Occupied
 
-	static setCellOccupied(x, y, isOccupied) {
+	static setCellOccupied(x: number, y: number, isOccupied: boolean) {
 		const intX = Math.floor(x);
 		const intY = Math.floor(y);
 		if (
@@ -139,7 +139,7 @@ export default class GridData {
 		}
 	}
 
-	static isCellOccupied(x, y) {
+	static isCellOccupied(x: number, y: number) {
 		const intX = Math.floor(x);
 		const intY = Math.floor(y);
 		if (
@@ -154,7 +154,7 @@ export default class GridData {
 		return false; // Default to not occupied if out of bounds
 	}
 
-	static isRectangleEmpty(gridCellIndex, gridWidth, gridHeight) {
+	static isRectangleEmpty(gridCellIndex: number, gridWidth: number, gridHeight: number) {
 		const startX = gridCellIndex % this.#gridWidthInCells;
 		const startY = Math.floor(gridCellIndex / this.#gridWidthInCells);
 
@@ -208,7 +208,7 @@ export default class GridData {
 
 	// ____________________________________________________________________ Size
 
-	static setSize(width, height) {
+	static setSize(width: number, height: number) {
 		// Store
 		this.#resolutionWidth = width;
 		this.#resolutionHeight = height;
