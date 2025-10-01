@@ -2,9 +2,10 @@
   width: 100px;
   height: 20px;
 
-  float: left;
   background: var(--color-background);
   border-radius: 5px;
+
+  overflow: hidden;
 }
 
 .site-progress-bar-radix-indicator {

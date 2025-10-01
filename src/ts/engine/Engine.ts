@@ -37,7 +37,7 @@ export default class Engine {
         // Running ?
         if (!this.#isRunning) return;
 
-        // Delta Time
+        // Calculate Delta Time MS
         const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
 
         console.log(`Engine Tick - Δ: ${deltaTimeMS}ms - T: ${applicationRunTimeMS}ms`);
