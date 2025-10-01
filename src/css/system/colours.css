@@ -1,4 +1,8 @@
 :root {
   --color-background: #242424;
   --color-text: rgba(255, 255, 255, 0.87);
+
+  --color-dark-low: rgba(0, 0, 0, 0.38);
+  --color-dark-mid: rgba(0, 0, 0, 0.87);
+  --color-dark-high: rgba(0, 0, 0, 0.54);
 }

@@ -8,10 +8,12 @@ export default function SitePortfolio() {
   const portfolioRef = useRef<Portfolio | null>(null);
 
   useEffect(() => {
-    // Create Portfolio Instance
-    if (containerRef.current) {
+    // Create One Portfolio Instance
+    if (containerRef.current && !portfolioRef.current) {
+
+      // Create Portfolio
       portfolioRef.current = new Portfolio({
-        isDebug: true,
+        isDebug: false,
         assetPath: '/assets/portfolio/',
         applicationContainer: containerRef.current,
       });

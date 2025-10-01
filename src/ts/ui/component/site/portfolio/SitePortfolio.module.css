@@ -5,7 +5,13 @@
 	height: calc(100vh - calc(var(--grid-cell-width) * 10));
     /* height: calc(var(--grid-cell-width) * 60); */
 
-    background: var(--color-background);
+    /* Vertical gradient from dark-low to dark-high to dark-low */
+    background: linear-gradient(to bottom,
+		var(--color-dark-low),
+		var(--color-dark-high),
+		var(--color-dark-high),
+		var(--color-dark-high),
+		var(--color-dark-low));
 
 	border: 0;
 	padding: 0;
@@ -22,6 +28,8 @@
 	pointer-events: none;
 
 	-webkit-tap-highlight-color: transparent;
+
+	
 }
 
 .site-portfolio img {
