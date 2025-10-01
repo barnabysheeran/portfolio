@@ -8,3 +8,13 @@ export interface CreationParameters {
 export interface ProjectIdData {
   projectId: string;
 }
+
+export class PositionGrid {
+  public x: number;
+  public y: number;
+
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+}

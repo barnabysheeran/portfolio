@@ -50,7 +50,7 @@ export default class InteractiveSurface {
         // Create Element
         const ELEMENT = document.createElement('div');
         ELEMENT.id = uuid;
-        ELEMENT.classList.add('interactive-block');
+        ELEMENT.classList.add(styles['interactive-block']);
         ELEMENT.style.left = `${x}px`;
         ELEMENT.style.top = `${y}px`;
         ELEMENT.style.width = `${width}px`;

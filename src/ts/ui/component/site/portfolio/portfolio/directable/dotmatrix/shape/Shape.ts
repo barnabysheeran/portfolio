@@ -1,4 +1,5 @@
 import ApplicationLogger from '../../../application/ApplicationLogger.ts';
+import type { PositionGrid } from '../../../types/types.ts';
 import type DotManager from '../dot/DotManager.ts';
 import DrawType, { type DrawTypeValue } from '../type/DrawType.ts';
 
@@ -6,7 +7,7 @@ export default class Shape {
 	#SHAPE_ID;
 
 	#positionGridsIndex = 0;
-	positionGrids = [];
+	positionGrids: PositionGrid[] = [];
 
 	#dotManager;
 	#isComplete = false;
@@ -54,8 +55,8 @@ export default class Shape {
 
 		// Get Dot Index
 		const DOT_INDEX = this.#dotManager.getDotIndexAtGrid(
-			POSITION_GRID[0],
-			POSITION_GRID[1],
+			POSITION_GRID.x,
+			POSITION_GRID.y,
 		);
 
 		// Fill Dot

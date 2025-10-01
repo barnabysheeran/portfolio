@@ -1,8 +1,10 @@
 import FillType from './FillType.ts';
+
+import type { PositionGrid } from '../../../types/types.ts';
 import type { FillTypeValue } from './FillType.ts';
 
 export default class Fill {
-	static apply(fillType: FillTypeValue, positionGrids) {
+	static apply(fillType: FillTypeValue, positionGrids: PositionGrid[]) {
 		switch (fillType) {
 			case FillType.PassThrough:
 				// Do Nothing
@@ -18,8 +20,8 @@ export default class Fill {
 
 	static #RANDOM_CHANCE = 0.5;
 
-	static #applyRandom(positionGrids) {
-		const itemsToRemove = [];
+	static #applyRandom(positionGrids: PositionGrid[]) {
+		const itemsToRemove: PositionGrid[] = [];
 
 		// Remove Randomly
 		for (const positionGrid of positionGrids) {

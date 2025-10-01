@@ -8,6 +8,8 @@ import FillStrategy from '../../type/FillStrategy.ts';
 import FillStrategyType from '../../type/FillStrategyType.ts';
 
 import DrawType from '../../type/DrawType.ts';
+import { PositionGrid } from '../../../../types/types.ts';
+
 import type { DrawTypeValue } from '../../type/DrawType.ts';
 import type { FillTypeValue } from '../../type/FillType.ts';
 import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
@@ -35,7 +37,7 @@ export default class ShapeLineHorizontal extends Shape {
 
 		// Store Initial Position Grids
 		for (let i = 0; i < gridLength; i += 1) {
-			this.positionGrids.push([gridX + i, gridY]);
+			this.positionGrids.push(new PositionGrid(gridX + i, gridY));
 		}
 
 		// Fill Type

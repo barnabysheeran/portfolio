@@ -1,10 +1,11 @@
+import type { PositionGrid } from '../../../types/types.ts';
 import FillStrategyType from './FillStrategyType.ts';
 import type { FillStrategyTypeValue } from './FillStrategyType.ts';
 
 // Re-orders the position grids based on the FillStrategyType
 
 export default class FillStrategy {
-	static apply(fillStrategyType: FillStrategyTypeValue, positionGrids) {
+	static apply(fillStrategyType: FillStrategyTypeValue, positionGrids: PositionGrid[]) {
 		switch (fillStrategyType) {
 			case FillStrategyType.PassThrough:
 				// Do Nothing
@@ -22,7 +23,7 @@ export default class FillStrategy {
 
 	// __________________________________________________________________ Random
 
-	static #applyRandom(positionGrids) {
+	static #applyRandom(positionGrids: PositionGrid[]) {
 		this.#randomSort(positionGrids);
 	}
 
@@ -31,7 +32,7 @@ export default class FillStrategy {
 	 * This is more efficient than the basic random swapping approach.
 	 * @param {Array} array - The array to be shuffled
 	 */
-	static #randomSort(array) {
+	static #randomSort(array: PositionGrid[]) {
 		// Fisher-Yates shuffle algorithm
 		for (let i = array.length - 1; i > 0; i--) {
 			// Generate random index from 0 to i
