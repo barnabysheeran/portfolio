@@ -28,11 +28,11 @@ export default class DotMatrixViewIntro extends DotMatrixView {
 
 	#DELAY_GLYPH_IN = 2;
 	#DELAY_GLYPH_OUT = 0;
-	#delayGlyph;
+	#delayGlyph = 0;
 
 	// ___________________________________________________________________ Start
 
-	start(delayFrames) {
+	start(delayFrames: number) {
 		super.start(delayFrames);
 
 		// Set Delay Glyph
@@ -45,7 +45,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
 		this.draw(delayFrames, DrawType.Fill);
 	}
 
-	stop(delayFrames) {
+	stop(delayFrames: number) {
 		super.stop(delayFrames);
 
 		// Set Delay Glyph
@@ -60,7 +60,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames, drawType) {
+	draw(delayFrames: number, drawType) {
 		super.draw(delayFrames, drawType);
 
 		// Get Height

@@ -24,13 +24,13 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 
 	#DELAY_GLYPH_IN = 2;
 	#DELAY_GLYPH_OUT = 0;
-	#delayGlyph;
+	#delayGlyph = 0;
 
 	#isMenuOpen = false;
 
 	// ______________________________________________________________ Start Stop
 
-	start(delayFrames) {
+	start(delayFrames: number) {
 		super.start(delayFrames);
 
 		// Order Important - Draw Stores Grid Position Information

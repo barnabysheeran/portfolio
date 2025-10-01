@@ -246,6 +246,7 @@ export default class RenderSurface {
 		GL.bindFramebuffer(GL.FRAMEBUFFER, null);
 		GL.viewport(0, 0, GL.drawingBufferWidth, GL.drawingBufferHeight);
 
+		/* eslint-disable-next-line react-hooks/rules-of-hooks */
 		GL.useProgram(this.#DISPLAY_SHADER_PROGRAM);
 		GL.bindVertexArray(this.#DISPLAY_QUAD_VAO); // Bind VAO
 

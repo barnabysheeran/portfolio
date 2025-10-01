@@ -34,7 +34,7 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 
 	// ______________________________________________________________ Start Stop
 
-	start(delayFrames) {
+	start(delayFrames: number) {
 		super.start(delayFrames);
 
 		// Order Important - Draw Stores Grid Position Information

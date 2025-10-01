@@ -8,7 +8,7 @@ import MediaSurfaceItem from '../MediaSurfaceItem.ts';
 export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	#CONTAINER;
 
-	#HOLDER;
+	#HOLDER: HTMLDivElement | null;
 
 	#PLAYER_HOLDER;
 	#PLAYER;
@@ -39,12 +39,12 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	// _________________________________________________________________________
 
 	constructor(container: HTMLElement, vimeoId: string, width: number, height: number) {
+		super();
+
 		ApplicationLogger.log(
 			`MediaSurfaceVimeo ${vimeoId} ${width} ${height}`,
 			this.#LOG_LEVEL,
 		);
-
-		super();
 
 		// Store
 		this.#CONTAINER = container;

@@ -5,11 +5,12 @@ import Display from '../display/Display.ts';
 
 import MediaSurfaceVimeo from './video/MediaSurfaceVimeo.ts';
 import MediaSurfaceImageGallery from './image/MediaSurfaceImageGallery.ts';
+import type MediaSurfaceItem from './MediaSurfaceItem.ts';
 
 import styles from './MediaSurface.module.css';
 
 export default class MediaSurface {
-	static #CONTAINER;
+	static #CONTAINER: HTMLDivElement;
 
 	static #MEDIA_ITEMS: MediaSurfaceItem[] = [];
 
