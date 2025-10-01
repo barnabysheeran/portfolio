@@ -1,6 +1,7 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 
 import DirectableDotMatrix from '../directable/dotmatrix/DirectableDotMatrix.ts';
+import type { ProjectIdData } from '../types/types.ts';
 
 export default class Director {
 	static #DIRECTABLE_DOT_MATRIX: DirectableDotMatrix | null = null;
@@ -51,12 +52,12 @@ export default class Director {
 		}
 	}
 
-	static onViewProjectMenuSelect(data) {
+	static onViewProjectMenuSelect(projectIdData: ProjectIdData) {
 		ApplicationLogger.log(`Director onViewProjectMenuSelect`, this.#LOG_LEVEL);
 
 		// Dot Matrix
 		if (this.#DIRECTABLE_DOT_MATRIX) {
-			this.#DIRECTABLE_DOT_MATRIX.projectShow(data.projectId);
+			this.#DIRECTABLE_DOT_MATRIX.projectShow(projectIdData.projectId);
 		}
 	}
 

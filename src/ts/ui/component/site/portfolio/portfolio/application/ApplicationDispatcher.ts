@@ -7,7 +7,7 @@ export default class ApplicationDispatcher {
     // View
     'project-menu-open',
     'project-menu-close',
-    'view-project-menu-select', // { projectId: string }
+    'view-project-menu-select', // ProjectIdData
   ];
 
   static dispatch(eventName: string, data: object): void {

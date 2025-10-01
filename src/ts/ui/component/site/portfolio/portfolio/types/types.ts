@@ -4,3 +4,7 @@ export interface CreationParameters {
   assetPath: string;
   applicationContainer: HTMLElement;
 }
+
+export interface ProjectIdData {
+  projectId: string;
+}

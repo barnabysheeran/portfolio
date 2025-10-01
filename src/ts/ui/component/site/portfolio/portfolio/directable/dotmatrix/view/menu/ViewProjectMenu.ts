@@ -13,6 +13,7 @@ import FillStrategyType from '../../type/FillStrategyType.ts';
 import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 
 import ComponentGlyphLineCentered from '../../component/glyph/ComponentGlyphLineCentered.ts';
+import type { ProjectIdData } from '../../../../types/types.ts';
 
 export default class DotMatrixViewProjectMenu extends DotMatrixView {
 	#DELAY_ROLLOVER_REDRAW = 24;
@@ -282,9 +283,9 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		});
 	}
 
-	onButtonMenuOver(clickData) {
+	onButtonMenuOver(projectIdData: ProjectIdData) {
 		// Get Project Index
-		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(clickData.projectId);
+		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.projectId);
 
 		// End Delay Frames Auto Refresh
 		this.#delayFramesAutoRefresh = -1;
@@ -300,9 +301,9 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
 	}
 
-	onButtonMenuOut(clickData) {
+	onButtonMenuOut(projectIdData: ProjectIdData) {
 		// Get Project Index
-		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(clickData.projectId);
+		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.projectId);
 
 		// End Delay Frames Auto Refresh
 		this.#delayFramesAutoRefresh = -1;
