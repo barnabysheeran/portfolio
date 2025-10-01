@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "tsc --build --pretty false && eslint .",
-    "lint2": "node tool/lint/lint-with-count.js",
+    "lint:count": "node tool/lint/lint-with-count.js",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
