@@ -276,10 +276,10 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		}
 	}
 
-	onButtonMenuClick(clickData) {
+	onButtonMenuClick(projectIdData: ProjectIdData) {
 		// Dispatch Event
 		ApplicationDispatcher.dispatch('view-project-menu-select', {
-			projectId: clickData.projectId,
+			projectId: projectIdData.projectId,
 		});
 	}
 

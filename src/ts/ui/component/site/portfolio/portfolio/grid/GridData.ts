@@ -154,29 +154,29 @@ export default class GridData {
 		return false; // Default to not occupied if out of bounds
 	}
 
-	static isRectangleEmpty(gridCellIndex: number, gridWidth: number, gridHeight: number) {
-		const startX = gridCellIndex % this.#gridWidthInCells;
-		const startY = Math.floor(gridCellIndex / this.#gridWidthInCells);
+	// static isRectangleEmpty(gridCellIndex: number, gridWidth: number, gridHeight: number) {
+	// 	const startX = gridCellIndex % this.#gridWidthInCells;
+	// 	const startY = Math.floor(gridCellIndex / this.#gridWidthInCells);
 
-		// Check if the rectangle fits within the grid boundaries
-		if (startX + gridWidth > this.#gridWidthInCells) {
-			return false;
-		}
-		if (startY + gridHeight > this.#gridHeightInCells) {
-			return false;
-		}
+	// 	// Check if the rectangle fits within the grid boundaries
+	// 	if (startX + gridWidth > this.#gridWidthInCells) {
+	// 		return false;
+	// 	}
+	// 	if (startY + gridHeight > this.#gridHeightInCells) {
+	// 		return false;
+	// 	}
 
-		// Check if all cells in the rectangle are empty
-		for (let y = 0; y < gridHeight; y++) {
-			for (let x = 0; x < gridWidth; x++) {
-				if (this.isOccupied(startX + x, startY + y)) {
-					return false;
-				}
-			}
-		}
+	// 	// Check if all cells in the rectangle are empty
+	// 	for (let y = 0; y < gridHeight; y++) {
+	// 		for (let x = 0; x < gridWidth; x++) {
+	// 			if (this.isOccupied(startX + x, startY + y)) {
+	// 				return false;
+	// 			}
+	// 		}
+	// 	}
 
-		return true;
-	}
+	// 	return true;
+	// }
 
 	// __________________________________________________ Access Grid Cell Width
 

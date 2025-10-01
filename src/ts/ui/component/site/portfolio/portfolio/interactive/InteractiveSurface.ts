@@ -1,18 +1,19 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import Display from '../display/Display.ts';
 import styles from './InteractiveSurface.module.css';
+import type { ProjectIdData } from '../types/types.ts';
 
-type ClickCallback = (clickData: object) => void;
+type ClickCallback = (data: ProjectIdData) => void;
 
 export default class InteractiveSurface {
     static #CONTAINER: HTMLDivElement;
-    static #ELEMENTS = new Map<string, HTMLDivElement>(); // Added types
+    static #ELEMENTS = new Map<string, HTMLDivElement>();
     static #PIXEL_BORDER = 10;
     static #LOG_LEVEL = 2;
 
     // _________________________________________________________________________
 
-    static initialise(width: number, height: number): void { // Added return type
+    static initialise(width: number, height: number): void {
         ApplicationLogger.log('Interactive', this.#LOG_LEVEL);
 
         // Create Holder
@@ -36,8 +37,8 @@ export default class InteractiveSurface {
         callbackClick: ClickCallback | null,
         callbackRollOver: ClickCallback | null,
         callbackRollOut: ClickCallback | null,
-        clickData: object = {},
-    ): string { // Added return type
+        clickData: ProjectIdData,
+    ): string {
         // Create UUID
         const uuid = crypto.randomUUID();
 
@@ -61,9 +62,7 @@ export default class InteractiveSurface {
         // ELEMENT.style.border = `1px solid #00ff00`;
 
         // Set Click Data
-        if (Object.keys(clickData).length > 0) {
-            ELEMENT.dataset.clickData = JSON.stringify(clickData);
-        }
+        ELEMENT.dataset.clickData = JSON.stringify(clickData);
 
         // Add Event Listeners
         if (callbackClick) {
@@ -106,25 +105,25 @@ export default class InteractiveSurface {
 
     static #onClick(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData = clickDataString ? JSON.parse(clickDataString) : {};
+        const clickData: ProjectIdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
         callback(clickData);
     }
 
     static #onRollOver(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData = clickDataString ? JSON.parse(clickDataString) : {};
+        const clickData: ProjectIdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
         callback(clickData);
     }
 
     static #onRollOut(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData = clickDataString ? JSON.parse(clickDataString) : {};
+        const clickData: ProjectIdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
         callback(clickData);
     }
 
     // ___________________________________________________________________ Clear
 
-    static clear(): void { // Added return type
+    static clear(): void {
         ApplicationLogger.log('Interactive clear', this.#LOG_LEVEL);
 
         // Clear Blocks
@@ -136,7 +135,7 @@ export default class InteractiveSurface {
 
     // ____________________________________________________________________ Size
 
-    static setSize(width: number, height: number): void { // Added return type
+    static setSize(width: number, height: number): void {
         this.#CONTAINER.style.width = `${width}px`;
         this.#CONTAINER.style.height = `${height}px`;
     }

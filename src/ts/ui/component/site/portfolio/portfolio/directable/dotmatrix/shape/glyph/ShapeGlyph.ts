@@ -13,6 +13,7 @@ import type { FillTypeValue } from '../../type/FillType.ts';
 import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
 import type { DrawTypeValue } from '../../type/DrawType.ts';
 import type { GlyphData } from './ShapeGlyphData.ts';
+import { PositionGrid } from '../../../../types/types.ts';
 
 export default class ShapeGlyph extends Shape {
 	#positionGridGlyphs: number[][] | null = null;
@@ -51,7 +52,7 @@ export default class ShapeGlyph extends Shape {
 		for (let y = 0; y < this.#glyphHeight; y += 1) {
 			for (let x = 0; x < this.#glyphWidth; x += 1) {
 				if (this.getIsFilled(x, y)) {
-					this.positionGrids.push([gridX + x, gridY + y]);
+					this.positionGrids.push(new PositionGrid(gridX + x, gridY + y));
 				}
 			}
 		}
