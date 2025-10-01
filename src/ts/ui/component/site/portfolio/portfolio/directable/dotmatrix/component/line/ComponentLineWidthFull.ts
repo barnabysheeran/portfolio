@@ -1,12 +1,13 @@
 import GridData from '../../../../grid/GridData.ts';
 
 import Component from '../Component.ts';
+import type ShapeManager from '../../shape/ShapeManager.ts';
 
 export default class ComponentLineWidthFull extends Component {
 	// _________________________________________________________________________
 
 	constructor(
-		shapeManager,
+		shapeManager: ShapeManager,
 		gridY: number,
 		delay: number,
 		fillType: number,

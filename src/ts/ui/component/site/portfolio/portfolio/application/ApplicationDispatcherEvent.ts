@@ -30,4 +30,8 @@ export default class ApplicationDispatcherEvent {
   get EVENT_NAME(): string {
     return this.#EVENT_NAME;
   }
+
+  get CALLBACKS(): Array<(data: object) => void> {
+    return this.#CALLBACKS;
+  }
 }

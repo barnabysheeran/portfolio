@@ -1,4 +1,6 @@
+
 import Component from '../Component.ts';
+import type ShapeManager from '../../shape/ShapeManager.ts';
 
 export default class ComponentRectangle extends Component {
 	// Unique Parameters
@@ -8,7 +10,7 @@ export default class ComponentRectangle extends Component {
 	// _________________________________________________________________________
 
 	constructor(
-		shapeManager,
+		shapeManager: ShapeManager,
 		gridX: number,
 		gridY: number,
 		gridWidth: number,

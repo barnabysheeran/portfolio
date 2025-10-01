@@ -32,7 +32,7 @@ export default class DirectableDotMatrix {
 
 	// _________________________________________________________________________
 
-	constructor(displayWidthPx, displayHeightPx) {
+	constructor(displayWidthPx: number, displayHeightPx: number) {
 		ApplicationLogger.log(
 			'DirectableDotMatrix ' + displayHeightPx + ' ' + displayHeightPx,
 			this.#LOG_LEVEL,
@@ -94,7 +94,7 @@ export default class DirectableDotMatrix {
 
 	// ____________________________________________________________________ Tick
 
-	tick(frameDeltaMS) {
+	tick(frameDeltaMS: number) {
 		// Tick Views
 		for (let i = 0; i < this.#VIEWS.length; i += 1) {
 			this.#VIEWS[i].tick(frameDeltaMS);

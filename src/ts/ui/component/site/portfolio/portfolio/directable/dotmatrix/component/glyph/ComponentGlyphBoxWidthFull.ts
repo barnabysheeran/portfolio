@@ -1,6 +1,7 @@
 import GridData from '../../../../grid/GridData.ts';
 
 import Component from '../Component.ts';
+import type ShapeManager from '../../shape/ShapeManager.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
 
@@ -11,7 +12,7 @@ export default class ComponentGlyphBoxWidthFull extends Component {
 	// _________________________________________________________________________
 
 	constructor(
-		shapeManager,
+		shapeManager: ShapeManager,
 		text: string,
 		gridX: number,
 		gridY: number,
