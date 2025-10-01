@@ -12,9 +12,10 @@ import type DotManager from '../../dot/DotManager.ts';
 import type { FillTypeValue } from '../../type/FillType.ts';
 import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
 import type { DrawTypeValue } from '../../type/DrawType.ts';
+import type { GlyphData } from './ShapeGlyphData.ts';
 
 export default class ShapeGlyph extends Shape {
-	#positionGridGlyphs = [];
+	#positionGridGlyphs: number[][] | null = null;
 	#glyphWidth = 0;
 	#glyphHeight = 0;
 
@@ -26,7 +27,7 @@ export default class ShapeGlyph extends Shape {
 		dotManager: DotManager,
 		gridX: number,
 		gridY: number,
-		glyphData,
+		glyphData: GlyphData,
 		delay = 0,
 		fillType: FillTypeValue = FillType.PassThrough,
 		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
@@ -38,6 +39,11 @@ export default class ShapeGlyph extends Shape {
 
 		// Get Glyph Data
 		this.#positionGridGlyphs = glyphData.points;
+
+		if(!this.#positionGridGlyphs) {
+			return;
+		}
+
 		this.#glyphWidth = this.#positionGridGlyphs[0].length;
 		this.#glyphHeight = this.#positionGridGlyphs.length;
 
@@ -63,6 +69,11 @@ export default class ShapeGlyph extends Shape {
 			return false;
 		}
 
+		if (!this.#positionGridGlyphs) {
+			return false;
+		}
+
+		// Return
 		return this.#positionGridGlyphs[y][x] === 1;
 	}
 

@@ -1,9 +1,10 @@
 import FillStrategyType from './FillStrategyType.ts';
+import type { FillStrategyTypeValue } from './FillStrategyType.ts';
 
 // Re-orders the position grids based on the FillStrategyType
 
 export default class FillStrategy {
-	static apply(fillStrategyType, positionGrids) {
+	static apply(fillStrategyType: FillStrategyTypeValue, positionGrids) {
 		switch (fillStrategyType) {
 			case FillStrategyType.PassThrough:
 				// Do Nothing

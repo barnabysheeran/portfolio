@@ -1,146 +1,143 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
-
 import Display from '../display/Display.ts';
-
 import styles from './InteractiveSurface.module.css';
 
+type ClickCallback = (clickData: object) => void;
+
 export default class InteractiveSurface {
-	static #CONTAINER: HTMLDivElement;
+    static #CONTAINER: HTMLDivElement;
+    static #ELEMENTS = new Map<string, HTMLDivElement>(); // Added types
+    static #PIXEL_BORDER = 10;
+    static #LOG_LEVEL = 2;
 
-	static #ELEMENTS = new Map();
+    // _________________________________________________________________________
 
-	static #PIXEL_BORDER = 10;
+    static initialise(width: number, height: number): void { // Added return type
+        ApplicationLogger.log('Interactive', this.#LOG_LEVEL);
 
-	static #LOG_LEVEL = 2;
+        // Create Holder
+        this.#CONTAINER = document.createElement('div');
+        this.#CONTAINER.classList.add(styles['interactive-surface']);
 
-	// _________________________________________________________________________
+        // Append Holder to Display Holder
+        Display.getDisplayHolder().appendChild(this.#CONTAINER);
 
-	static initialise(width: number, height: number) {
-		ApplicationLogger.log('Interactive', this.#LOG_LEVEL);
+        // Set Initial Size
+        this.setSize(width, height);
+    }
 
-		// Create Holder
-		this.#CONTAINER = document.createElement('div');
-		this.#CONTAINER.classList.add(styles['interactive-surface']);
+    // _______________________________________________________________ Add Block
 
-		// Append Holder to Display Holder
-		Display.getDisplayHolder().appendChild(this.#CONTAINER);
+    static createBlock(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        callbackClick: ClickCallback | null,
+        callbackRollOver: ClickCallback | null,
+        callbackRollOut: ClickCallback | null,
+        clickData: object = {},
+    ): string { // Added return type
+        // Create UUID
+        const uuid = crypto.randomUUID();
 
-		// Set Initial Size
-		this.setSize(width, height);
-	}
+        // Add Pixel Border
+        x -= this.#PIXEL_BORDER;
+        y -= this.#PIXEL_BORDER;
+        width += this.#PIXEL_BORDER * 2;
+        height += this.#PIXEL_BORDER * 2;
 
-	// _______________________________________________________________ Add Block
+        // Create Element
+        const ELEMENT = document.createElement('div');
+        ELEMENT.id = uuid;
+        ELEMENT.classList.add('interactive-block');
+        ELEMENT.style.left = `${x}px`;
+        ELEMENT.style.top = `${y}px`;
+        ELEMENT.style.width = `${width}px`;
+        ELEMENT.style.height = `${height}px`;
+        this.#CONTAINER.appendChild(ELEMENT);
 
-	static createBlock(
-		x: number,
-		y: number,
-		width: number,
-		height: number,
-		callbackClick,
-		callbackRollOver,
-		callbackRollOut,
-		clickData = {},
-	) {
-		// Create UUID
-		const uuid = crypto.randomUUID();
+        // Development - Add Visible Border
+        // ELEMENT.style.border = `1px solid #00ff00`;
 
-		// Add Pixel Border
-		x -= this.#PIXEL_BORDER;
-		y -= this.#PIXEL_BORDER;
-		width += this.#PIXEL_BORDER * 2;
-		height += this.#PIXEL_BORDER * 2;
+        // Set Click Data
+        if (Object.keys(clickData).length > 0) {
+            ELEMENT.dataset.clickData = JSON.stringify(clickData);
+        }
 
-		// Create Element
-		const ELEMENT = document.createElement('div');
-		ELEMENT.id = uuid;
-		ELEMENT.classList.add('interactive-block');
-		ELEMENT.style.left = `${x}px`;
-		ELEMENT.style.top = `${y}px`;
-		ELEMENT.style.width = `${width}px`;
-		ELEMENT.style.height = `${height}px`;
-		this.#CONTAINER.appendChild(ELEMENT);
+        // Add Event Listeners
+        if (callbackClick) {
+            ELEMENT.addEventListener('click', (event: MouseEvent) =>
+                this.#onClick(event, callbackClick),
+            );
+        }
 
-		// Development - Add Visible Border
-		// ELEMENT.style.border = `1px solid #00ff00`;
+        if (callbackRollOver) {
+            ELEMENT.addEventListener('mouseover', (event: MouseEvent) =>
+                this.#onRollOver(event, callbackRollOver),
+            );
+        }
 
-		// Set Click Data
-		if (Object.keys(clickData).length > 0) {
-			ELEMENT.dataset.clickData = JSON.stringify(clickData);
-		}
+        if (callbackRollOut) {
+            ELEMENT.addEventListener('mouseout', (event: MouseEvent) =>
+                this.#onRollOut(event, callbackRollOut),
+            );
+        }
 
-		// Add Event Listeners
-		if (callbackClick) {
-			ELEMENT.addEventListener('click', (event) =>
-				this.#onClick(event, callbackClick),
-			);
-		}
+        // Store
+        this.#ELEMENTS.set(uuid, ELEMENT);
 
-		if (callbackRollOver) {
-			ELEMENT.addEventListener('mouseover', (event) =>
-				this.#onRollOver(event, callbackRollOver),
-			);
-		}
+        // Return uuid
+        return uuid;
+    }
 
-		if (callbackRollOut) {
-			ELEMENT.addEventListener('mouseout', (event) =>
-				this.#onRollOut(event, callbackRollOut),
-			);
-		}
+    // ____________________________________________________________ Remove Block
 
-		// Store
-		this.#ELEMENTS.set(uuid, ELEMENT);
+    static removeBlock(uuid: string): void { // Added return type
+        const element = this.#ELEMENTS.get(uuid);
 
-		// Return uuid
-		return uuid;
-	}
+        if (element) {
+            element.remove();
+            this.#ELEMENTS.delete(uuid);
+        }
+    }
 
-	// ____________________________________________________________ Remove Block
+    // __________________________________________________________ Event Handlers
 
-	static removeBlock(uuid: string) {
-		const element = this.#ELEMENTS.get(uuid);
+    static #onClick(event: MouseEvent, callback: ClickCallback): void { // Added types
+        const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
+        const clickData = clickDataString ? JSON.parse(clickDataString) : {};
+        callback(clickData);
+    }
 
-		if (element) {
-			element.remove();
-			this.#ELEMENTS.delete(uuid);
-		}
-	}
+    static #onRollOver(event: MouseEvent, callback: ClickCallback): void { // Added types
+        const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
+        const clickData = clickDataString ? JSON.parse(clickDataString) : {};
+        callback(clickData);
+    }
 
-	// __________________________________________________________ Event Handlers
+    static #onRollOut(event: MouseEvent, callback: ClickCallback): void { // Added types
+        const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
+        const clickData = clickDataString ? JSON.parse(clickDataString) : {};
+        callback(clickData);
+    }
 
-	static #onClick(event, callback) {
-		const clickDataString = event.currentTarget.dataset.clickData;
-		const clickData = clickDataString ? JSON.parse(clickDataString) : {};
-		callback(clickData);
-	}
+    // ___________________________________________________________________ Clear
 
-	static #onRollOver(event, callback) {
-		const clickDataString = event.currentTarget.dataset.clickData;
-		const clickData = clickDataString ? JSON.parse(clickDataString) : {};
-		callback(clickData);
-	}
+    static clear(): void { // Added return type
+        ApplicationLogger.log('Interactive clear', this.#LOG_LEVEL);
 
-	static #onRollOut(event, callback) {
-		const clickDataString = event.currentTarget.dataset.clickData;
-		const clickData = clickDataString ? JSON.parse(clickDataString) : {};
-		callback(clickData);
-	}
+        // Clear Blocks
+        this.#ELEMENTS.clear();
 
-	// ___________________________________________________________________ Clear
+        // Clear Holder
+        this.#CONTAINER.innerHTML = '';
+    }
 
-	static clear() {
-		ApplicationLogger.log('Interactive clear', this.#LOG_LEVEL);
+    // ____________________________________________________________________ Size
 
-		// Clear Blocks
-		this.#ELEMENTS.clear();
-
-		// Clear Holder
-		this.#CONTAINER.innerHTML = '';
-	}
-
-	// ____________________________________________________________________ Size
-
-	static setSize(width: number, height: number) {
-		this.#CONTAINER.style.width = `${width}px`;
-		this.#CONTAINER.style.height = `${height}px`;
-	}
+    static setSize(width: number, height: number): void { // Added return type
+        this.#CONTAINER.style.width = `${width}px`;
+        this.#CONTAINER.style.height = `${height}px`;
+    }
 }

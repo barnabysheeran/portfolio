@@ -12,7 +12,7 @@ import type DotManager from '../dot/DotManager.ts';
 import ShapeLineHorizontal from './line/ShapeLineHorizontal.ts';
 import ShapeRectangle from './primative/ShapeRectangle.ts';
 
-import SHAPE_GLYPH_DATA from './glyph/ShapeGlyphData.ts';
+import SHAPE_GLYPH_DATA, { type GlyphData } from './glyph/ShapeGlyphData.ts';
 import ShapeGlyph from './glyph/ShapeGlyph.ts';
 
 import type Shape from './Shape.ts';
@@ -128,7 +128,7 @@ export default class ShapeManager {
 	// ___________________________________________________________________ Glyph
 
 	addShapeGlyph(
-		glyphCode,
+		glyphCode: string,
 		gridX: number,
 		gridY: number,
 		delay: number = 0,
@@ -165,7 +165,7 @@ export default class ShapeManager {
 		return SHAPE;
 	}
 
-	#getShapeGlyphData(glyphCode) {
+	#getShapeGlyphData(glyphCode: string): GlyphData | undefined {
 		// Try direct match first (for special chars and multi-char keys like 'heart')
 		let glyphData = SHAPE_GLYPH_DATA[glyphCode];
 		if (glyphData) return glyphData;
@@ -185,7 +185,7 @@ export default class ShapeManager {
 		return glyphData;
 	}
 
-	getShapeGlyphWidth(glyphCode) {
+	getShapeGlyphWidth(glyphCode: string) {
 		const glyphData = this.#getShapeGlyphData(glyphCode);
 
 		if (!glyphData) {
@@ -195,7 +195,7 @@ export default class ShapeManager {
 		return glyphData.points[0].length;
 	}
 
-	getShapeGlyphHeight(glyphCode) {
+	getShapeGlyphHeight(glyphCode: string) {
 		const glyphData = this.#getShapeGlyphData(glyphCode);
 
 		if (!glyphData) {
@@ -209,8 +209,8 @@ export default class ShapeManager {
 
 	// Non-Standard Glyphs are enclosed in curly braces {}, e.g. {heart}
 
-	parseTextToGlyphCodes(text) {
-		const GLYPH_CODES = [];
+	parseTextToGlyphCodes(text: string) {
+		const GLYPH_CODES: string[] = [];
 
 		let i = 0;
 

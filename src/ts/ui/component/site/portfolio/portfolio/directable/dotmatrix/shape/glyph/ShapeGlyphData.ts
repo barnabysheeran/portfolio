@@ -1,4 +1,10 @@
-const SHAPE_GLYPH_DATA = {
+export interface GlyphData {
+    points: number[][];
+}
+
+export type ShapeGlyphDataType = Record<string, GlyphData>;
+
+const SHAPE_GLYPH_DATA: ShapeGlyphDataType = {
 	// Uppercase letters
 	A: {
 		points: [

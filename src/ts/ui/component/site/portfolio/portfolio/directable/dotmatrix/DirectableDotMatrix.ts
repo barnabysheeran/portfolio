@@ -6,8 +6,6 @@ import DotManager from './dot/DotManager.ts';
 import ShapeManager from './shape/ShapeManager.ts';
 import ComponentManager from './component/ComponentManager.ts';
 
-import ViewTest from './view/test/ViewTest.ts';
-
 import ViewHeader from './view/header/ViewHeader.ts';
 import ViewIntro from './view/intro/ViewIntro.ts';
 import ViewProjectMenu from './view/menu/ViewProjectMenu.ts';
@@ -83,11 +81,6 @@ export default class DirectableDotMatrix {
 				),
 			);
 		});
-
-		// Create Test View
-		this.#VIEWS.push(
-			new ViewTest(this.#SHAPE_MANAGER, this.#COMPONENT_MANAGER, 'test'),
-		);
 
 		// Start Header
 		this.#VIEW_HEADER.start(0);

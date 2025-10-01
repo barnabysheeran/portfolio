@@ -122,7 +122,7 @@ export default class ViewProject extends DotMatrixView {
 			const IS_OVER = this.#IS_OVERS[i];
 
 			// Draw Mode
-			let drawType = DrawType.Fill;
+			let drawType: DrawTypeValue = DrawType.Fill;
 
 			// Is Over ?
 			if (IS_OVER === true) {
