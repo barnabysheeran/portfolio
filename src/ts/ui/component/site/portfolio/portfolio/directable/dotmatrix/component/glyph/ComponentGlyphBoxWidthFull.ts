@@ -5,6 +5,10 @@ import type ShapeManager from '../../shape/ShapeManager.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
 
+import type { FillTypeValue } from '../../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
+import type { DrawTypeValue } from '../../type/DrawType.ts';
+
 export default class ComponentGlyphBoxWidthFull extends Component {
 	// Unique Parameters
 	TEXT;
@@ -18,9 +22,9 @@ export default class ComponentGlyphBoxWidthFull extends Component {
 		gridY: number,
 		delay: number,
 		delayGlyph: number,
-		fillType: number,
-		fillStrategyType: number,
-		drawType: number,
+		fillType: FillTypeValue,
+		fillStrategyType: FillStrategyTypeValue,
+		drawType: DrawTypeValue,
 	) {
 		super(
 			shapeManager,
@@ -101,7 +105,7 @@ export default class ComponentGlyphBoxWidthFull extends Component {
 			}
 
 			// Create Shape Glyph
-			const SHAPE = this.SHAPE_MANAGER.addShapeGlyph(
+			const SHAPE_GLYPH = this.SHAPE_MANAGER.addShapeGlyph(
 				GLYPH_CODE,
 				currentGridX,
 				this.GRID_Y,
@@ -112,10 +116,10 @@ export default class ComponentGlyphBoxWidthFull extends Component {
 			);
 
 			// Store
-			this.SHAPES.push(SHAPE);
+			this.SHAPES.push(SHAPE_GLYPH);
 
 			// Increment Current Grid X Position
-			currentGridX += SHAPE.getGlyphWidth() + GLYPH_SPACING_X;
+			currentGridX += SHAPE_GLYPH.getGlyphWidth() + GLYPH_SPACING_X;
 		}
 	}
 }

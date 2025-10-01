@@ -1,6 +1,9 @@
 
 import Component from '../Component.ts';
 import type ShapeManager from '../../shape/ShapeManager.ts';
+import type { FillTypeValue } from '../../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
+import type { DrawTypeValue } from '../../type/DrawType.ts';
 
 export default class ComponentRectangle extends Component {
 	// Unique Parameters
@@ -16,9 +19,9 @@ export default class ComponentRectangle extends Component {
 		gridWidth: number,
 		gridHeight: number,
 		delay: number,
-		fillType: number,
-		fillStrategyType: number,
-		drawType: number,
+		fillType: FillTypeValue,
+		fillStrategyType: FillStrategyTypeValue,
+		drawType: DrawTypeValue,
 	) {
 		super(
 			shapeManager,

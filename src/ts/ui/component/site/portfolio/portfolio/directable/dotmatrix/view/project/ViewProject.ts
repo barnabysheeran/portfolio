@@ -6,7 +6,7 @@ import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts'
 
 import FillType from '../../type/FillType.ts';
 import FillStrategyType from '../../type/FillStrategyType.ts';
-import DrawType from '../../type/DrawType.ts';
+import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 
 import GridData from '../../../../grid/GridData.ts';
 import InteractiveSurface from '../../../../interactive/InteractiveSurface.ts';
@@ -59,7 +59,7 @@ export default class ViewProject extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames: number, drawType) {
+	draw(delayFrames: number, drawType: DrawTypeValue) {
 		super.draw(delayFrames, drawType);
 
 		// Get Project Data

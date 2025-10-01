@@ -6,7 +6,13 @@ import Fill from '../../type/Fill.ts';
 import FillType from '../../type/FillType.ts';
 import FillStrategy from '../../type/FillStrategy.ts';
 import FillStrategyType from '../../type/FillStrategyType.ts';
+
 import DrawType from '../../type/DrawType.ts';
+import type { DrawTypeValue } from '../../type/DrawType.ts';
+import type { FillTypeValue } from '../../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
+
+import type DotManager from '../../dot/DotManager.ts';
 
 export default class ShapeLineHorizontal extends Shape {
 	#LOG_LEVEL = -1; // 6;
@@ -14,14 +20,14 @@ export default class ShapeLineHorizontal extends Shape {
 	// _________________________________________________________________________
 
 	constructor(
-		dotManager,
+		dotManager: DotManager,
 		gridX: number,
 		gridY: number,
 		gridLength: number,
 		delay = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		super(dotManager, delay, drawType);
 
@@ -33,7 +39,7 @@ export default class ShapeLineHorizontal extends Shape {
 		}
 
 		// Fill Type
-		Fill.apply(fillType, this.positionGrids, gridLength, 1);
+		Fill.apply(fillType, this.positionGrids);
 
 		// Fill Strategy Type
 		FillStrategy.apply(fillStrategyType, this.positionGrids);

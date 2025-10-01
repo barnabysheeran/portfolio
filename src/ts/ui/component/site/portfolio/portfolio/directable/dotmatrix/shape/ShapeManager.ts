@@ -68,9 +68,9 @@ export default class ShapeManager {
 		gridY: number,
 		length: number,
 		delay = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		// Create Shape
 		const SHAPE = new ShapeLineHorizontal(
@@ -94,14 +94,14 @@ export default class ShapeManager {
 	// _______________________________________________________________ Rectangle
 
 	addShapeRectangle(
-		gridX,
-		gridY,
-		gridWidth,
-		gridHeight,
+		gridX: number,
+		gridY: number,
+		gridWidth: number,
+		gridHeight: number,
 		delay = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		// Create Shape
 		const SHAPE = new ShapeRectangle(

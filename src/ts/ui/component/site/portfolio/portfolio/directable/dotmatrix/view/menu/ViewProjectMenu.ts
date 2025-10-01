@@ -25,8 +25,8 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 	#GRID_YS;
 	#GRID_WIDTH_GLYPHS;
 
-	#IS_OVERS;
-	#REQUIRES_UPDATES;
+	#IS_OVERS: boolean[] = [];
+	#REQUIRES_UPDATES: boolean[] = [];
 
 	#DELAY_GLYPH_IN = 4;
 	#DELAY_GLYPH_OUT = 0;
@@ -75,7 +75,7 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		this.#createInteractiveBlocks();
 	}
 
-	stop(delayFrames) {
+	stop(delayFrames: number) {
 		// Super Removes Interactive Blocks
 		super.stop(delayFrames);
 
@@ -320,7 +320,7 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 
 	// ______________________________________________________________ Rectangles
 
-	#drawSurroundingRectangle(projectId, delayFrames, drawType) {
+	#drawSurroundingRectangle(projectId: string, delayFrames: number, drawType: DrawTypeValue) {
 		// Get Project Index
 		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectId);
 

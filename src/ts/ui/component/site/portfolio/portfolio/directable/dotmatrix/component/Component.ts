@@ -17,10 +17,9 @@ export default class Component {
 	GRID_X = 0;
 	GRID_Y = 0;
 
-	FILL_TYPE: number;
-	FILL_STRATEGY_TYPE: number;
-
-	DRAW_TYPE: number;
+	FILL_TYPE: FillTypeValue;
+	FILL_STRATEGY_TYPE: FillStrategyTypeValue;
+	DRAW_TYPE: DrawTypeValue;
 
 	DELAY: number;
 	DELAY_GLYPH: number;

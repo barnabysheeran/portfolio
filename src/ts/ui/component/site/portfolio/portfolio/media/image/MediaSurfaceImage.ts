@@ -52,7 +52,9 @@ export default class MediaSurfaceImage {
 
 	#onImageLoaded() {
 		// Set Image as Background of Holder
-		this.#HOLDER.style.backgroundImage = `url(${this.#IMAGE_URL})`;
+		if (this.#HOLDER) {
+			this.#HOLDER.style.backgroundImage = `url(${this.#IMAGE_URL})`;
+		}
 
 		// Discard Image
 		this.#IMAGE = null;

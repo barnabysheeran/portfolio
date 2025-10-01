@@ -6,6 +6,9 @@ import ComponentRectangle from '../component/primative/ComponentRectangle.ts';
 import FillType from '../type/FillType.ts';
 import FillStrategyType from '../type/FillStrategyType.ts';
 import DrawType from '../type/DrawType.ts';
+
+import type { FillTypeValue } from '../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../type/FillStrategyType.ts';
 import type { DrawTypeValue } from '../type/DrawType.ts';
 
 import type ShapeManager from '../shape/ShapeManager.ts';
@@ -125,8 +128,8 @@ export default class DotMatrixView {
 		gridWidth: number,
 		gridHeight: number,
 		delayFrames: number,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
 		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		const BLOCK_WIDTH = 3;

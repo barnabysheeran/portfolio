@@ -7,7 +7,11 @@ import FillType from '../../type/FillType.ts';
 import FillStrategy from '../../type/FillStrategy.ts';
 import FillStrategyType from '../../type/FillStrategyType.ts';
 import DrawType from '../../type/DrawType.ts';
+
 import type DotManager from '../../dot/DotManager.ts';
+import type { FillTypeValue } from '../../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
+import type { DrawTypeValue } from '../../type/DrawType.ts';
 
 export default class ShapeRectangle extends Shape {
 	#LOG_LEVEL = -1; // 6;
@@ -21,9 +25,9 @@ export default class ShapeRectangle extends Shape {
 		gridWidth: number,
 		gridHeight: number,
 		delay = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		super(dotManager, delay, drawType);
 
