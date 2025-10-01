@@ -11,7 +11,7 @@ export default function SitePortfolio() {
     // Create Portfolio Instance
     if (containerRef.current) {
       portfolioRef.current = new Portfolio({
-        isDebug: false,
+        isDebug: true,
         assetPath: '/assets/portfolio/',
         applicationContainer: containerRef.current,
       });
