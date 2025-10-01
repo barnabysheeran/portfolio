@@ -3,8 +3,9 @@ import player from '@vimeo/player';
 import ApplicationLogger from '../../application/ApplicationLogger.ts';
 
 import MediaSurface from '../MediaSurface.ts';
+import MediaSurfaceItem from '../MediaSurfaceItem.ts';
 
-export default class MediaSurfaceVimeo {
+export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	#CONTAINER;
 
 	#HOLDER;
@@ -42,6 +43,8 @@ export default class MediaSurfaceVimeo {
 			`MediaSurfaceVimeo ${vimeoId} ${width} ${height}`,
 			this.#LOG_LEVEL,
 		);
+
+		super();
 
 		// Store
 		this.#CONTAINER = container;

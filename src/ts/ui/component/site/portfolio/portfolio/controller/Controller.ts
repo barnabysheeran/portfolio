@@ -109,7 +109,7 @@ export default class Controller {
 		MediaSurface.clear();
 	}
 
-	#onViewProjectMenuSelect(projectData) {
+	#onViewProjectMenuSelect(projectData: object) {
 		ApplicationLogger.log(
 			`Controller onViewProjectMenuSelect`,
 			this.#LOG_LEVEL,

@@ -2,8 +2,9 @@ import ApplicationLogger from '../../application/ApplicationLogger.ts';
 import ApplicationConfiguration from '../../application/ApplicationConfiguration.ts';
 
 import MediaSurfaceImage from './MediaSurfaceImage.ts';
+import MediaSurfaceItem from '../MediaSurfaceItem.ts';
 
-export default class MediaSurfaceImageGallery {
+export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
 	#HOLDER;
 
 	#IMAGES = [];
@@ -23,8 +24,10 @@ export default class MediaSurfaceImageGallery {
 
 	// _________________________________________________________________________
 
-	constructor(container, imageUrls) {
+	constructor(container: HTMLElement, imageUrls: string[]) {
 		ApplicationLogger.log(`MediaSurfaceImageGallery`, this.#LOG_LEVEL);
+
+		super();
 
 		// Create Holder
 		this.#HOLDER = document.createElement('div');

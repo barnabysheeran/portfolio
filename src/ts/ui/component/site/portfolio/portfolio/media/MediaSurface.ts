@@ -11,7 +11,7 @@ import styles from './MediaSurface.module.css';
 export default class MediaSurface {
 	static #CONTAINER;
 
-	static #MEDIA_ITEMS = [];
+	static #MEDIA_ITEMS: MediaSurfaceItem[] = [];
 
 	static #width: number;
 	static #height: number;
