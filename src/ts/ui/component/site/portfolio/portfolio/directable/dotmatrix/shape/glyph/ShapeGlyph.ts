@@ -2,11 +2,12 @@ import ApplicationLogger from '../../../../application/ApplicationLogger.ts';
 
 import Shape from '../Shape.ts';
 
-import Fill from '../../enum/Fill.ts';
-import FillType from '../../enum/FillType.ts';
-import FillStrategy from '../../enum/FillStrategy.ts';
-import FillStrategyType from '../../enum/FillStrategyType.ts';
-import DrawType from '../../enum/DrawType.ts';
+import Fill from '../../type/Fill.ts';
+import FillType from '../../type/FillType.ts';
+import FillStrategy from '../../type/FillStrategy.ts';
+import FillStrategyType from '../../type/FillStrategyType.ts';
+import DrawType from '../../type/DrawType.ts';
+import type DotManager from '../../dot/DotManager.ts';
 
 export default class ShapeGlyph extends Shape {
 	#positionGridGlyphs = [];
@@ -18,9 +19,9 @@ export default class ShapeGlyph extends Shape {
 	// _________________________________________________________________________
 
 	constructor(
-		dotManager,
-		gridX,
-		gridY,
+		dotManager: DotManager,
+		gridX: number,
+		gridY: number,
 		glyphData,
 		delay = 0,
 		fillType = FillType.PassThrough,
@@ -52,7 +53,7 @@ export default class ShapeGlyph extends Shape {
 		FillStrategy.apply(fillStrategyType, this.positionGrids);
 	}
 
-	getIsFilled(x, y) {
+	getIsFilled(x: number, y: number) {
 		// Check bounds
 		if (y < 0 || y >= this.#glyphHeight || x < 0 || x >= this.#glyphWidth) {
 			return false;

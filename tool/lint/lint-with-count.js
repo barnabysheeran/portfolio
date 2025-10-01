@@ -1,7 +1,19 @@
 import { execSync } from 'child_process';
 
-const MAX_ERRORS_TO_LOG = 20;
+const MAX_ERRORS_TO_LOG_START = 10;
+const MAX_ERRORS_TO_LOG_RANDOM = 20;
+const MAX_ERRORS_TO_LOG_END = 10;
+
 const MAX_DESCRIPTION_WORDS_TO_LOG = 6;
+
+function shuffle(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
 function formatError(line) {
   const parts = line.split(':');
@@ -25,20 +37,23 @@ try {
   const lines = fullOutput.split('\n');
   const errorLines = lines.filter(line => line.includes('error TS'));
   const formattedErrors = errorLines.map(formatError);
+  const totalToLog = MAX_ERRORS_TO_LOG_START + MAX_ERRORS_TO_LOG_RANDOM + MAX_ERRORS_TO_LOG_END;
   let errorsToLog;
-  if (formattedErrors.length <= MAX_ERRORS_TO_LOG) {
+  if (formattedErrors.length <= totalToLog) {
     errorsToLog = formattedErrors;
+    console.log(errorsToLog.join('\n'));
   } else {
-    const third = Math.floor(MAX_ERRORS_TO_LOG / 3);
-    const middleCount = MAX_ERRORS_TO_LOG - 2 * third;
-    const firstErrors = formattedErrors.slice(0, third);
-    const middleStart = Math.floor(formattedErrors.length / 2) - Math.floor(middleCount / 2);
-    const middleErrors = formattedErrors.slice(middleStart, middleStart + middleCount);
-    const lastErrors = formattedErrors.slice(-third);
-    errorsToLog = [...firstErrors, ...middleErrors, ...lastErrors];
-    console.log(`Showing first ${third}, middle ${middleCount}, and last ${third} errors out of ${formattedErrors.length}.`);
+    const firstErrors = formattedErrors.slice(0, MAX_ERRORS_TO_LOG_START);
+    const middleErrors = formattedErrors.slice(MAX_ERRORS_TO_LOG_START, formattedErrors.length - MAX_ERRORS_TO_LOG_END);
+    const randomMiddle = shuffle(middleErrors).slice(0, MAX_ERRORS_TO_LOG_RANDOM);
+    const lastErrors = formattedErrors.slice(-MAX_ERRORS_TO_LOG_END);
+    console.log(firstErrors.join('\n'));
+    console.log('--');
+    console.log(randomMiddle.join('\n'));
+    console.log('--');
+    console.log(lastErrors.join('\n'));
+    console.log(`Showing start ${MAX_ERRORS_TO_LOG_START}, random ${MAX_ERRORS_TO_LOG_RANDOM}, end ${MAX_ERRORS_TO_LOG_END} errors out of ${formattedErrors.length}.`);
   }
-  console.log(errorsToLog.join('\n'));
   console.log(`Found ${errorLines.length} TypeScript errors.`);
   process.exit(1);
 }

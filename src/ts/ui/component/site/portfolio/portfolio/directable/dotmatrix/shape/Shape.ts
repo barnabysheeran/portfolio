@@ -1,5 +1,5 @@
 import ApplicationLogger from '../../../application/ApplicationLogger.ts';
-import DrawType from '../enum/DrawType.ts';
+import DrawType from '../type/DrawType.ts';
 
 export default class Shape {
 	#SHAPE_ID;

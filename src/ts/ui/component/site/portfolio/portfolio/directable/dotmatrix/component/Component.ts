@@ -1,11 +1,14 @@
 import ApplicationLogger from '../../../application/ApplicationLogger.ts';
 
-import FillType from '../enum/FillType.ts';
-import FillStrategyType from '../enum/FillStrategyType.ts';
-import DrawType from '../enum/DrawType.ts';
+import FillType from '../type/FillType.ts';
+import FillStrategyType from '../type/FillStrategyType.ts';
+import DrawType from '../type/DrawType.ts';
 
 import type Shape from '../shape/Shape.ts';
 import type ShapeManager from '../shape/ShapeManager.ts';
+import type { FillTypeValue } from '../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../type/FillStrategyType.ts';
+import type { DrawTypeValue } from '../type/DrawType.ts';
 
 export default class Component {
 	SHAPE_MANAGER;
@@ -32,9 +35,9 @@ export default class Component {
 		gridY: number,
 		delay = 0,
 		delayGlyph = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		ApplicationLogger.log(
 			`Component gridX ${gridX} gridY ${gridY}` +

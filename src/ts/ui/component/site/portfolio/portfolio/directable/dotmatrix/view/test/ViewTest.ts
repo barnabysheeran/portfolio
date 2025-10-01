@@ -4,11 +4,11 @@ import DotMatrixView from '../DotMatrixView.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
 
-import FillType from '../../enum/FillType.ts';
-import FillStrategyType from '../../enum/FillStrategyType.ts';
+import FillType from '../../type/FillType.ts';
+import FillStrategyType from '../../type/FillStrategyType.ts';
 
-import DrawType from '../../enum/DrawType.ts';
-import type { DrawTypeValue } from '../../enum/DrawType.ts';
+import DrawType from '../../type/DrawType.ts';
+import type { DrawTypeValue } from '../../type/DrawType.ts';
 
 import ComponentLineWidthFull from '../../component/line/ComponentLineWidthFull.ts';
 import ComponentGlyphBox from '../../component/glyph/ComponentGlyphBox.ts';

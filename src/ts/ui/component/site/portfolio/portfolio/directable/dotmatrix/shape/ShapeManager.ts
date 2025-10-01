@@ -1,8 +1,13 @@
 import ApplicationLogger from '../../../application/ApplicationLogger.ts';
 
-import FillType from '../enum/FillType.ts';
-import FillStrategyType from '../enum/FillStrategyType.ts';
-import DrawType from '../enum/DrawType.ts';
+import FillType from '../type/FillType.ts';
+import FillStrategyType from '../type/FillStrategyType.ts';
+
+import DrawType from '../type/DrawType.ts';
+import type { FillTypeValue } from '../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../type/FillStrategyType.ts';
+import type { DrawTypeValue } from '../type/DrawType.ts';
+import type DotManager from '../dot/DotManager.ts';
 
 import ShapeLineHorizontal from './line/ShapeLineHorizontal.ts';
 import ShapeRectangle from './primative/ShapeRectangle.ts';
@@ -19,7 +24,7 @@ export default class ShapeManager {
 
 	// _________________________________________________________________________
 
-	constructor(dotManager) {
+	constructor(dotManager: DotManager) {
 		ApplicationLogger.log('ShapeManager', this.#LOG_LEVEL);
 
 		// Store
@@ -124,10 +129,10 @@ export default class ShapeManager {
 		glyphCode,
 		gridX: number,
 		gridY: number,
-		delay = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		delay: number = 0,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		const glyphData = this.#getShapeGlyphData(glyphCode);
 

@@ -4,9 +4,9 @@ import DotMatrixView from '../DotMatrixView.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
 
-import FillType from '../../enum/FillType.ts';
-import FillStrategyType from '../../enum/FillStrategyType.ts';
-import DrawType from '../../enum/DrawType.ts';
+import FillType from '../../type/FillType.ts';
+import FillStrategyType from '../../type/FillStrategyType.ts';
+import DrawType from '../../type/DrawType.ts';
 
 import GridData from '../../../../grid/GridData.ts';
 import InteractiveSurface from '../../../../interactive/InteractiveSurface.ts';

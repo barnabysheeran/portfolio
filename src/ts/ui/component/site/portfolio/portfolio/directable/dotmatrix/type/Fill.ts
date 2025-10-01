@@ -1,7 +1,8 @@
 import FillType from './FillType.ts';
+import type { FillTypeValue } from './FillType.ts';
 
 export default class Fill {
-	static apply(fillType, positionGrids) {
+	static apply(fillType: FillTypeValue, positionGrids) {
 		switch (fillType) {
 			case FillType.PassThrough:
 				// Do Nothing

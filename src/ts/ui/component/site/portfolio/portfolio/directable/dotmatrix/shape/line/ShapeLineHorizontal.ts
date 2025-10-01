@@ -2,11 +2,11 @@ import ApplicationLogger from '../../../../application/ApplicationLogger.ts';
 
 import Shape from '../Shape.ts';
 
-import Fill from '../../enum/Fill.ts';
-import FillType from '../../enum/FillType.ts';
-import FillStrategy from '../../enum/FillStrategy.ts';
-import FillStrategyType from '../../enum/FillStrategyType.ts';
-import DrawType from '../../enum/DrawType.ts';
+import Fill from '../../type/Fill.ts';
+import FillType from '../../type/FillType.ts';
+import FillStrategy from '../../type/FillStrategy.ts';
+import FillStrategyType from '../../type/FillStrategyType.ts';
+import DrawType from '../../type/DrawType.ts';
 
 export default class ShapeLineHorizontal extends Shape {
 	#LOG_LEVEL = -1; // 6;

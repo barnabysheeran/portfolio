@@ -7,9 +7,9 @@ import DotMatrixView from '../DotMatrixView.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
 
-import FillType from '../../enum/FillType.ts';
-import FillStrategyType from '../../enum/FillStrategyType.ts';
-import DrawType, { type DrawTypeValue } from '../../enum/DrawType.ts';
+import FillType from '../../type/FillType.ts';
+import FillStrategyType from '../../type/FillStrategyType.ts';
+import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 
 import ComponentGlyphLineCentered from '../../component/glyph/ComponentGlyphLineCentered.ts';
 

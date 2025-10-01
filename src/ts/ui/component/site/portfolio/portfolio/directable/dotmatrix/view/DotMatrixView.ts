@@ -3,10 +3,10 @@ import InteractiveSurface from '../../../interactive/InteractiveSurface.ts';
 
 import ComponentRectangle from '../component/primative/ComponentRectangle.ts';
 
-import FillType from '../enum/FillType.ts';
-import FillStrategyType from '../enum/FillStrategyType.ts';
-import DrawType from '../enum/DrawType.ts';
-import type { DrawTypeValue } from '../enum/DrawType.ts';
+import FillType from '../type/FillType.ts';
+import FillStrategyType from '../type/FillStrategyType.ts';
+import DrawType from '../type/DrawType.ts';
+import type { DrawTypeValue } from '../type/DrawType.ts';
 
 import type ShapeManager from '../shape/ShapeManager.ts';
 import type ComponentManager from '../component/ComponentManager.ts';
