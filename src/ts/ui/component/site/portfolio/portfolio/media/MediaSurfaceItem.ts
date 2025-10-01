@@ -7,7 +7,7 @@ export default class MediaSurfaceItem {
         return true;
     }
 
-    stop(_delayFrames: number): void {
+    stop(): void {
         // Stub
     }
 

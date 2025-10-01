@@ -11,6 +11,7 @@ export default class ComponentGlyphLineCentered extends Component {
 	TEXT;
 
 	gridXCentered = 0;
+	gridXCenteredStart = 0;
 	gridWidth = 0;
 
 	// _________________________________________________________________________

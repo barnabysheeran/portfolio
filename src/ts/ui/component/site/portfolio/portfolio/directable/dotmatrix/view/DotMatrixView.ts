@@ -7,6 +7,9 @@ import FillType from '../enum/FillType.ts';
 import FillStrategyType from '../enum/FillStrategyType.ts';
 import DrawType from '../enum/DrawType.ts';
 
+import type ShapeManager from '../shape/ShapeManager.ts';
+import type ComponentManager from '../component/ComponentManager.ts';
+
 export default class DotMatrixView {
 	SHAPE_MANAGER;
 	COMPONENT_MANAGER;
@@ -24,7 +27,7 @@ export default class DotMatrixView {
 
 	// _________________________________________________________________________
 
-	constructor(shapeManager, componentManager, viewId) {
+	constructor(shapeManager: ShapeManager, componentManager: ComponentManager, viewId: string) {
 		ApplicationLogger.log(`View '${viewId}'`, this.#LOG_LEVEL);
 
 		// Store
@@ -35,7 +38,7 @@ export default class DotMatrixView {
 
 	// ___________________________________________________________________ Start
 
-	start(delayFrames = 0) {
+	start(delayFrames: number = 0) {
 		ApplicationLogger.log(
 			`View '${this.#VIEW_ID}' start delay ${delayFrames}`,
 			this.#LOG_LEVEL,
@@ -53,7 +56,7 @@ export default class DotMatrixView {
 
 	// ____________________________________________________________________ Stop
 
-	stop(delayFrames = 0) {
+	stop(delayFrames: number = 0) {
 		ApplicationLogger.log(
 			`View '${this.#VIEW_ID}' stop delay ${delayFrames}`,
 			this.#LOG_LEVEL,
@@ -84,7 +87,10 @@ export default class DotMatrixView {
 
 	// ____________________________________________________________________ Tick
 
-	tick() {} // Stub
+	/* eslint-ignore-next-line @typescript-eslint/no-unused-vars */
+	tick(_frameDeltaMS: number) {
+		// Stub
+	}
 
 	// ___________________________________________________________________ Reset
 
@@ -111,8 +117,8 @@ export default class DotMatrixView {
 	// ______________________________________________________________ Rectangles
 
 	addRectanglesBlock(
-		shapeManager,
-		componentManager,
+		shapeManager: ShapeManager,
+		componentManager: ComponentManager,
 		gridX: number,
 		gridY: number,
 		gridWidth: number,

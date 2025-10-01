@@ -15,18 +15,20 @@ import ViewProject from './view/project/ViewProject.ts';
 
 import DirectableDotMatrixConstants from './DirectableDotMatrixConstants.ts';
 
+import type DotMatrixView from './view/DotMatrixView.ts';
+
 export default class DirectableDotMatrix {
-	#DOT_MANAGER;
-	#SHAPE_MANAGER;
-	#COMPONENT_MANAGER;
+	#DOT_MANAGER: DotManager;
+	#SHAPE_MANAGER: ShapeManager;
+	#COMPONENT_MANAGER: ComponentManager;
 
-	#VIEW_HEADER;
-	#VIEWS = [];
+	#VIEW_HEADER: ViewHeader;
+	#VIEWS: DotMatrixView[] = [];
 
-	#viewIdCurrent = 'intro';
-	#hasDrawCompleted = false;
+	#viewIdCurrent: string = 'intro';
+	#hasDrawCompleted: boolean = false;
 
-	#LOG_LEVEL = 3;
+	#LOG_LEVEL: number = 3;
 
 	// Views create Components, which create Shapes, which create Dots
 
@@ -87,9 +89,15 @@ export default class DirectableDotMatrix {
 			new ViewTest(this.#SHAPE_MANAGER, this.#COMPONENT_MANAGER, 'test'),
 		);
 
-		// Start Initial View
+		// Start Header
 		this.#VIEW_HEADER.start(0);
-		this.#getViewById(this.#viewIdCurrent).start(0);
+
+		// Start Current View
+		const VIEW_CURRENT = this.#getViewById(this.#viewIdCurrent);
+
+		if (VIEW_CURRENT) {
+			VIEW_CURRENT.start(0);
+		}
 	}
 
 	// ____________________________________________________________________ Tick
@@ -110,7 +118,11 @@ export default class DirectableDotMatrix {
 		// Components Complete ?
 		if (ACTIVE_COMPONENT_TOTAL === 0 && this.#hasDrawCompleted === false) {
 			// View Draw Complete
-			this.#getViewById(this.#viewIdCurrent).onDrawComplete();
+			const VIEW_CURRENT = this.#getViewById(this.#viewIdCurrent);
+
+			if (VIEW_CURRENT) {
+				VIEW_CURRENT.onDrawComplete();
+			}
 
 			// Set Dot Manager Draw Complete
 			this.#hasDrawCompleted = true;
@@ -139,10 +151,14 @@ export default class DirectableDotMatrix {
 		this.#SHAPE_MANAGER.reset();
 
 		// Stop Current View
-		this.#getViewById(this.#viewIdCurrent).stop();
+		const VIEW_CURRENT = this.#getViewById(this.#viewIdCurrent);
+
+		if (VIEW_CURRENT) {
+			VIEW_CURRENT.stop();
+		}
 	}
 
-	projectShow(projectId) {
+	projectShow(projectId: string) {
 		ApplicationLogger.log(
 			'DirectableDotMatrix projectShow ' + projectId,
 			this.#LOG_LEVEL,
@@ -189,7 +205,11 @@ export default class DirectableDotMatrix {
 		this.#VIEW_HEADER.setIsMenuOpen(true);
 
 		// Show Project Menu View
-		this.#getViewById('project-menu').start(DELAY_PAGE_TRANSITION);
+		const VIEW_PROJECT_MENU = this.#getViewById('project-menu');
+
+		if (VIEW_PROJECT_MENU) {
+			VIEW_PROJECT_MENU.start(DELAY_PAGE_TRANSITION);
+		}
 
 		// Store
 		this.#viewIdCurrent = 'project-menu';
@@ -211,7 +231,11 @@ export default class DirectableDotMatrix {
 		this.#VIEW_HEADER.setIsMenuOpen(false);
 
 		// Show Intro View
-		this.#getViewById('intro').start(DELAY_PAGE_TRANSITION);
+		const VIEW_INTRO = this.#getViewById('intro');
+
+		if (VIEW_INTRO) {
+			VIEW_INTRO.start(DELAY_PAGE_TRANSITION);
+		}
 
 		// Store
 		this.#viewIdCurrent = 'intro';
@@ -224,7 +248,13 @@ export default class DirectableDotMatrix {
 	setSize(width: number, height: number) {
 		// Stop
 		this.#VIEW_HEADER.stop();
-		this.#getViewById(this.#viewIdCurrent).stop();
+
+		// Stop Current View
+		const VIEW_CURRENT = this.#getViewById(this.#viewIdCurrent);
+
+		if(VIEW_CURRENT){
+			VIEW_CURRENT.stop();
+		}
 
 		// Reset Component Manager
 		this.#COMPONENT_MANAGER.reset();
@@ -236,14 +266,18 @@ export default class DirectableDotMatrix {
 		this.#DOT_MANAGER.reset();
 		this.#DOT_MANAGER.setSize(width, height);
 
-		// Start Current View
+		// Start Header
 		this.#VIEW_HEADER.start(0);
-		this.#getViewById(this.#viewIdCurrent).start(0);
+
+		// Restart Current View
+		if(VIEW_CURRENT){
+			VIEW_CURRENT.start(0);
+		}
 	}
 
 	// ____________________________________________________________________ Util
 
-	#getViewById(viewId) {
+	#getViewById(viewId: string): DotMatrixView | null {
 		for (let i = 0; i < this.#VIEWS.length; i += 1) {
 			if (this.#VIEWS[i].getViewId() === viewId) {
 				return this.#VIEWS[i];

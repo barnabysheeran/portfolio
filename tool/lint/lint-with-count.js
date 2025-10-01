@@ -25,11 +25,20 @@ try {
   const lines = fullOutput.split('\n');
   const errorLines = lines.filter(line => line.includes('error TS'));
   const formattedErrors = errorLines.map(formatError);
-  const errorsToLog = formattedErrors.slice(0, MAX_ERRORS_TO_LOG);
-  console.log(errorsToLog.join('\n')); // Print up to MAX_ERRORS_TO_LOG errors
-  if (formattedErrors.length > MAX_ERRORS_TO_LOG) {
-    console.log(`... and ${formattedErrors.length - MAX_ERRORS_TO_LOG} more errors.`);
+  let errorsToLog;
+  if (formattedErrors.length <= MAX_ERRORS_TO_LOG) {
+    errorsToLog = formattedErrors;
+  } else {
+    const third = Math.floor(MAX_ERRORS_TO_LOG / 3);
+    const middleCount = MAX_ERRORS_TO_LOG - 2 * third;
+    const firstErrors = formattedErrors.slice(0, third);
+    const middleStart = Math.floor(formattedErrors.length / 2) - Math.floor(middleCount / 2);
+    const middleErrors = formattedErrors.slice(middleStart, middleStart + middleCount);
+    const lastErrors = formattedErrors.slice(-third);
+    errorsToLog = [...firstErrors, ...middleErrors, ...lastErrors];
+    console.log(`Showing first ${third}, middle ${middleCount}, and last ${third} errors out of ${formattedErrors.length}.`);
   }
+  console.log(errorsToLog.join('\n'));
   console.log(`Found ${errorLines.length} TypeScript errors.`);
   process.exit(1);
 }

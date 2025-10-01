@@ -5,7 +5,7 @@ import GridData from '../../../grid/GridData.ts';
 import Dot from './Dot.ts';
 
 export default class DotManager {
-	#DOTS = [];
+	#DOTS: Dot[] = [];
 
 	// #displayWidthPx = 0;
 	// #displayHeightPx = 0;

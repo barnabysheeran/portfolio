@@ -32,7 +32,7 @@ export default class Dot {
 
 	// _________________________________________________________________________
 
-	constructor(positionPixelsX, positionPixelsY) {
+	constructor(positionPixelsX: number, positionPixelsY: number) {
 		// ApplicationLogger.log(`Dot ${dotIndex}`, this.#LOG_LEVEL);
 
 		// Store

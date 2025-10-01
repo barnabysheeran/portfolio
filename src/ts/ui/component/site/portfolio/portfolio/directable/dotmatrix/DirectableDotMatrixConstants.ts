@@ -65,14 +65,14 @@ export default class DirectableDotMatrixConstants {
 
 	// _____________________________________________________ DelayGlyph Position
 
-	static getDelayFromGridPosition(gridX, gridY) {
+	static getDelayFromGridPosition(gridX: number, gridY: number) {
 		// Calculate Delay
 		const DELAY = gridX * 1 + gridY * 1;
 
 		return Math.floor(DELAY);
 	}
 
-	static getDelayFromGridPositionQuadratic(gridY, gridYStart, gridYMax) {
+	static getDelayFromGridPositionQuadratic(gridY: number, gridYStart: number, gridYMax: number) {
 		// Calculate Delay
 		const DELAY = Math.floor(
 			Math.pow(gridY - gridYStart, 2) / Math.pow(gridYMax - gridYStart, 2),
