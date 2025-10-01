@@ -6,6 +6,7 @@ import ComponentRectangle from '../component/primative/ComponentRectangle.ts';
 import FillType from '../enum/FillType.ts';
 import FillStrategyType from '../enum/FillStrategyType.ts';
 import DrawType from '../enum/DrawType.ts';
+import type { DrawTypeValue } from '../enum/DrawType.ts';
 
 import type ShapeManager from '../shape/ShapeManager.ts';
 import type ComponentManager from '../component/ComponentManager.ts';
@@ -17,7 +18,7 @@ export default class DotMatrixView {
 	INTERACTIVE_GRID_XS: number[] = [];
 	INTERACTIVE_GRID_YS: number[] = [];
 	INTERACTIVE_GLYPH_WIDTHS: number[] = [];
-	INTERACTIVE_BLOCK_IDS: number[] = [];
+	INTERACTIVE_BLOCK_IDS: string[] = [];
 
 	#VIEW_ID;
 
@@ -71,7 +72,7 @@ export default class DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames = 0, drawType = DrawType.Fill) {
+	draw(delayFrames = 0, drawType: DrawTypeValue = DrawType.Fill) {
 		ApplicationLogger.log(
 			`View '${this.#VIEW_ID}' draw delay ${delayFrames} drawType ${drawType}`,
 			this.#LOG_LEVEL,
@@ -126,7 +127,7 @@ export default class DotMatrixView {
 		delayFrames: number,
 		fillType = FillType.PassThrough,
 		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		const BLOCK_WIDTH = 3;
 

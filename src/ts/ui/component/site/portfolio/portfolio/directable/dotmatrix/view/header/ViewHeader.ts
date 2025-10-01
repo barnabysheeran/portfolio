@@ -9,7 +9,7 @@ import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts'
 
 import FillType from '../../enum/FillType.ts';
 import FillStrategyType from '../../enum/FillStrategyType.ts';
-import DrawType from '../../enum/DrawType.ts';
+import DrawType, { type DrawTypeValue } from '../../enum/DrawType.ts';
 
 import ComponentGlyphLineCentered from '../../component/glyph/ComponentGlyphLineCentered.ts';
 
@@ -58,7 +58,7 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames: number, drawType) {
+	draw(delayFrames: number, drawType: DrawTypeValue) {
 		super.draw(delayFrames, drawType);
 
 		// Get Height
@@ -176,7 +176,7 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 
 	// _______________________________________________________________ Rectangle
 
-	#drawSurroundingRectangle(delayFrames: number, drawType) {
+	#drawSurroundingRectangle(delayFrames: number, drawType: DrawTypeValue) {
 		// Get Height
 		const LINE_HEIGHT = DirectableDotMatrixConstants.getLineHeightInGridCells();
 

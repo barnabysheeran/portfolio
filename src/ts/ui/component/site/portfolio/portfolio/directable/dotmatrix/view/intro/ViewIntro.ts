@@ -6,7 +6,7 @@ import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts'
 
 import FillType from '../../enum/FillType.ts';
 import FillStrategyType from '../../enum/FillStrategyType.ts';
-import DrawType from '../../enum/DrawType.ts';
+import DrawType, { type DrawTypeValue } from '../../enum/DrawType.ts';
 
 import ComponentGlyphBoxWidthFull from '../../component/glyph/ComponentGlyphBoxWidthFull.ts';
 
@@ -60,7 +60,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames: number, drawType) {
+	draw(delayFrames: number, drawType: DrawTypeValue = DrawType.Fill) {
 		super.draw(delayFrames, drawType);
 
 		// Get Height
