@@ -123,7 +123,7 @@ export default class MediaSurface {
 
 	// ___________________________________________________________________ Vimeo
 
-	static #addVideoPlayer(vimeoId) {
+	static #addVideoPlayer(vimeoId: string) {
 		ApplicationLogger.log(
 			`MediaSurface addVideoPlayer ${vimeoId}`,
 			this.#LOG_LEVEL,
@@ -142,7 +142,7 @@ export default class MediaSurface {
 
 	// ___________________________________________________________________ Image
 
-	static #addImageGallery(imageUrls) {
+	static #addImageGallery(imageUrls: string[]) {
 		ApplicationLogger.log(
 			`MediaSurface addImage ${imageUrls}`,
 			this.#LOG_LEVEL,

@@ -4,8 +4,8 @@ export default class MediaSurfaceImage {
 	#IMAGE_URL;
 	#CALLBACK_ON_LOADED;
 
-	#HOLDER;
-	#IMAGE;
+	#HOLDER: HTMLDivElement | null;
+	#IMAGE: HTMLImageElement | null;
 
 	#LERP_SLOW;
 	#LERP_FAST;
@@ -19,7 +19,7 @@ export default class MediaSurfaceImage {
 
 	// _________________________________________________________________________
 
-	constructor(container, imageURL, callbackOnLoaded) {
+	constructor(container: HTMLDivElement, imageURL: string, callbackOnLoaded) {
 		// Store
 		this.#IMAGE_URL = imageURL;
 		this.#CALLBACK_ON_LOADED = callbackOnLoaded;
@@ -42,7 +42,7 @@ export default class MediaSurfaceImage {
 		this.#IMAGE.onload = this.#onImageLoaded.bind(this);
 
 		// Initial Opacity
-		this.#HOLDER.style.opacity = 0;
+		this.#HOLDER.style.opacity = '0';
 
 		// Load
 		this.#IMAGE.src = this.#IMAGE_URL;
@@ -70,7 +70,9 @@ export default class MediaSurfaceImage {
 		this.#opacity += (this.#opacityTarget - this.#opacity) * this.#lerp;
 
 		// Set Opacity
-		this.#HOLDER.style.opacity = this.#opacity;
+		if (this.#HOLDER) {
+			this.#HOLDER.style.opacity = this.#opacity.toString();
+		}
 
 		// Stopping ?
 		if (this.#isStopping && this.#opacity <= this.#LERP_MARGIN) {

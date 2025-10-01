@@ -37,7 +37,7 @@ export default class DotMatrixViewTest extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames, drawType) {
+	draw(delayFrames: number, drawType) {
 		super.draw(delayFrames, drawType);
 
 		// Get Line Height

@@ -5,9 +5,9 @@ import MediaSurfaceImage from './MediaSurfaceImage.ts';
 import MediaSurfaceItem from '../MediaSurfaceItem.ts';
 
 export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
-	#HOLDER;
+	#HOLDER: HTMLDivElement | null = null;
 
-	#IMAGES = [];
+	#IMAGES: MediaSurfaceImage[] = [];
 	#imagesToLoad = 0;
 
 	#indexImageCurrent = 0;
@@ -59,7 +59,7 @@ export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
 
 	// _____________________________________________________________ Interaction
 
-	#onMouseDown(event) {
+	#onMouseDown(event: MouseEvent | TouchEvent) {
 		ApplicationLogger.log(
 			`MediaSurfaceImageGallery #onMouseDown`,
 			this.#LOG_LEVEL,
@@ -193,11 +193,13 @@ export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
 		this.#IMAGES[this.#indexImageCurrent].show();
 	}
 
-	#bringImageToFront(indexImage) {
+	#bringImageToFront(indexImage: number) {
 		// Bring Image to Front
 		const HOLDER = this.#IMAGES[indexImage].getHolder();
 
-		HOLDER.parentNode.appendChild(HOLDER);
+		if (HOLDER?.parentNode) {
+			HOLDER.parentNode.appendChild(HOLDER);
+		}
 	}
 
 	// ____________________________________________________________________ Stop

@@ -10,13 +10,13 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 
 	#HOLDER: HTMLDivElement | null;
 
-	#PLAYER_HOLDER;
-	#PLAYER;
+	#PLAYER_HOLDER: HTMLDivElement | null;
+	#PLAYER: player | null;
 
-	#BUTTON_PLAY;
+	#BUTTON_PLAY: HTMLButtonElement | null;
 
-	#width;
-	#height;
+	#width: number;
+	#height: number;
 
 	#opacity = 0;
 	#opacityTarget = 0;
@@ -30,7 +30,7 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	#isStopping = false;
 
 	#hasStartedPlaying = false;
-	#playCheckTimeout = null;
+	#playCheckTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	#DELAY_CHECK_PLAYING = 3000; // ms
 
@@ -125,9 +125,10 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 
 		// Set Volume
 		if (this.#PLAYER) {
-			this.#PLAYER.setVolume(this.#volume).catch((error) => {
+			this.#PLAYER.setVolume(this.#volume).catch((error: unknown) => {
+				const errorMessage = error instanceof Error ? error.message : String(error);
 				ApplicationLogger.error(
-					`MediaSurfaceVimeo setVolume error: ${error.message}`,
+					`MediaSurfaceVimeo setVolume error: ${errorMessage}`,
 					this.#LOG_LEVEL,
 				);
 			});
@@ -196,12 +197,18 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	async #playVideo() {
 		ApplicationLogger.log('MediaSurfaceVimeo playVideo', this.#LOG_LEVEL);
 
+		// Player ?
+		if (!this.#PLAYER) {
+			return;
+		}
+
 		// Play Video
 		try {
 			await this.#PLAYER.play();
-		} catch (error) {
+		} catch (error: unknown) {
+			const errorMessage = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
 			ApplicationLogger.error(
-				`MediaSurfaceVimeo playVideo error: ${error.name}: ${error.message}`,
+				`MediaSurfaceVimeo playVideo error: ${errorMessage}`,
 				this.#LOG_LEVEL,
 			);
 			// If play() throws an error, show the button immediately.
@@ -235,14 +242,22 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	// _____________________________________________________________ Play Button
 
 	#showPlayButton() {
+		if(!this.#BUTTON_PLAY) {
+			return;
+		}
+
 		this.#BUTTON_PLAY.style.opacity = '1';
 	}
 
 	#hidePlayButton() {
+		if(!this.#BUTTON_PLAY) {
+			return;
+		}
+
 		this.#BUTTON_PLAY.style.opacity = '0';
 	}
 
-	async #onPlayButtonClick(event) {
+	async #onPlayButtonClick(event: MouseEvent | TouchEvent) {
 		ApplicationLogger.log(
 			'MediaSurfaceVimeo onPlayButtonClick',
 			this.#LOG_LEVEL,
@@ -251,16 +266,24 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 		// Prevent a Tap firing both mouse and touch events
 		event.preventDefault();
 
+		// Player ?
+		if (!this.#PLAYER) {
+			return;
+		}
+
 		try {
 			const isPaused = await this.#PLAYER.getPaused();
 			if (isPaused) {
 				this.#playVideo();
 			} else {
-				this.#PLAYER.pause();
+				if (this.#PLAYER) {
+					this.#PLAYER.pause();
+				}
 			}
-		} catch (error) {
+		} catch (error: unknown) {
+			const errorMessage = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
 			ApplicationLogger.error(
-				`MediaSurfaceVimeo onPlayButtonClick error: ${error.name}: ${error.message}`,
+				`MediaSurfaceVimeo onPlayButtonClick error: ${errorMessage}`,
 				this.#LOG_LEVEL,
 			);
 		}
@@ -279,9 +302,10 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 
 		// Pause Video
 		if (this.#PLAYER) {
-			this.#PLAYER.pause().catch((error) => {
+			this.#PLAYER.pause().catch((error: unknown) => {
+				const errorMessage = error instanceof Error ? error.message : String(error);
 				ApplicationLogger.error(
-					`MediaSurfaceVimeo pause error: ${error.message}`,
+					`MediaSurfaceVimeo pause error: ${errorMessage}`,
 					this.#LOG_LEVEL,
 				);
 			});
@@ -308,6 +332,11 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 		// Store
 		this.#width = widthPx;
 		this.#height = heightPx;
+
+		// Player Holder ?
+		if (!this.#PLAYER_HOLDER) {
+			return;
+		}
 
 		// Size Holder
 		this.#PLAYER_HOLDER.style.width = widthPx + 'px';
