@@ -19,7 +19,7 @@ export default class GridData {
 
 	// ______________________________________________________________ Initialize
 
-	static initialize(width, height) {
+	static initialize(width: number, height: number) {
 		ApplicationLogger.log('GridData', this.#LOG_LEVEL);
 
 		// Set Initial Size
@@ -28,15 +28,15 @@ export default class GridData {
 
 	// ____________________________________________________________________ Grid
 
-	static getGridPixelPositionX(gridX) {
+	static getGridPixelPositionX(gridX: number) {
 		return gridX * this.#gridCellWidthPx;
 	}
 
-	static getGridPixelPositionY(gridY) {
+	static getGridPixelPositionY(gridY: number) {
 		return gridY * this.#gridCellHeightPx;
 	}
 
-	static #getIndex(x, y) {
+	static #getIndex(x: number, y: number) {
 		return y * this.#gridWidthInCells + x;
 	}
 

@@ -11,10 +11,10 @@ export default class DotMatrixView {
 	SHAPE_MANAGER;
 	COMPONENT_MANAGER;
 
-	INTERACTIVE_GRID_XS = [];
-	INTERACTIVE_GRID_YS = [];
-	INTERACTIVE_GLYPH_WIDTHS = [];
-	INTERACTIVE_BLOCK_IDS = [];
+	INTERACTIVE_GRID_XS: number[] = [];
+	INTERACTIVE_GRID_YS: number[] = [];
+	INTERACTIVE_GLYPH_WIDTHS: number[] = [];
+	INTERACTIVE_BLOCK_IDS: number[] = [];
 
 	#VIEW_ID;
 
@@ -113,11 +113,11 @@ export default class DotMatrixView {
 	addRectanglesBlock(
 		shapeManager,
 		componentManager,
-		gridX,
-		gridY,
-		gridWidth,
-		gridHeight,
-		delayFrames,
+		gridX: number,
+		gridY: number,
+		gridWidth: number,
+		gridHeight: number,
+		delayFrames: number,
 		fillType = FillType.PassThrough,
 		fillStrategyType = FillStrategyType.PassThrough,
 		drawType = DrawType.Fill,

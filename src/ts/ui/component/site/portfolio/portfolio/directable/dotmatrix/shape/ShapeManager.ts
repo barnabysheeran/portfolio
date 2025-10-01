@@ -122,8 +122,8 @@ export default class ShapeManager {
 
 	addShapeGlyph(
 		glyphCode,
-		gridX,
-		gridY,
+		gridX: number,
+		gridY: number,
 		delay = 0,
 		fillType = FillType.PassThrough,
 		fillStrategyType = FillStrategyType.PassThrough,

@@ -19,15 +19,15 @@ export default class ViewProject extends DotMatrixView {
 	// TODO Tune with Menu Text
 	#DELAY_ROLLOVER_REDRAW = 20;
 
-	#IS_OVERS;
+	#IS_OVERS: boolean[] = [];
 
 	#DELAY_GLYPH_IN = 2;
 	#DELAY_GLYPH_OUT = 0;
-	#delayGlyph;
+	#delayGlyph = 0;
 
 	// ______________________________________________________________ Start Stop
 
-	start(delayFrames) {
+	start(delayFrames: number) {
 		super.start(delayFrames);
 
 		// Order Important - Draw Stores Grid Position Information
@@ -45,7 +45,7 @@ export default class ViewProject extends DotMatrixView {
 		this.createInteractiveBlocks();
 	}
 
-	stop(delayFrames) {
+	stop(delayFrames: number) {
 		super.stop(delayFrames);
 
 		// Set Delay Glyph
@@ -59,11 +59,15 @@ export default class ViewProject extends DotMatrixView {
 
 	// ____________________________________________________________________ Draw
 
-	draw(delayFrames, drawType) {
+	draw(delayFrames: number, drawType) {
 		super.draw(delayFrames, drawType);
 
 		// Get Project Data
 		const DATA_PROJECT = DataController.getProjectById(this.getViewId());
+
+		if (!DATA_PROJECT) {
+			return;
+		}
 
 		// Get Heights
 		const LINE_HEIGHT_IN_GRID_CELLS =
@@ -126,7 +130,7 @@ export default class ViewProject extends DotMatrixView {
 			}
 
 			// Text
-			let text = DATA_CREDIT['text'];
+			const text = DATA_CREDIT['text'];
 
 			// Next
 			gridY += LINE_HEIGHT_IN_GRID_CELLS * 2;
@@ -191,6 +195,10 @@ export default class ViewProject extends DotMatrixView {
 		// Get Project Data
 		const DATA_PROJECT = DataController.getProjectById(this.getViewId());
 
+		if (!DATA_PROJECT) {
+			return;
+		}
+
 		// Get Credit Array
 		const DATA_CREDIT = DATA_PROJECT['credit'][data.buttonId];
 
@@ -220,7 +228,7 @@ export default class ViewProject extends DotMatrixView {
 
 	// ______________________________________________________________ Rectangles
 
-	#drawSurroundingRectangle(buttonIndex, delayFrames, drawType) {
+	#drawSurroundingRectangle(buttonIndex: number, delayFrames: number, drawType) {
 		// Get Height
 		const LINE_HEIGHT = DirectableDotMatrixConstants.getLineHeightInGridCells();
 
