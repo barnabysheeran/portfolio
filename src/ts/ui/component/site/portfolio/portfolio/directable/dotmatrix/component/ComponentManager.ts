@@ -1,7 +1,9 @@
 import ApplicationLogger from '../../../application/ApplicationLogger.ts';
 
+import type Component from './Component.ts';
+
 export default class ComponentManager {
-	#COMPONENTS = [];
+	#COMPONENTS: Component[] = [];
 
 	#LOG_LEVEL = 4;
 
@@ -26,7 +28,7 @@ export default class ComponentManager {
 
 	// ___________________________________________________________ Add Component
 
-	addComponent(component) {
+	addComponent(component: Component) {
 		// Store Component
 		this.#COMPONENTS.push(component);
 	}
