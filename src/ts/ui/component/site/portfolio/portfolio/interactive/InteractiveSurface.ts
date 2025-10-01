@@ -1,9 +1,9 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import Display from '../display/Display.ts';
 import styles from './InteractiveSurface.module.css';
-import type { ProjectIdData } from '../types/types.ts';
+import type { IdData } from '../types/types.ts';
 
-type ClickCallback = (data: ProjectIdData) => void;
+type ClickCallback = (id: number) => void;
 
 export default class InteractiveSurface {
     static #CONTAINER: HTMLDivElement;

@@ -13,7 +13,7 @@ import FillStrategyType from '../../type/FillStrategyType.ts';
 import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 
 import ComponentGlyphLineCentered from '../../component/glyph/ComponentGlyphLineCentered.ts';
-import type { ProjectIdData } from '../../../../types/types.ts';
+import type { IdData } from '../../../../types/types.ts';
 
 export default class DotMatrixViewProjectMenu extends DotMatrixView {
 	#DELAY_ROLLOVER_REDRAW = 24;

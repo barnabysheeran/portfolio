@@ -5,10 +5,6 @@ export interface CreationParameters {
   applicationContainer: HTMLElement;
 }
 
-export interface ProjectIdData {
-  projectId: string;
-}
-
 export class PositionGrid {
   public x: number;
   public y: number;
@@ -16,5 +12,13 @@ export class PositionGrid {
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
+  }
+}
+
+export class IdData {
+  public id: number;
+
+  constructor(id: number) {
+    this.id = id;
   }
 }

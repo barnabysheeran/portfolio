@@ -154,6 +154,8 @@ export default class GridData {
 		return false; // Default to not occupied if out of bounds
 	}
 
+
+	
 	// static isRectangleEmpty(gridCellIndex: number, gridWidth: number, gridHeight: number) {
 	// 	const startX = gridCellIndex % this.#gridWidthInCells;
 	// 	const startY = Math.floor(gridCellIndex / this.#gridWidthInCells);
