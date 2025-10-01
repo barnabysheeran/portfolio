@@ -1,5 +1,6 @@
 import ApplicationLogger from '../../../application/ApplicationLogger.ts';
-import DrawType from '../type/DrawType.ts';
+import type DotManager from '../dot/DotManager.ts';
+import DrawType, { type DrawTypeValue } from '../type/DrawType.ts';
 
 export default class Shape {
 	#SHAPE_ID;
@@ -17,7 +18,7 @@ export default class Shape {
 
 	// _________________________________________________________________________
 
-	constructor(dotManager, delay: number, drawType) {
+	constructor(dotManager: DotManager, delay: number, drawType: DrawTypeValue) {
 		ApplicationLogger.log('Shape', this.#LOG_LEVEL);
 
 		// Store Delay

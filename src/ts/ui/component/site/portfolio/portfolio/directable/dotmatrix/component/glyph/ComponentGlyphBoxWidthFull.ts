@@ -115,11 +115,13 @@ export default class ComponentGlyphBoxWidthFull extends Component {
 				this.DRAW_TYPE,
 			);
 
-			// Store
-			this.SHAPES.push(SHAPE_GLYPH);
+			if (SHAPE_GLYPH) {
+				// Store
+				this.SHAPES.push(SHAPE_GLYPH);
 
-			// Increment Current Grid X Position
-			currentGridX += SHAPE_GLYPH.getGlyphWidth() + GLYPH_SPACING_X;
+				// Increment Current Grid X Position
+				currentGridX += SHAPE_GLYPH.getGlyphWidth() + GLYPH_SPACING_X;
+			}
 		}
 	}
 }

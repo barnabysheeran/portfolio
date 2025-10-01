@@ -15,10 +15,12 @@ import ShapeRectangle from './primative/ShapeRectangle.ts';
 import SHAPE_GLYPH_DATA from './glyph/ShapeGlyphData.ts';
 import ShapeGlyph from './glyph/ShapeGlyph.ts';
 
-export default class ShapeManager {
-	#DOT_MANAGER;
+import type Shape from './Shape.ts';
 
-	#SHAPES = [];
+export default class ShapeManager {
+	#DOT_MANAGER: DotManager;
+
+	#SHAPES: Shape[] = [];
 
 	#LOG_LEVEL = -1; // 4;
 
@@ -42,7 +44,7 @@ export default class ShapeManager {
 
 	// __________________________________________________________________ Remove
 
-	removeShape(shapeId) {
+	removeShape(shapeId: string) {
 		ApplicationLogger.log(
 			`ShapeManager removeShape ${shapeId}`,
 			this.#LOG_LEVEL,

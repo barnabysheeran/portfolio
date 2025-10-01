@@ -7,7 +7,11 @@ import FillType from '../../type/FillType.ts';
 import FillStrategy from '../../type/FillStrategy.ts';
 import FillStrategyType from '../../type/FillStrategyType.ts';
 import DrawType from '../../type/DrawType.ts';
+
 import type DotManager from '../../dot/DotManager.ts';
+import type { FillTypeValue } from '../../type/FillType.ts';
+import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
+import type { DrawTypeValue } from '../../type/DrawType.ts';
 
 export default class ShapeGlyph extends Shape {
 	#positionGridGlyphs = [];
@@ -24,9 +28,9 @@ export default class ShapeGlyph extends Shape {
 		gridY: number,
 		glyphData,
 		delay = 0,
-		fillType = FillType.PassThrough,
-		fillStrategyType = FillStrategyType.PassThrough,
-		drawType = DrawType.Fill,
+		fillType: FillTypeValue = FillType.PassThrough,
+		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+		drawType: DrawTypeValue = DrawType.Fill,
 	) {
 		super(dotManager, delay, drawType);
 

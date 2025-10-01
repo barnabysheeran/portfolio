@@ -228,7 +228,7 @@ export default class ViewProject extends DotMatrixView {
 
 	// ______________________________________________________________ Rectangles
 
-	#drawSurroundingRectangle(buttonIndex: number, delayFrames: number, drawType) {
+	#drawSurroundingRectangle(buttonIndex: number, delayFrames: number, drawType: DrawTypeValue) {
 		// Get Height
 		const LINE_HEIGHT = DirectableDotMatrixConstants.getLineHeightInGridCells();
 

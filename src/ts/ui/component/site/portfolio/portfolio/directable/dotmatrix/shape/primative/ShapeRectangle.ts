@@ -41,7 +41,7 @@ export default class ShapeRectangle extends Shape {
 		}
 
 		// Fill Type
-		Fill.apply(fillType, this.positionGrids, gridWidth, gridHeight);
+		Fill.apply(fillType, this.positionGrids);
 
 		// Fill Strategy Type
 		FillStrategy.apply(fillStrategyType, this.positionGrids);

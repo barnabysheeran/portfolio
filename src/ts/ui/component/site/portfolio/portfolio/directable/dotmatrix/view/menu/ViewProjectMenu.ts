@@ -20,10 +20,10 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 	#DELAY_FRAMES_AUTO_REFRESH_MAX = 60 * 4;
 	#delayFramesAutoRefresh = -1;
 
-	#PROJECT_IDS;
-	#GRID_X_CENTERED_STARTS;
-	#GRID_YS;
-	#GRID_WIDTH_GLYPHS;
+	#PROJECT_IDS: string[] = [];
+	#GRID_X_CENTERED_STARTS: number[] = [];
+	#GRID_YS: number[] = [];
+	#GRID_WIDTH_GLYPHS: number[] = [];
 
 	#IS_OVERS: boolean[] = [];
 	#REQUIRES_UPDATES: boolean[] = [];
@@ -201,7 +201,7 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 			}
 
 			// Draw Mode
-			let drawType = DrawType.Fill;
+			let drawType: DrawTypeValue = DrawType.Fill;
 
 			// Is Over ?
 			if (this.#IS_OVERS[i] === true) {

@@ -114,11 +114,13 @@ export default class ComponentGlyphLineCentered extends Component {
 				this.DRAW_TYPE,
 			);
 
-			// Store
-			this.SHAPES.push(SHAPE);
+			if(SHAPE){
+				// Store
+				this.SHAPES.push(SHAPE);
 
-			// Increment Current Grid X Position
-			gridX += SHAPE.getGlyphWidth() + GLYPH_SPACING_X;
+				// Increment Current Grid X Position
+				gridX += SHAPE.getGlyphWidth() + GLYPH_SPACING_X;
+			}
 		}
 
 		// Remove Last Glyph Spacing

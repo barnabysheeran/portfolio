@@ -64,7 +64,9 @@ export default class Director {
 
 	static setSize(width: number, height: number) {
 		// Dot Matrix
-		this.#DIRECTABLE_DOT_MATRIX.setSize(width, height);
+		if (this.#DIRECTABLE_DOT_MATRIX) {
+			this.#DIRECTABLE_DOT_MATRIX.setSize(width, height);
+		}
 
 		// Vimeo
 		// this.#DIRECTABLE_VIMEO.setSize(width, height);
