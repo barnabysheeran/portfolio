@@ -1,8 +1,8 @@
-.site-portfolio {
-    width: 100%;
-    height: calc(var(--grid-cell-width) * 60);
+.application {
+	position: absolute;
 
-    background: var(--color-background);
+	width: 100%;
+	height: 100%;
 
 	border: 0;
 	padding: 0;
@@ -16,12 +16,14 @@
 
 	overflow: hidden;
 
+	background-color: #161616;
+
 	pointer-events: none;
 
 	-webkit-tap-highlight-color: transparent;
 }
 
-.site-portfolio img {
+.application img {
 	border: 0;
 
 	-webkit-user-drag: none;
@@ -32,26 +34,26 @@
 
 /* __________________________________________________________________ Display */
 
-.site-portfolio .display {
+.application .display {
 	margin-left: auto;
 	margin-right: auto;
 }
 
 /* ____________________________________________________________________ Media */
 
-.site-portfolio .display .media-surface {
+.application .display .media-surface {
 	position: absolute;
 
 	z-index: 100;
 }
 
-.site-portfolio .display .media-surface {
+.application .display .media-surface {
 	position: absolute;
 
 	z-index: 100;
 }
 
-.site-portfolio .display .media-surface .video-holder {
+.application .display .media-surface .video-holder {
 	position: absolute;
 
 	left: 0;
@@ -61,7 +63,7 @@
 	height: 100%;
 }
 
-.site-portfolio .display .media-surface .video-holder .player-holder {
+.application .display .media-surface .video-holder .player-holder {
 	position: absolute;
 
 	left: 0;
@@ -71,7 +73,7 @@
 	height: 100%;
 }
 
-.site-portfolio .display .media-surface .video-holder .button-play {
+.application .display .media-surface .video-holder .button-play {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -104,14 +106,14 @@
 	-webkit-appearance: none;
 }
 
-.site-portfolio .display .media-surface .video-holder .button-play:focus {
+.application .display .media-surface .video-holder .button-play:focus {
 	outline: none !important;
 	box-shadow: none !important;
 	-webkit-box-shadow: none !important;
 	border: none !important;
 }
 
-.site-portfolio .display .media-surface .image-gallery {
+.application .display .media-surface .image-gallery {
 	position: absolute;
 
 	left: 0;
@@ -123,7 +125,7 @@
 	pointer-events: auto;
 }
 
-.site-portfolio .display .media-surface .image-gallery .image {
+.application .display .media-surface .image-gallery .image {
 	position: absolute;
 
 	left: 0;
@@ -139,7 +141,7 @@
 
 /* ___________________________________________________________ Render Surface */
 
-.site-portfolio .display .render-surface {
+.application .display .render-surface {
 	position: absolute;
 
 	z-index: 200;
@@ -147,13 +149,13 @@
 
 /* ______________________________________________________________ Interactive */
 
-.site-portfolio .display .interactive-surface {
+.application .display .interactive-surface {
 	position: absolute;
 
 	z-index: 300;
 }
 
-.site-portfolio .display .interactive-surface .interactive-block {
+.application .display .interactive-surface .interactive-block {
 	position: absolute;
 
 	z-index: 301;
@@ -164,7 +166,7 @@
 
 /* ______________________________________________________________ Development */
 
-.site-portfolio .display .development-surface {
+.application .display .development-surface {
 	position: absolute;
 
 	z-index: 400;
