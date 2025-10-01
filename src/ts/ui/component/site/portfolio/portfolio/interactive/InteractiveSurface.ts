@@ -1,7 +1,6 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import Display from '../display/Display.ts';
 import styles from './InteractiveSurface.module.css';
-import type { IdData } from '../types/types.ts';
 
 type ClickCallback = (id: number) => void;
 
