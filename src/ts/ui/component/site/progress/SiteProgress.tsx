@@ -7,7 +7,5 @@ export default function SiteProgress() {
     <SiteProgressBarRadix />
     <SiteProgressBarRadix />
     <SiteProgressBarRadix />
-    <SiteProgressBarRadix />
-    <SiteProgressBarRadix />
   </div>;
 }
