@@ -2,6 +2,8 @@ import ApplicationLogger from '../application/ApplicationLogger.ts';
 
 import Display from '../display/Display.ts';
 
+import styles from './InteractiveSurface.module.css';
+
 export default class InteractiveSurface {
 	static #CONTAINER;
 
@@ -13,12 +15,12 @@ export default class InteractiveSurface {
 
 	// _________________________________________________________________________
 
-	static initialise(width, height) {
+	static initialise(width: number, height: number) {
 		ApplicationLogger.log('Interactive', this.#LOG_LEVEL);
 
 		// Create Holder
 		this.#CONTAINER = document.createElement('div');
-		this.#CONTAINER.classList.add('interactive-surface');
+		this.#CONTAINER.classList.add(styles['interactive-surface']);
 
 		// Append Holder to Display Holder
 		Display.getDisplayHolder().appendChild(this.#CONTAINER);
@@ -30,10 +32,10 @@ export default class InteractiveSurface {
 	// _______________________________________________________________ Add Block
 
 	static createBlock(
-		x,
-		y,
-		width,
-		height,
+		x: number,
+		y: number,
+		width: number,
+		height: number,
 		callbackClick,
 		callbackRollOver,
 		callbackRollOut,
@@ -94,7 +96,7 @@ export default class InteractiveSurface {
 
 	// ____________________________________________________________ Remove Block
 
-	static removeBlock(uuid) {
+	static removeBlock(uuid: string) {
 		const element = this.#ELEMENTS.get(uuid);
 
 		if (element) {
@@ -137,7 +139,7 @@ export default class InteractiveSurface {
 
 	// ____________________________________________________________________ Size
 
-	static setSize(width, height) {
+	static setSize(width: number, height: number) {
 		this.#CONTAINER.style.width = `${width}px`;
 		this.#CONTAINER.style.height = `${height}px`;
 	}

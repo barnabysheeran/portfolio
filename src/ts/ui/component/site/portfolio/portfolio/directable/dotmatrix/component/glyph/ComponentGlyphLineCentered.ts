@@ -4,6 +4,8 @@ import Component from '../Component.ts';
 
 import DirectableDotMatrixConstants from '../../DirectableDotMatrixConstants.ts';
 
+import type ShapeManager from '../../shape/ShapeManager.ts';
+
 export default class ComponentGlyphLineCentered extends Component {
 	// Unique Parameters
 	TEXT;
@@ -14,7 +16,7 @@ export default class ComponentGlyphLineCentered extends Component {
 	// _________________________________________________________________________
 
 	constructor(
-		shapeManager,
+		shapeManager: ShapeManager,
 		text: string,
 		gridY: number,
 		delay: number,

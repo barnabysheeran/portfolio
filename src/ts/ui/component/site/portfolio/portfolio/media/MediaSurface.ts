@@ -6,6 +6,8 @@ import Display from '../display/Display.ts';
 import MediaSurfaceVimeo from './video/MediaSurfaceVimeo.ts';
 import MediaSurfaceImageGallery from './image/MediaSurfaceImageGallery.ts';
 
+import styles from './MediaSurface.module.css';
+
 export default class MediaSurface {
 	static #CONTAINER;
 
@@ -27,7 +29,7 @@ export default class MediaSurface {
 
 		// Create Holder
 		this.#CONTAINER = document.createElement('div');
-		this.#CONTAINER.classList.add('media-surface');
+		this.#CONTAINER.className = styles['media-surface'];
 
 		// Append Holder to Display Holder
 		Display.getDisplayHolder().appendChild(this.#CONTAINER);

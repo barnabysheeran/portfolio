@@ -2,6 +2,8 @@ import ApplicationLogger from '../application/ApplicationLogger.ts';
 
 import Display from '../display/Display.ts';
 
+import styles from './RenderSurface.module.css';
+
 export default class RenderSurface {
 	static #CANVAS: HTMLCanvasElement | null = null;
 	static #GL: WebGL2RenderingContext | null = null;
@@ -34,7 +36,7 @@ export default class RenderSurface {
 
 		// Create Canvas
 		this.#CANVAS = document.createElement('canvas');
-		this.#CANVAS.className = 'render-surface';
+		this.#CANVAS.className = styles['render-surface'];
 		this.#CANVAS.width = this.#width;
 		this.#CANVAS.height = this.#height;
 
@@ -93,7 +95,9 @@ export default class RenderSurface {
 	}
 
 	static #initDisplayResources() {
-		const GL: WebGL2RenderingContext | null = this.#GL;
+		// Get GL
+		const GL = this.#GL;
+		if (!GL) return null;
 
 		const vsSource = `
             attribute vec2 a_position;
@@ -188,20 +192,28 @@ export default class RenderSurface {
 		GL.bindVertexArray(null); // Unbind VAO
 	}
 
-	static #compileShader(type, source) {
+	static #compileShader(type: number, source: string): WebGLShader | null {
+
+		// Get GL
 		const GL = this.#GL;
-		const shader = GL.createShader(type);
-		GL.shaderSource(shader, source);
-		GL.compileShader(shader);
-		if (!GL.getShaderParameter(shader, GL.COMPILE_STATUS)) {
+		if (!GL) return null;
+
+		// Create Shader
+		const SHADER: WebGLShader | null = GL.createShader(type);
+		if (!SHADER) return null;
+
+		GL.shaderSource(SHADER, source);
+		GL.compileShader(SHADER);
+		if (!GL.getShaderParameter(SHADER, GL.COMPILE_STATUS)) {
 			ApplicationLogger.warn(
 				`RenderSurface An error occurred compiling` +
-					` the display shaders: ${GL.getShaderInfoLog(shader)}`,
+					` the display shaders: ${GL.getShaderInfoLog(SHADER)}`,
 			);
-			GL.deleteShader(shader);
+			GL.deleteShader(SHADER);
 			return null;
 		}
-		return shader;
+
+		return SHADER;
 	}
 
 	// __________________________________________________________________ Access
@@ -227,7 +239,9 @@ export default class RenderSurface {
 			return;
 		}
 
+		// Get GL
 		const GL = this.#GL;
+		if (!GL) return null;
 
 		GL.bindFramebuffer(GL.FRAMEBUFFER, null);
 		GL.viewport(0, 0, GL.drawingBufferWidth, GL.drawingBufferHeight);
@@ -247,7 +261,7 @@ export default class RenderSurface {
 
 	// ____________________________________________________________ Texture Data
 
-	static getTextureData(x, y, width, height) {
+	static getTextureData(x: number, y: number, width: number, height: number): Uint8Array | null {
 		if (
 			x < 0 ||
 			y < 0 ||
@@ -260,9 +274,12 @@ export default class RenderSurface {
 			return null;
 		}
 
+		// Get GL
 		const GL = this.#GL;
-		const buffer = new Uint8Array(width * height * 4);
+		if (!GL) return null;
 
+		// Create Buffer
+		const buffer = new Uint8Array(width * height * 4);
 		GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
 
 		const yGL = this.#height - (y + height);
@@ -294,7 +311,9 @@ export default class RenderSurface {
 			return;
 		}
 
+		// Get GL
 		const GL = this.#GL;
+		if (!GL) return null;
 
 		// Flip Y coordinate to match WebGL's coordinate system
 		const yGL = this.#height - (y + height);
@@ -333,11 +352,15 @@ export default class RenderSurface {
 		this.#height = height;
 
 		// Resize Canvas
-		this.#CANVAS.width = this.#width;
-		this.#CANVAS.height = this.#height;
+		const CANVAS = this.#CANVAS;
+		if (!CANVAS) return null;
 
-		// Get WebGL Context
+		CANVAS.width = this.#width;
+		CANVAS.height = this.#height;
+
+		// Get GL
 		const GL = this.#GL;
+		if (!GL) return null;
 
 		// Recreate Texture and clear to transparent black
 		if (this.#TEXTURE) {
@@ -382,18 +405,22 @@ export default class RenderSurface {
 
 	// ___________________________________________________________ Clear Texture
 
-	static #clearTexture() {
+	static #clearTexture(): void | null {
+		// Get GL
+		const GL = this.#GL;
+		if (!GL) return null;
+
 		const emptyData = new Uint8Array(this.#width * this.#height * 4).fill(0);
-		this.#GL.bindTexture(this.#GL.TEXTURE_2D, this.#TEXTURE);
-		this.#GL.texImage2D(
-			this.#GL.TEXTURE_2D,
+		GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
+		GL.texImage2D(
+			GL.TEXTURE_2D,
 			0,
-			this.#GL.RGBA,
+			GL.RGBA,
 			this.#width,
 			this.#height,
 			0,
-			this.#GL.RGBA,
-			this.#GL.UNSIGNED_BYTE,
+			GL.RGBA,
+			GL.UNSIGNED_BYTE,
 			emptyData,
 		);
 	}

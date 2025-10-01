@@ -1,0 +1,5 @@
+.render-surface {
+	position: absolute;
+
+	z-index: 200;
+}

@@ -37,7 +37,7 @@ export default class MediaSurfaceVimeo {
 
 	// _________________________________________________________________________
 
-	constructor(container, vimeoId, width, height) {
+	constructor(container: HTMLElement, vimeoId: string, width: number, height: number) {
 		ApplicationLogger.log(
 			`MediaSurfaceVimeo ${vimeoId} ${width} ${height}`,
 			this.#LOG_LEVEL,
@@ -117,7 +117,7 @@ export default class MediaSurfaceVimeo {
 
 		// Set Opacity
 		if (this.#HOLDER) {
-			this.#HOLDER.style.opacity = this.#opacity;
+			this.#HOLDER.style.opacity = this.#opacity.toString();
 		}
 
 		// Set Volume
@@ -232,11 +232,11 @@ export default class MediaSurfaceVimeo {
 	// _____________________________________________________________ Play Button
 
 	#showPlayButton() {
-		this.#BUTTON_PLAY.style.opacity = 1;
+		this.#BUTTON_PLAY.style.opacity = '1';
 	}
 
 	#hidePlayButton() {
-		this.#BUTTON_PLAY.style.opacity = 0;
+		this.#BUTTON_PLAY.style.opacity = '0';
 	}
 
 	async #onPlayButtonClick(event) {

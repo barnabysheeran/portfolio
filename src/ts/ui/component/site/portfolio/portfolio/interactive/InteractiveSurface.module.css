@@ -1,0 +1,14 @@
+.interactive-surface {
+	position: absolute;
+
+	z-index: 300;
+}
+
+.interactive-surface .interactive-block {
+	position: absolute;
+
+	z-index: 301;
+
+	pointer-events: auto;
+	cursor: pointer;
+}
