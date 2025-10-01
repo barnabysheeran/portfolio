@@ -1,6 +1,9 @@
 .site-portfolio {
+	position: relative;
+
     width: 100%;
-    height: calc(var(--grid-cell-width) * 60);
+	height: calc(100vh - calc(var(--grid-cell-width) * 10));
+    /* height: calc(var(--grid-cell-width) * 60); */
 
     background: var(--color-background);
 

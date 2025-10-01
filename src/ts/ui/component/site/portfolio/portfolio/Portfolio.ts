@@ -1,48 +1,54 @@
+import ApplicationConfiguration from './application/ApplicationConfiguration.ts';
+import ApplicationLogger from './application/ApplicationLogger.ts';
 
+import Controller from './controller/Controller.ts';
 
-import ApplicationConfiguration from './application/ApplicationConfiguration.js';
-import ApplicationLogger from './application/ApplicationLogger.js';
-
-import Controller from './controller/Controller.js';
+interface CreationParameters {
+  isDebug: boolean;
+  assetPath: string;
+  applicationContainer: HTMLElement;
+}
 
 export default class Portfolio {
-	#CONTROLLER;
+  #CONTROLLER;
 
-	#applicationRunTimeMS = 0;
+  #applicationRunTimeMS = 0;
 
-	#LOG_LEVEL = 1;
+  #LOG_LEVEL = 1;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	constructor(creationParameters) {
-		// Order Important
+  constructor(creationParameters: CreationParameters) {
+    // Order Important
 
-		// Initialise Application Logger
-		ApplicationLogger.initialise(creationParameters.isDebug);
+    // Initialise Application Logger
+    ApplicationLogger.initialise(creationParameters.isDebug);
 
-		// Initialise Application Configuration
-		ApplicationConfiguration.initialise(creationParameters);
+    ApplicationLogger.log('Portfolio', this.#LOG_LEVEL);
 
-		// Create Controller
-		this.#CONTROLLER = new Controller();
+    // Initialise Application Configuration
+    ApplicationConfiguration.initialise(creationParameters);
 
-		// Start Main Loop
-		window.requestAnimationFrame(this.#tick.bind(this));
-	}
+    // Create Controller
+    this.#CONTROLLER = new Controller();
 
-	// _______________________________________________________________ Main Loop
+    // Start Main Loop
+    window.requestAnimationFrame(this.#tick.bind(this));
+  }
 
-	#tick(applicationRunTimeMS: number) {
-		// Calculate Application Frame Delta MS
-		const FRAME_DELTA_MS = applicationRunTimeMS - this.#applicationRunTimeMS;
+  // _________________________________________________________________ Main Loop
 
-		// Store Application Run Time
-		this.#applicationRunTimeMS = applicationRunTimeMS;
+  #tick(applicationRunTimeMS: number) {
+    // Calculate Application Frame Delta MS
+    const FRAME_DELTA_MS = applicationRunTimeMS - this.#applicationRunTimeMS;
 
-		// Tick Controller
-		this.#CONTROLLER.tick(FRAME_DELTA_MS);
+    // Store Application Run Time
+    this.#applicationRunTimeMS = applicationRunTimeMS;
 
-		// Loop
-		window.requestAnimationFrame(this.#tick.bind(this));
-	}
+    // Tick Controller
+    this.#CONTROLLER.tick(FRAME_DELTA_MS);
+
+    // Loop
+    window.requestAnimationFrame(this.#tick.bind(this));
+  }
 }
