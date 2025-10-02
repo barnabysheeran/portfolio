@@ -14,7 +14,7 @@ export default function SitePortfolio() {
       // Create Portfolio
       portfolioRef.current = new Portfolio({
         isDebug: false,
-        assetPath: '/assets/portfolio/',
+        assetPath: '/assets/',
         applicationContainer: containerRef.current,
       });
     }
