@@ -1,7 +1,14 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import Display from '../display/Display.ts';
-import type { IdData } from '../types/types.ts';
 import styles from './InteractiveSurface.module.css';
+
+export class IdData {
+  public id: number;
+
+  constructor(id: number) {
+    this.id = id;
+  }
+}
 
 type ClickCallback = (id: IdData) => void;
 
@@ -105,19 +112,19 @@ export default class InteractiveSurface {
 
     static #onClick(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
+        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { id: '' };
         callback(clickData);
     }
 
     static #onRollOver(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
+        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { id: '' };
         callback(clickData);
     }
 
     static #onRollOut(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
+        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { id: '' };
         callback(clickData);
     }
 

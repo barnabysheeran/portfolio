@@ -105,6 +105,7 @@ export default class DotMatrixViewHeader extends DotMatrixView {
 			this.onButtonMenuClick.bind(this),
 			this.onButtonMenuOver.bind(this),
 			this.onButtonMenuOut.bind(this),
+			{ id: 0 },
 		);
 
 		// Store

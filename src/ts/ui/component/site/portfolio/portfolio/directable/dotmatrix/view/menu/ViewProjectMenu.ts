@@ -13,7 +13,7 @@ import FillStrategyType from '../../type/FillStrategyType.ts';
 import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 
 import ComponentGlyphLineCentered from '../../component/glyph/ComponentGlyphLineCentered.ts';
-import type { IdData } from '../../../../types/types.ts';
+import type { IdData } from '../../../../interactive/InteractiveSurface.ts';
 
 export default class DotMatrixViewProjectMenu extends DotMatrixView {
 	#DELAY_ROLLOVER_REDRAW = 24;
@@ -268,7 +268,7 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 				this.onButtonMenuClick.bind(this),
 				this.onButtonMenuOver.bind(this),
 				this.onButtonMenuOut.bind(this),
-				{ projectId: this.#PROJECT_IDS[i] },
+				{ id: i },
 			);
 
 			// Store
@@ -276,47 +276,61 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		}
 	}
 
-	onButtonMenuClick(projectIdData: IdData) {
+	onButtonMenuClick(idData: IdData) {
+		console.log('ViewProjectMenu onButtonMenuClick', idData);
+
+		return;
+
 		// Dispatch Event
 		ApplicationDispatcher.dispatch('view-project-menu-select', {
-			projectId: projectIdData.id,
+			projectId: idData.id,
 		});
 	}
 
-	onButtonMenuOver(projectIdData: IdData) {
-		// Get Project Index
-		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.id);
+	onButtonMenuOver(idData: IdData) {
 
-		// End Delay Frames Auto Refresh
-		this.#delayFramesAutoRefresh = -1;
+		console.log('ViewProjectMenu onButtonMenuOver', idData);
 
-		// Is Over
-		this.#IS_OVERS[PROJECT_INDEX] = true;
+		return;
 
-		// Require Update
-		this.#REQUIRES_UPDATES[PROJECT_INDEX] = true;
+		// // Get Project Index
+		// const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(idData.id);
 
-		// Draw
-		this.draw(0, DrawType.Clear);
-		this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
+		// // End Delay Frames Auto Refresh
+		// this.#delayFramesAutoRefresh = -1;
+
+		// // Is Over
+		// this.#IS_OVERS[PROJECT_INDEX] = true;
+
+		// // Require Update
+		// this.#REQUIRES_UPDATES[PROJECT_INDEX] = true;
+
+		// // Draw
+		// this.draw(0, DrawType.Clear);
+		// this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
 	}
 
-	onButtonMenuOut(projectIdData: IdData) {
-		// Get Project Index
-		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.id);
+	onButtonMenuOut(idData: IdData) {
 
-		// End Delay Frames Auto Refresh
-		this.#delayFramesAutoRefresh = -1;
+		console.log('ViewProjectMenu onButtonMenuOut', idData);
 
-		// Is Not Over
-		this.#IS_OVERS[PROJECT_INDEX] = false;
+		return;
 
-		// Require Update
-		this.#REQUIRES_UPDATES[PROJECT_INDEX] = true;
+		// // Get Project Index
+		// const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(idData.id);
 
-		// Draw
-		this.draw(0, DrawType.Clear);
-		this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
+		// // End Delay Frames Auto Refresh
+		// this.#delayFramesAutoRefresh = -1;
+
+		// // Is Not Over
+		// this.#IS_OVERS[PROJECT_INDEX] = false;
+
+		// // Require Update
+		// this.#REQUIRES_UPDATES[PROJECT_INDEX] = true;
+
+		// // Draw
+		// this.draw(0, DrawType.Clear);
+		// this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
 	}
 
 	// ______________________________________________________________ Rectangles

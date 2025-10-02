@@ -14,11 +14,3 @@ export class PositionGrid {
     this.y = y;
   }
 }
-
-export class IdData {
-  public id: number | string;
-
-  constructor(id: number | string) {
-    this.id = id;
-  }
-}

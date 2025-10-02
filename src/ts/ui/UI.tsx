@@ -1,3 +1,4 @@
+import SiteOverlay from "./component/site/overlay/SiteOverlay";
 import SiteHeader from "./component/site/header/SiteHeader";
 import SitePortfolio from "./component/site/portfolio/SitePortfolio";
 import SiteSpacer from "./component/site/spacer/SiteSpacer";
@@ -15,6 +16,7 @@ export default function UI() {
       <SiteEVE />
       <SiteSpacer />
       <SiteFooter />
+      <SiteOverlay />
     </div>
   );
 }
