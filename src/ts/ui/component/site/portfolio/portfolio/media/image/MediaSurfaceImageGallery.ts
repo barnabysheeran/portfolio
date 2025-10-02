@@ -4,6 +4,8 @@ import ApplicationConfiguration from '../../application/ApplicationConfiguration
 import MediaSurfaceImage from './MediaSurfaceImage.ts';
 import MediaSurfaceItem from '../MediaSurfaceItem.ts';
 
+import styles from './MediaSurfaceImageGallery.module.css';
+
 export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
 	#HOLDER: HTMLDivElement | null = null;
 
@@ -29,11 +31,9 @@ export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
 
 		ApplicationLogger.log(`MediaSurfaceImageGallery`, this.#LOG_LEVEL);
 
-		
-
 		// Create Holder
 		this.#HOLDER = document.createElement('div');
-		this.#HOLDER.className = 'image-gallery';
+		this.#HOLDER.className = styles['media-surface-image-gallery'];
 		container.appendChild(this.#HOLDER);
 
 		// Event Listeners

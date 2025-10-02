@@ -5,6 +5,8 @@ import ApplicationLogger from '../../application/ApplicationLogger.ts';
 import MediaSurface from '../MediaSurface.ts';
 import MediaSurfaceItem from '../MediaSurfaceItem.ts';
 
+import styles from './MediaSurfaceVimeo.module.css'; 
+
 export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 	#CONTAINER;
 
@@ -57,13 +59,13 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 		// Create Holder
 		this.#HOLDER = document.createElement('div');
 		this.#HOLDER.id = 'video-holder';
-		this.#HOLDER.className = 'video-holder';
+		this.#HOLDER.className = styles['media-surface-video-holder'];
 		this.#CONTAINER.appendChild(this.#HOLDER);
 
 		// Create Player Holder
 		this.#PLAYER_HOLDER = document.createElement('div');
 		this.#PLAYER_HOLDER.id = 'player-holder';
-		this.#PLAYER_HOLDER.className = 'player-holder';
+		this.#PLAYER_HOLDER.className = styles['media-surface-video-player-holder'];
 		this.#HOLDER.appendChild(this.#PLAYER_HOLDER);
 
 		// Create a Vimeo Player Instance
@@ -90,7 +92,7 @@ export default class MediaSurfaceVimeo extends MediaSurfaceItem {
 
 		// Create Button Play
 		this.#BUTTON_PLAY = document.createElement('button');
-		this.#BUTTON_PLAY.className = 'button-play';
+		this.#BUTTON_PLAY.className = styles['media-surface-video-button-play'];
 		this.#BUTTON_PLAY.innerText = '▶';
 		this.#HOLDER.appendChild(this.#BUTTON_PLAY);
 		this.#BUTTON_PLAY.tabIndex = -1; // Added line

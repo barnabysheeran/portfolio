@@ -1,5 +1,7 @@
 import MediaSurface from '../MediaSurface.ts';
 
+import styles from './MediaSurfaceImage.module.css';
+
 export default class MediaSurfaceImage {
     #IMAGE_URL: string;
     #CALLBACK_ON_LOADED: (() => void) | null;
@@ -36,7 +38,7 @@ export default class MediaSurfaceImage {
 
         // Create Holder
         this.#HOLDER = document.createElement('div');
-        this.#HOLDER.classList.add('image');
+        this.#HOLDER.classList.add(styles['media-surface-image']);
         container.appendChild(this.#HOLDER);
 
         // Create Image
