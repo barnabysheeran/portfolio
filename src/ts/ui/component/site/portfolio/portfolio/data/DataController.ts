@@ -18,4 +18,14 @@ export default class DataController {
 		}
 		return undefined;
 	}
+
+	static getProjectByIndex(index: number) {
+		if (
+			index >= 0 &&
+			index < DataController.#DATA_PROJECTS.length
+		) {
+			return DataController.#DATA_PROJECTS[index];
+		}
+		return undefined;
+	}
 }

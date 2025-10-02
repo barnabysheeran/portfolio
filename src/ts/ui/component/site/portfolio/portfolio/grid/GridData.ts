@@ -10,7 +10,7 @@ export default class GridData {
 	static #resolutionHeight = 0;
 
 	// Flat data structure for grid cells
-	static #grid = [];
+	// static #grid = [];
 	static #occupied = new Uint8Array();
 	static #gridWidthInCells = 0;
 	static #gridHeightInCells = 0;
@@ -40,34 +40,36 @@ export default class GridData {
 		return y * this.#gridWidthInCells + x;
 	}
 
-	static setGridCell(x: number, y: number, data) {
-		const intX = Math.floor(x);
-		const intY = Math.floor(y);
-		if (
-			intX >= 0 &&
-			intX < this.#gridWidthInCells &&
-			intY >= 0 &&
-			intY < this.#gridHeightInCells
-		) {
-			const index = this.#getIndex(intX, intY);
-			this.#grid[index] = data;
-		}
-	}
+	// static setGridCell(x: number, y: number, data) {
 
-	static getGridCell(x: number, y: number) {
-		const intX = Math.floor(x);
-		const intY = Math.floor(y);
-		if (
-			intX >= 0 &&
-			intX < this.#gridWidthInCells &&
-			intY >= 0 &&
-			intY < this.#gridHeightInCells
-		) {
-			const index = this.#getIndex(intX, intY);
-			return this.#grid[index];
-		}
-		return undefined;
-	}
+	// 	// Get Integer Values
+	// 	const intX = Math.floor(x);
+	// 	const intY = Math.floor(y);
+	// 	if (
+	// 		intX >= 0 &&
+	// 		intX < this.#gridWidthInCells &&
+	// 		intY >= 0 &&
+	// 		intY < this.#gridHeightInCells
+	// 	) {
+	// 		const index = this.#getIndex(intX, intY);
+	// 		this.#grid[index] = data;
+	// 	}
+	// }
+
+	// static getGridCell(x: number, y: number) {
+	// 	const intX = Math.floor(x);
+	// 	const intY = Math.floor(y);
+	// 	if (
+	// 		intX >= 0 &&
+	// 		intX < this.#gridWidthInCells &&
+	// 		intY >= 0 &&
+	// 		intY < this.#gridHeightInCells
+	// 	) {
+	// 		const index = this.#getIndex(intX, intY);
+	// 		return this.#grid[index];
+	// 	}
+	// 	return undefined;
+	// }
 
 	// __________________________________________________________________ Random
 
@@ -92,21 +94,21 @@ export default class GridData {
 		return undefined;
 	}
 
-	static getRandomEmptyRectangle(rectangleWidthCells: number, rectangleHeightCells: number) {
-		const randomIndexes = this.#generateRandomOrderCellIndexes();
+	// static getRandomEmptyRectangle(rectangleWidthCells: number, rectangleHeightCells: number) {
+	// 	const randomIndexes = this.#generateRandomOrderCellIndexes();
 
-		for (const index of randomIndexes) {
-			if (
-				this.isRectangleEmpty(index, rectangleWidthCells, rectangleHeightCells)
-			) {
-				const x = index % this.#gridWidthInCells;
-				const y = Math.floor(index / this.#gridWidthInCells);
-				return vec2.fromValues(x, y);
-			}
-		}
+	// 	for (const index of randomIndexes) {
+	// 		if (
+	// 			this.isRectangleEmpty(index, rectangleWidthCells, rectangleHeightCells)
+	// 		) {
+	// 			const x = index % this.#gridWidthInCells;
+	// 			const y = Math.floor(index / this.#gridWidthInCells);
+	// 			return vec2.fromValues(x, y);
+	// 		}
+	// 	}
 
-		return undefined;
-	}
+	// 	return undefined;
+	// }
 
 	// ____________________________________________________________________ Util
 
@@ -230,8 +232,8 @@ export default class GridData {
 		);
 
 		// Re-initialize the flat array
-		const size = this.#gridWidthInCells * this.#gridHeightInCells;
-		this.#grid = new Array(size).fill(null);
-		this.#occupied = new Uint8Array(size); // Automatically filled with 0
+		// const size = this.#gridWidthInCells * this.#gridHeightInCells;
+		// this.#grid = new Array(size).fill(null);
+		// this.#occupied = new Uint8Array(size); // Automatically filled with 0
 	}
 }
