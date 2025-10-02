@@ -29,6 +29,8 @@ export default class MediaSurfaceImageGallery extends MediaSurfaceItem {
 
 		ApplicationLogger.log(`MediaSurfaceImageGallery`, this.#LOG_LEVEL);
 
+		
+
 		// Create Holder
 		this.#HOLDER = document.createElement('div');
 		this.#HOLDER.className = 'image-gallery';

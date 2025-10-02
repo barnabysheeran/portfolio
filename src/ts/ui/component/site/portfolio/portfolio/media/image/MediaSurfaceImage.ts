@@ -24,6 +24,8 @@ export default class MediaSurfaceImage {
         this.#IMAGE_URL = imageURL;
         this.#CALLBACK_ON_LOADED = callbackOnLoaded || null;
 
+        console.log('MediaSurfaceImage', this.#IMAGE_URL);
+
         // Set Lerp Values
         this.#LERP_SLOW = MediaSurface.LERP_SLOW;
         this.#LERP_FAST = MediaSurface.LERP_FAST;
@@ -51,6 +53,8 @@ export default class MediaSurfaceImage {
     // ______________________________________________________________ Image Load
 
     #onImageLoaded() {
+        console.log('MediaSurfaceImage loaded', this.#IMAGE_URL);
+
         // Set Image as Background of Holder
         if (this.#HOLDER) {
             this.#HOLDER.style.backgroundImage = `url(${this.#IMAGE_URL})`;

@@ -88,6 +88,8 @@ export default class MediaSurface {
 
             switch (MEDIA_DATA.type) {
                 case 'vimeo':
+                    console.log(' - Vimeo ID', VIMEO_ID);
+
                     // Vimeo - Add Vimeo Player
                     if (VIMEO_ID) {
                         this.#addVideoPlayer(VIMEO_ID);
@@ -96,6 +98,8 @@ export default class MediaSurface {
                     break;
 
                 case 'image':
+                    console.log(' - Image URL', URL);
+
                     // Image - Store URL
                     if (URL) {
                         imageUrls.push(URL);
@@ -118,6 +122,8 @@ export default class MediaSurface {
                 ` - Creating Image Gallery with ${imageUrls.length} images`,
                 this.#LOG_LEVEL,
             );
+
+            console.log(' - Image URLs', imageUrls);
 
             // Create Image Gallery
             this.#addImageGallery(imageUrls);
