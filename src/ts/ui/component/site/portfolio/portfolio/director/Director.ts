@@ -1,7 +1,6 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 
 import DirectableDotMatrix from '../directable/dotmatrix/DirectableDotMatrix.ts';
-import type { ProjectIdData } from '../types/types.ts';
 
 export default class Director {
 	static #DIRECTABLE_DOT_MATRIX: DirectableDotMatrix | null = null;

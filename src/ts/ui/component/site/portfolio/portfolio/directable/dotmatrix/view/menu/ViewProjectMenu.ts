@@ -276,16 +276,16 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		}
 	}
 
-	onButtonMenuClick(projectIdData: ProjectIdData) {
+	onButtonMenuClick(projectIdData: IdData) {
 		// Dispatch Event
 		ApplicationDispatcher.dispatch('view-project-menu-select', {
-			projectId: projectIdData.projectId,
+			projectId: projectIdData.id,
 		});
 	}
 
-	onButtonMenuOver(projectIdData: ProjectIdData) {
+	onButtonMenuOver(projectIdData: IdData) {
 		// Get Project Index
-		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.projectId);
+		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.id);
 
 		// End Delay Frames Auto Refresh
 		this.#delayFramesAutoRefresh = -1;
@@ -301,9 +301,9 @@ export default class DotMatrixViewProjectMenu extends DotMatrixView {
 		this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
 	}
 
-	onButtonMenuOut(projectIdData: ProjectIdData) {
+	onButtonMenuOut(projectIdData: IdData) {
 		// Get Project Index
-		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.projectId);
+		const PROJECT_INDEX = this.#PROJECT_IDS.indexOf(projectIdData.id);
 
 		// End Delay Frames Auto Refresh
 		this.#delayFramesAutoRefresh = -1;

@@ -7,7 +7,8 @@ import MediaSurface from '../media/MediaSurface.ts';
 import RenderSurface from '../render/RenderSurface.ts';
 import InteractiveSurface from '../interactive/InteractiveSurface.ts';
 import Director from '../director/Director.ts';
-import type { ProjectIdData } from '../types/types.ts';
+
+import type { IdData } from '../types/types.ts';
 
 export default class Controller {
 	#FRAMERATE_FPS = 60;
@@ -110,7 +111,7 @@ export default class Controller {
 		MediaSurface.clear();
 	}
 
-	#onViewProjectMenuSelect(projectIdData: ProjectIdData) {
+	#onViewProjectMenuSelect(projectIdData: IdData) {
 		ApplicationLogger.log(
 			`Controller onViewProjectMenuSelect`,
 			this.#LOG_LEVEL,

@@ -12,6 +12,7 @@ import type DotManager from '../../dot/DotManager.ts';
 import type { FillTypeValue } from '../../type/FillType.ts';
 import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
 import type { DrawTypeValue } from '../../type/DrawType.ts';
+import { PositionGrid } from '../../../../types/types.ts';
 
 export default class ShapeRectangle extends Shape {
 	#LOG_LEVEL = -1; // 6;
@@ -36,7 +37,7 @@ export default class ShapeRectangle extends Shape {
 		// Store Initial Position Grids
 		for (let w = 0; w < gridWidth; w++) {
 			for (let h = 0; h < gridHeight; h++) {
-				this.positionGrids.push([gridX + w, gridY + h]);
+				this.positionGrids.push(new PositionGrid(gridX + w, gridY + h));
 			}
 		}
 

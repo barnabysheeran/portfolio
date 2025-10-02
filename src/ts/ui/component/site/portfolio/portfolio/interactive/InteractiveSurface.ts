@@ -1,8 +1,9 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import Display from '../display/Display.ts';
+import type { IdData } from '../types/types.ts';
 import styles from './InteractiveSurface.module.css';
 
-type ClickCallback = (id: number) => void;
+type ClickCallback = (id: IdData) => void;
 
 export default class InteractiveSurface {
     static #CONTAINER: HTMLDivElement;
@@ -36,7 +37,7 @@ export default class InteractiveSurface {
         callbackClick: ClickCallback | null,
         callbackRollOver: ClickCallback | null,
         callbackRollOut: ClickCallback | null,
-        clickData: ProjectIdData,
+        clickData: IdData,
     ): string {
         // Create UUID
         const uuid = crypto.randomUUID();
@@ -104,19 +105,19 @@ export default class InteractiveSurface {
 
     static #onClick(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData: ProjectIdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
+        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
         callback(clickData);
     }
 
     static #onRollOver(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData: ProjectIdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
+        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
         callback(clickData);
     }
 
     static #onRollOut(event: MouseEvent, callback: ClickCallback): void { // Added types
         const clickDataString = (event.currentTarget as HTMLElement).dataset.clickData;
-        const clickData: ProjectIdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
+        const clickData: IdData = clickDataString ? JSON.parse(clickDataString) : { projectId: '' };
         callback(clickData);
     }
 
