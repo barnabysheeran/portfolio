@@ -42,6 +42,7 @@ export default class MediaSurfaceImage {
         // Create Image
         this.#IMAGE = new Image();
         this.#IMAGE.onload = this.#onImageLoaded.bind(this);
+        this.#IMAGE.onerror = this.#onImageLoadError.bind(this);
 
         // Initial Opacity
         this.#HOLDER.style.opacity = '0';
@@ -67,6 +68,13 @@ export default class MediaSurfaceImage {
         if (this.#CALLBACK_ON_LOADED) {
             this.#CALLBACK_ON_LOADED();
         }
+    }
+
+    // ________________________________________________________ Image Load Error
+
+    #onImageLoadError(error: ErrorEvent) {
+        console.error('MediaSurfaceImage failed to load', this.#IMAGE_URL);
+        console.error('Error event:', error);
     }
 
     // ____________________________________________________________________ Tick
