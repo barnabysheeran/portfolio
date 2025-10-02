@@ -91,7 +91,7 @@ export default class DotMatrixView {
 
 	// ____________________________________________________________________ Tick
 
-	/* eslint-ignore-next-line @typescript-eslint/no-unused-vars */
+	/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 	tick(_frameDeltaMS: number) {
 		// Stub
 	}

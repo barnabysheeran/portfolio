@@ -55,6 +55,8 @@ try {
     console.log(`Showing start ${MAX_ERRORS_TO_LOG_START}, random ${MAX_ERRORS_TO_LOG_RANDOM}, end ${MAX_ERRORS_TO_LOG_END} errors out of ${formattedErrors.length}.`);
   }
   console.log(`Found ${errorLines.length} TypeScript errors.`);
+
+  // eslint-disable-next-line no-undef
   process.exit(1);
 }
 

@@ -1,3 +1,1 @@
-export interface UIState {
-  // Add other UI state properties here if needed
-}
+export type UIState = Record<string, unknown>;
