@@ -1,7 +1,7 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
+import DataController from '../data/DataController.ts';
 
 import DirectableDotMatrix from '../directable/dotmatrix/DirectableDotMatrix.ts';
-import type { IdData } from '../interactive/InteractiveSurface.ts';
 
 export default class Director {
 	static #DIRECTABLE_DOT_MATRIX: DirectableDotMatrix | null = null;
@@ -52,15 +52,20 @@ export default class Director {
 		}
 	}
 
-	static onViewProjectMenuSelect(idData: IdData) {
+	static onViewProjectMenuSelect(projectIndex: number ) {
 		ApplicationLogger.log(`Director onViewProjectMenuSelect`, this.#LOG_LEVEL);
 
-		console.log('Director onViewProjectMenuSelect', idData);
+		// Get Project Id
+		const PROJECT_DATA = DataController.getProjectByIndex(projectIndex);
+
+		if(!PROJECT_DATA) {
+			return;
+		}
 
 		// Dot Matrix
-		// if (this.#DIRECTABLE_DOT_MATRIX) {
-		// 	this.#DIRECTABLE_DOT_MATRIX.projectShow(idData.id);
-		// }
+		if (this.#DIRECTABLE_DOT_MATRIX) {
+			this.#DIRECTABLE_DOT_MATRIX.projectShow(PROJECT_DATA.id);
+		}
 	}
 
 	// ____________________________________________________________________ Size

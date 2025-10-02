@@ -1,5 +1,6 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import DataController from '../data/DataController.ts';
+import type { DataMedia, DataProject } from '../data/DataController.ts';
 
 import Display from '../display/Display.ts';
 
@@ -8,7 +9,6 @@ import MediaSurfaceImageGallery from './image/MediaSurfaceImageGallery.ts';
 import type MediaSurfaceItem from './MediaSurfaceItem.ts';
 
 import styles from './MediaSurface.module.css';
-import type { IdData } from '../interactive/InteractiveSurface.ts';
 
 export default class MediaSurface {
 	static #CONTAINER: HTMLDivElement;
@@ -62,68 +62,67 @@ export default class MediaSurface {
 
 	// ____________________________________________________________ Show Project
 
-	static showProject(idData: IdData) {
+	static showProject(projectIndex: number) {
 		ApplicationLogger.log(`MediaSurface showProject`, this.#LOG_LEVEL);
 
 		// Clear Container
 		this.clear();
 
-		// Get Project Id
-		const projectId = idData.id;
-
-		console.log('MediaSurface showProject', idData);
-
-		return;
-
-		ApplicationLogger.log(` - Project ID: ${projectId}`, this.#LOG_LEVEL);
-
 		// Get Project Data
-		// const PROJECT_DATA = DataController.getProjectById(projectId);
+		const PROJECT_DATA: DataProject = DataController.getProjectByIndex(projectIndex);
+		const MEDIA_DATA: DataMedia[] = DataController.getMediaByIndex(projectIndex);
+
+		if(!PROJECT_DATA || !MEDIA_DATA) {
+			return;
+		}
+
+		console.log(' - Project Data', PROJECT_DATA);
+		console.log(' - Media Data', MEDIA_DATA);
+
+		ApplicationLogger.log(` - Project ID: ${PROJECT_DATA.id}`, this.#LOG_LEVEL);
 
 		// Project Data has 'media' property
-		// if (!PROJECT_DATA || !PROJECT_DATA.media) {
-		// 	ApplicationLogger.warn(` - No media data`, this.#LOG_LEVEL);
-		// 	return;
-		// }
+		if (!PROJECT_DATA || !MEDIA_DATA) {
+			ApplicationLogger.warn(` - No media data`, this.#LOG_LEVEL);
+			return;
+		}
 
 		// Through the media data
-		// const imageUrls = [];
+		const imageUrls = [];
 
-		// for (let i = 0; i < PROJECT_DATA.media.length; i++) {
-		// 	const MEDIA_DATA = PROJECT_DATA.media[i];
+		for (let i = 0; i < MEDIA_DATA.length; i++) {
+			switch (MEDIA_DATA[i].type) {
+				case 'vimeo':
+					// Vimeo - Add Vimeo Player
+					this.#addVideoPlayer(MEDIA_DATA[i]['vimeo-id']);
 
-		// 	switch (MEDIA_DATA.type) {
-		// 		case 'vimeo':
-		// 			// Vimeo - Add Vimeo Player
-		// 			this.#addVideoPlayer(MEDIA_DATA['vimeo-id']);
+					break;
 
-		// 			break;
+				case 'image':
+					// Image - Store URL
+					imageUrls.push(MEDIA_DATA[i]['url']);
 
-		// 		case 'image':
-		// 			// Image - Store URL
-		// 			imageUrls.push(MEDIA_DATA['url']);
+					break;
 
-		// 			break;
-
-		// 		default:
-		// 			ApplicationLogger.warn(
-		// 				`MediaSurface showProject: Unknown media type`,
-		// 				this.#LOG_LEVEL,
-		// 			);
-		// 			break;
-		// 	}
-		// }
+				default:
+					ApplicationLogger.warn(
+						`MediaSurface showProject: Unknown media type`,
+						this.#LOG_LEVEL,
+					);
+					break;
+			}
+		}
 
 		// Create Image Gallery ?
-		// if (imageUrls.length > 0) {
-		// 	ApplicationLogger.log(
-		// 		` - Creating Image Gallery with ${imageUrls.length} images`,
-		// 		this.#LOG_LEVEL,
-		// 	);
+		if (imageUrls.length > 0) {
+			ApplicationLogger.log(
+				` - Creating Image Gallery with ${imageUrls.length} images`,
+				this.#LOG_LEVEL,
+			);
 
-		// 	// Create Image Gallery
-		// 	this.#addImageGallery(imageUrls);
-		// }
+			// Create Image Gallery
+			this.#addImageGallery(imageUrls);
+		}
 	}
 
 	// ___________________________________________________________________ Vimeo

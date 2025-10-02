@@ -116,15 +116,20 @@ export default class Controller {
 			this.#LOG_LEVEL,
 		);
 
-		console.log('Controller onViewProjectMenuSelect', data);
-
 		// Handle IdData or plain object
-		if (data instanceof IdData) {
+		if (data instanceof Object) {
+			console.log(' - IdData ******************** ', data);
+
+			// Get Project Id
+			const PROJECT_INDEX = (data as IdData).id;
+
+			console.log(' - projectIndex', PROJECT_INDEX);
+			
 			// Director
-			Director.onViewProjectMenuSelect(data);
+			Director.onViewProjectMenuSelect(PROJECT_INDEX);
 
 			// Media Surface
-			MediaSurface.showProject(data);
+			MediaSurface.showProject(PROJECT_INDEX);
 		}
 	}
 
