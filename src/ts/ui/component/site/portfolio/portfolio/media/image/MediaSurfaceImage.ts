@@ -72,9 +72,8 @@ export default class MediaSurfaceImage {
 
     // ________________________________________________________ Image Load Error
 
-    #onImageLoadError(error: ErrorEvent) {
+    #onImageLoadError() {
         console.error('MediaSurfaceImage failed to load', this.#IMAGE_URL);
-        console.error('Error event:', error);
     }
 
     // ____________________________________________________________________ Tick
