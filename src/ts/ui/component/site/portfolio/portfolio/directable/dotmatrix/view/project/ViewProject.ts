@@ -9,10 +9,9 @@ import FillStrategyType from '../../type/FillStrategyType.ts';
 import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 
 import GridData from '../../../../grid/GridData.ts';
-import InteractiveSurface from '../../../../interactive/InteractiveSurface.ts';
+import InteractiveSurface, { IdData } from '../../../../interactive/InteractiveSurface.ts';
 
 import ComponentGlyphLineCentered from '../../component/glyph/ComponentGlyphLineCentered.ts';
-import type { ButtonIdData } from '../../../../types/types.ts';
 
 export default class ViewProject extends DotMatrixView {
 	// #STRING_WINGED_SKULL = '{wing-left} {skull} {wing-right}';
@@ -192,7 +191,7 @@ export default class ViewProject extends DotMatrixView {
 		}
 	}
 
-	onButtonMenuClick(buttonIdData: ButtonIdData) {
+	onButtonMenuClick(idData: IdData) {
 		// Get Project Data
 		const DATA_PROJECT = DataController.getProjectById(this.getViewId());
 
@@ -201,7 +200,7 @@ export default class ViewProject extends DotMatrixView {
 		}
 
 		// Get Credit Array
-		const DATA_CREDIT = DATA_PROJECT['credit'][buttonIdData.buttonId];
+		const DATA_CREDIT = DATA_PROJECT['credit'][idData.id];
 
 		// Open URL
 		if (DATA_CREDIT && DATA_CREDIT['url']) {
@@ -209,18 +208,18 @@ export default class ViewProject extends DotMatrixView {
 		}
 	}
 
-	onButtonMenuOver(buttonIdData: ButtonIdData) {
+	onButtonMenuOver(idData: IdData) {
 		// Set Is Over
-		this.#IS_OVERS[buttonIdData.buttonId] = true;
+		this.#IS_OVERS[idData.id] = true;
 
 		// Draw
 		this.draw(0, DrawType.Clear);
 		this.draw(this.#DELAY_ROLLOVER_REDRAW, DrawType.Fill);
 	}
 
-	onButtonMenuOut(buttonIdData: ButtonIdData) {
+	onButtonMenuOut(idData: IdData) {
 		// Set Is Not Over
-		this.#IS_OVERS[buttonIdData.buttonId] = false;
+		this.#IS_OVERS[idData.id] = false;
 
 		// Draw
 		this.draw(0, DrawType.Clear);

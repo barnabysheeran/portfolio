@@ -1,5 +1,5 @@
 export default class ApplicationDispatcherEvent {
-  #CALLBACKS: Array<(data: object) => void> = [];
+  #CALLBACKS: Array<(data: unknown) => void> = [];
 
   #EVENT_NAME: string;
 
@@ -7,21 +7,21 @@ export default class ApplicationDispatcherEvent {
     this.#EVENT_NAME = eventName;
   }
 
-  registerCallback(callback: (data: object) => void): void {
+  registerCallback(callback: (data: unknown) => void): void {
     if (typeof callback !== 'function') {
       throw new Error('Callback must be a function');
     }
     this.#CALLBACKS.push(callback);
   }
 
-  unregisterCallback(callback: (data: object) => void): void {
+  unregisterCallback(callback: (data: unknown) => void): void {
     const INDEX = this.#CALLBACKS.indexOf(callback);
     if (INDEX !== -1) {
       this.#CALLBACKS.splice(INDEX, 1);
     }
   }
 
-  fire(data: object): void {
+  fire(data: unknown): void {
     this.#CALLBACKS.forEach((callback) => {
       callback(data);
     });
@@ -31,7 +31,7 @@ export default class ApplicationDispatcherEvent {
     return this.#EVENT_NAME;
   }
 
-  get CALLBACKS(): Array<(data: object) => void> {
+  get CALLBACKS(): Array<(data: unknown) => void> {
     return this.#CALLBACKS;
   }
 }

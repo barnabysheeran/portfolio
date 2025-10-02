@@ -7,24 +7,24 @@ export default class ApplicationDispatcher {
     // View
     'project-menu-open',
     'project-menu-close',
-    'view-project-menu-select', // ProjectIdData
+    'view-project-menu-select', // IdData or { something: 'stuff' }
   ];
 
-  static dispatch(eventName: string, data: object): void {
+  static dispatch(eventName: string, data: unknown): void {
     const EVENT = this.#EVENTS[eventName];
     if (EVENT !== undefined) {
       EVENT.fire(data);
     }
   }
 
-  static on(eventName: string, callback: (data: object) => void): void {
+  static on(eventName: string, callback: (data: unknown) => void): void {
     if (typeof callback !== 'function') {
       throw new Error('Callback must be a function');
     }
     this.#getOrCreateEvent(eventName).registerCallback(callback);
   }
 
-  static off(eventName: string, callback: (data: object) => void): void {
+  static off(eventName: string, callback: (data: unknown) => void): void {
     const EVENT = this.#EVENTS[eventName];
     if (EVENT) {
       EVENT.unregisterCallback(callback);

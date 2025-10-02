@@ -5,10 +5,9 @@ import Display from '../display/Display.ts';
 import GridData from '../grid/GridData.ts';
 import MediaSurface from '../media/MediaSurface.ts';
 import RenderSurface from '../render/RenderSurface.ts';
-import InteractiveSurface from '../interactive/InteractiveSurface.ts';
+import InteractiveSurface, { IdData } from '../interactive/InteractiveSurface.ts';
 import Director from '../director/Director.ts';
 
-import type { IdData } from '../interactive/InteractiveSurface.ts';
 
 export default class Controller {
 	#FRAMERATE_FPS = 60;
@@ -111,17 +110,22 @@ export default class Controller {
 		MediaSurface.clear();
 	}
 
-	#onViewProjectMenuSelect(idData: IdData) {
+	#onViewProjectMenuSelect(data: unknown) {
 		ApplicationLogger.log(
 			`Controller onViewProjectMenuSelect`,
 			this.#LOG_LEVEL,
 		);
 
-		// Director
-		Director.onViewProjectMenuSelect(idData);
+		console.log('Controller onViewProjectMenuSelect', data);
 
-		// Media Surface
-		MediaSurface.showProject(idData);
+		// Handle IdData or plain object
+		if (data instanceof IdData) {
+			// Director
+			Director.onViewProjectMenuSelect(data);
+
+			// Media Surface
+			MediaSurface.showProject(data);
+		}
 	}
 
 	// _________________________________________________________________ Display

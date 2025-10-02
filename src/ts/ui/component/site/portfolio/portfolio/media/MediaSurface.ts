@@ -8,6 +8,7 @@ import MediaSurfaceImageGallery from './image/MediaSurfaceImageGallery.ts';
 import type MediaSurfaceItem from './MediaSurfaceItem.ts';
 
 import styles from './MediaSurface.module.css';
+import type { IdData } from '../interactive/InteractiveSurface.ts';
 
 export default class MediaSurface {
 	static #CONTAINER: HTMLDivElement;
@@ -61,64 +62,68 @@ export default class MediaSurface {
 
 	// ____________________________________________________________ Show Project
 
-	static showProject(data) {
+	static showProject(idData: IdData) {
 		ApplicationLogger.log(`MediaSurface showProject`, this.#LOG_LEVEL);
 
 		// Clear Container
 		this.clear();
 
 		// Get Project Id
-		const projectId = data.projectId;
+		const projectId = idData.id;
+
+		console.log('MediaSurface showProject', idData);
+
+		return;
 
 		ApplicationLogger.log(` - Project ID: ${projectId}`, this.#LOG_LEVEL);
 
 		// Get Project Data
-		const PROJECT_DATA = DataController.getProjectById(projectId);
+		// const PROJECT_DATA = DataController.getProjectById(projectId);
 
 		// Project Data has 'media' property
-		if (!PROJECT_DATA || !PROJECT_DATA.media) {
-			ApplicationLogger.warn(` - No media data`, this.#LOG_LEVEL);
-			return;
-		}
+		// if (!PROJECT_DATA || !PROJECT_DATA.media) {
+		// 	ApplicationLogger.warn(` - No media data`, this.#LOG_LEVEL);
+		// 	return;
+		// }
 
 		// Through the media data
-		const imageUrls = [];
+		// const imageUrls = [];
 
-		for (let i = 0; i < PROJECT_DATA.media.length; i++) {
-			const MEDIA_DATA = PROJECT_DATA.media[i];
+		// for (let i = 0; i < PROJECT_DATA.media.length; i++) {
+		// 	const MEDIA_DATA = PROJECT_DATA.media[i];
 
-			switch (MEDIA_DATA.type) {
-				case 'vimeo':
-					// Vimeo - Add Vimeo Player
-					this.#addVideoPlayer(MEDIA_DATA['vimeo-id']);
+		// 	switch (MEDIA_DATA.type) {
+		// 		case 'vimeo':
+		// 			// Vimeo - Add Vimeo Player
+		// 			this.#addVideoPlayer(MEDIA_DATA['vimeo-id']);
 
-					break;
+		// 			break;
 
-				case 'image':
-					// Image - Store URL
-					imageUrls.push(MEDIA_DATA['url']);
+		// 		case 'image':
+		// 			// Image - Store URL
+		// 			imageUrls.push(MEDIA_DATA['url']);
 
-					break;
+		// 			break;
 
-				default:
-					ApplicationLogger.warn(
-						`MediaSurface showProject: Unknown media type`,
-						this.#LOG_LEVEL,
-					);
-					break;
-			}
-		}
+		// 		default:
+		// 			ApplicationLogger.warn(
+		// 				`MediaSurface showProject: Unknown media type`,
+		// 				this.#LOG_LEVEL,
+		// 			);
+		// 			break;
+		// 	}
+		// }
 
 		// Create Image Gallery ?
-		if (imageUrls.length > 0) {
-			ApplicationLogger.log(
-				` - Creating Image Gallery with ${imageUrls.length} images`,
-				this.#LOG_LEVEL,
-			);
+		// if (imageUrls.length > 0) {
+		// 	ApplicationLogger.log(
+		// 		` - Creating Image Gallery with ${imageUrls.length} images`,
+		// 		this.#LOG_LEVEL,
+		// 	);
 
-			// Create Image Gallery
-			this.#addImageGallery(imageUrls);
-		}
+		// 	// Create Image Gallery
+		// 	this.#addImageGallery(imageUrls);
+		// }
 	}
 
 	// ___________________________________________________________________ Vimeo
