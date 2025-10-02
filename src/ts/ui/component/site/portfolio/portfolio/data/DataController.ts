@@ -5,7 +5,7 @@ export interface DataCredit {
   url: string;
 }
 
-export interface DataMedia {
+export interface DataProjectMedia {
   type: 'image' | 'vimeo';
   url?: string;
   'vimeo-id'?: string;
@@ -15,7 +15,7 @@ export interface DataProject {
   id: string;
   name: string;
   'name-short': string;
-  media: DataMedia[];
+  media: DataProjectMedia[];
   credit: DataCredit[];
 }
 
@@ -55,7 +55,7 @@ export default class DataController {
     return this.#DATA_PROJECTS[0];
   }
 
-  static getMediaByIndex(projectIndex: number): DataMedia[] {
+  static getMediaByIndex(projectIndex: number): DataProjectMedia[] {
     const project = this.getProjectByIndex(projectIndex);
     if (project) {
       return project.media;

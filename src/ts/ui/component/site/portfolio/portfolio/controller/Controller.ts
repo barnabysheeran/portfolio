@@ -1,13 +1,13 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import ApplicationDispatcher from '../application/ApplicationDispatcher.ts';
 
+import DataController from '../data/DataController.ts';
 import Display from '../display/Display.ts';
 import GridData from '../grid/GridData.ts';
 import MediaSurface from '../media/MediaSurface.ts';
 import RenderSurface from '../render/RenderSurface.ts';
 import InteractiveSurface, { IdData } from '../interactive/InteractiveSurface.ts';
 import Director from '../director/Director.ts';
-
 
 export default class Controller {
 	#FRAMERATE_FPS = 60;
@@ -26,6 +26,7 @@ export default class Controller {
 		);
 
 		// Order Important
+		DataController.initialise();
 		Display.initialise();
 
 		const DISPLAY_WIDTH = Display.getWidthPx();

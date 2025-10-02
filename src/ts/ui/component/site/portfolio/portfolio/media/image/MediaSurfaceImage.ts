@@ -1,135 +1,135 @@
 import MediaSurface from '../MediaSurface.ts';
 
 export default class MediaSurfaceImage {
-	#IMAGE_URL;
-	#CALLBACK_ON_LOADED;
+    #IMAGE_URL: string;
+    #CALLBACK_ON_LOADED: (() => void) | null;
 
-	#HOLDER: HTMLDivElement | null;
-	#IMAGE: HTMLImageElement | null;
+    #HOLDER: HTMLDivElement | null;
+    #IMAGE: HTMLImageElement | null;
 
-	#LERP_SLOW;
-	#LERP_FAST;
-	#LERP_MARGIN;
-	#lerp;
+    #LERP_SLOW: number;
+    #LERP_FAST: number;
+    #LERP_MARGIN: number;
+    #lerp: number;
 
-	#opacity = 0;
-	#opacityTarget = 0;
+    #opacity = 0;
+    #opacityTarget = 0;
 
-	#isStopping = false;
+    #isStopping = false;
 
-	// _________________________________________________________________________
+    // _________________________________________________________________________
 
-	constructor(container: HTMLDivElement, imageURL: string, callbackOnLoaded) {
-		// Store
-		this.#IMAGE_URL = imageURL;
-		this.#CALLBACK_ON_LOADED = callbackOnLoaded;
+    constructor(container: HTMLDivElement, imageURL: string, callbackOnLoaded?: () => void) {
+        // Store
+        this.#IMAGE_URL = imageURL;
+        this.#CALLBACK_ON_LOADED = callbackOnLoaded || null;
 
-		// Set Lerp Values
-		this.#LERP_SLOW = MediaSurface.LERP_SLOW;
-		this.#LERP_FAST = MediaSurface.LERP_FAST;
-		this.#LERP_MARGIN = MediaSurface.LERP_MARGIN;
+        // Set Lerp Values
+        this.#LERP_SLOW = MediaSurface.LERP_SLOW;
+        this.#LERP_FAST = MediaSurface.LERP_FAST;
+        this.#LERP_MARGIN = MediaSurface.LERP_MARGIN;
 
-		// Start Slow
-		this.#lerp = this.#LERP_SLOW;
+        // Start Slow
+        this.#lerp = this.#LERP_SLOW;
 
-		// Create Holder
-		this.#HOLDER = document.createElement('div');
-		this.#HOLDER.classList.add('image');
-		container.appendChild(this.#HOLDER);
+        // Create Holder
+        this.#HOLDER = document.createElement('div');
+        this.#HOLDER.classList.add('image');
+        container.appendChild(this.#HOLDER);
 
-		// Create Image
-		this.#IMAGE = new Image();
-		this.#IMAGE.onload = this.#onImageLoaded.bind(this);
+        // Create Image
+        this.#IMAGE = new Image();
+        this.#IMAGE.onload = this.#onImageLoaded.bind(this);
 
-		// Initial Opacity
-		this.#HOLDER.style.opacity = '0';
+        // Initial Opacity
+        this.#HOLDER.style.opacity = '0';
 
-		// Load
-		this.#IMAGE.src = this.#IMAGE_URL;
-	}
+        // Load
+        this.#IMAGE.src = this.#IMAGE_URL;
+    }
 
-	// ______________________________________________________________ Image Load
+    // ______________________________________________________________ Image Load
 
-	#onImageLoaded() {
-		// Set Image as Background of Holder
-		if (this.#HOLDER) {
-			this.#HOLDER.style.backgroundImage = `url(${this.#IMAGE_URL})`;
-		}
+    #onImageLoaded() {
+        // Set Image as Background of Holder
+        if (this.#HOLDER) {
+            this.#HOLDER.style.backgroundImage = `url(${this.#IMAGE_URL})`;
+        }
 
-		// Discard Image
-		this.#IMAGE = null;
+        // Discard Image
+        this.#IMAGE = null;
 
-		// Callback
-		if (this.#CALLBACK_ON_LOADED) {
-			this.#CALLBACK_ON_LOADED();
-		}
-	}
+        // Callback
+        if (this.#CALLBACK_ON_LOADED) {
+            this.#CALLBACK_ON_LOADED();
+        }
+    }
 
-	// ____________________________________________________________________ Tick
+    // ____________________________________________________________________ Tick
 
-	tick() {
-		// Lerp Opacity
-		this.#opacity += (this.#opacityTarget - this.#opacity) * this.#lerp;
+    tick() {
+        // Lerp Opacity
+        this.#opacity += (this.#opacityTarget - this.#opacity) * this.#lerp;
 
-		// Set Opacity
-		if (this.#HOLDER) {
-			this.#HOLDER.style.opacity = this.#opacity.toString();
-		}
+        // Set Opacity
+        if (this.#HOLDER) {
+            this.#HOLDER.style.opacity = this.#opacity.toString();
+        }
 
-		// Stopping ?
-		if (this.#isStopping && this.#opacity <= this.#LERP_MARGIN) {
-			// Complete
-			return true;
-		}
+        // Stopping ?
+        if (this.#isStopping && this.#opacity <= this.#LERP_MARGIN) {
+            // Complete
+            return true;
+        }
 
-		// Return Not Complete
-		return false;
-	}
+        // Return Not Complete
+        return false;
+    }
 
-	// ____________________________________________________________________ Show
+    // ____________________________________________________________________ Show
 
-	show() {
-		this.#opacityTarget = 1.0;
-	}
+    show() {
+        this.#opacityTarget = 1.0;
+    }
 
-	hide() {
-		this.#opacityTarget = 0;
-	}
+    hide() {
+        this.#opacityTarget = 0;
+    }
 
-	// ____________________________________________________________________ Stop
+    // ____________________________________________________________________ Stop
 
-	stop() {
-		this.#isStopping = true;
+    stop() {
+        this.#isStopping = true;
 
-		this.hide();
-	}
+        this.hide();
+    }
 
-	// ____________________________________________________________________ Lerp
+    // ____________________________________________________________________ Lerp
 
-	setLerpFast() {
-		this.#lerp = this.#LERP_FAST;
-	}
+    setLerpFast() {
+        this.#lerp = this.#LERP_FAST;
+    }
 
-	setLerpSlow() {
-		this.#lerp = this.#LERP_SLOW;
-	}
+    setLerpSlow() {
+        this.#lerp = this.#LERP_SLOW;
+    }
 
-	// __________________________________________________________________ Access
+    // __________________________________________________________________ Access
 
-	getHolder() {
-		return this.#HOLDER;
-	}
+    getHolder() {
+        return this.#HOLDER;
+    }
 
-	// _________________________________________________________________ Destroy
+    // _________________________________________________________________ Destroy
 
-	destroy() {
-		// Remove Holder
-		if (this.#HOLDER && this.#HOLDER.parentNode) {
-			this.#HOLDER.remove();
-		}
+    destroy() {
+        // Remove Holder
+        if (this.#HOLDER && this.#HOLDER.parentNode) {
+            this.#HOLDER.remove();
+        }
 
-		// Clear References
-		this.#HOLDER = null;
-		this.#IMAGE = null;
-	}
+        // Clear References
+        this.#HOLDER = null;
+        this.#IMAGE = null;
+    }
 }

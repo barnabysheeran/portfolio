@@ -1,9 +1,9 @@
 export default class Engine {
 
-    static #applicationRunTimeMS = 0;
+    // static #applicationRunTimeMS = 0;
 
     static #isInitialized = false;
-    static #isRunning = false;
+    // static #isRunning = false;
 
     // _________________________________________________________________________
 
@@ -12,7 +12,7 @@ export default class Engine {
         if (this.#isInitialized) return;
 
         // Start Main Loop
-        requestAnimationFrame(this.#tick.bind(this));
+        // requestAnimationFrame(this.#tick.bind(this));
 
         // Initialized
         this.#isInitialized = true;
@@ -21,28 +21,28 @@ export default class Engine {
     // ______________________________________________________________ Start Stop
 
     static start() {
-        this.#isRunning = true;
+        // this.#isRunning = true;
     }
 
     static stop() {
-        this.#isRunning = false;
+        // this.#isRunning = false;
     }
 
     // ____________________________________________________________________ Tick
 
-    static #tick(applicationRunTimeMS: number) {
-        // Loop
-        requestAnimationFrame(this.#tick.bind(this));
+    // static #tick(applicationRunTimeMS: number) {
+    //     // Loop
+    //     requestAnimationFrame(this.#tick.bind(this));
 
-        // Running ?
-        if (!this.#isRunning) return;
+    //     // Running ?
+    //     if (!this.#isRunning) return;
 
-        // Calculate Delta Time MS
-        const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
+    //     // Calculate Delta Time MS
+    //     // const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
 
-        // console.log(`Engine Tick - Δ: ${deltaTimeMS}ms - T: ${applicationRunTimeMS}ms`);
+    //     // console.log(`Engine Tick - Δ: ${deltaTimeMS}ms - T: ${applicationRunTimeMS}ms`);
         
-        // Store
-        this.#applicationRunTimeMS = applicationRunTimeMS;
-    }
+    //     // Store
+    //     // this.#applicationRunTimeMS = applicationRunTimeMS;
+    // }
 }
