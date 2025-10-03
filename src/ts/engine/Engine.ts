@@ -1,9 +1,10 @@
 export default class Engine {
 
-    // static #applicationRunTimeMS = 0;
+    static #applicationRunTimeMS: number = 0;
+    static #applicationRunTimeSInt: number = 0;
 
-    static #isInitialized = false;
-    // static #isRunning = false;
+    static #isInitialized: boolean  = false;
+    static #isRunning: boolean = false;
 
     // _________________________________________________________________________
 
@@ -12,7 +13,7 @@ export default class Engine {
         if (this.#isInitialized) return;
 
         // Start Main Loop
-        // requestAnimationFrame(this.#tick.bind(this));
+        requestAnimationFrame(this.#tick.bind(this));
 
         // Initialized
         this.#isInitialized = true;
@@ -20,29 +21,43 @@ export default class Engine {
 
     // ______________________________________________________________ Start Stop
 
-    static start() {
-        // this.#isRunning = true;
+    static start(): void {
+        this.#isRunning = true;
     }
 
-    static stop() {
-        // this.#isRunning = false;
+    static stop(): void {
+        this.#isRunning = false;
     }
 
     // ____________________________________________________________________ Tick
 
-    // static #tick(applicationRunTimeMS: number) {
-    //     // Loop
-    //     requestAnimationFrame(this.#tick.bind(this));
+    static #tick(applicationRunTimeMS: number): void {
+        // Loop
+        requestAnimationFrame(this.#tick.bind(this));
 
-    //     // Running ?
-    //     if (!this.#isRunning) return;
+        // Running ?
+        if (!this.#isRunning) return;
 
-    //     // Calculate Delta Time MS
-    //     // const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
+        // Calculate Delta Time MS
+        const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
 
-    //     // console.log(`Engine Tick - Δ: ${deltaTimeMS}ms - T: ${applicationRunTimeMS}ms`);
+        // console.log(`Engine Tick - Δ: ${deltaTimeMS}ms - T: ${applicationRunTimeMS}ms`);
+
+        // New Second ?
+        const newApplicationRunTimeSInt = this.#getIntegerSeconds(applicationRunTimeMS);
+
+        if (newApplicationRunTimeSInt !== this.#applicationRunTimeSInt) {
+            // console.log(`Engine Second - S: ${newApplicationRunTimeSInt}s`);
+        }
         
-    //     // Store
-    //     // this.#applicationRunTimeMS = applicationRunTimeMS;
-    // }
+        // Store
+        this.#applicationRunTimeMS = applicationRunTimeMS;
+        this.#applicationRunTimeSInt = this.#getIntegerSeconds(applicationRunTimeMS);
+    }
+
+    // ____________________________________________________________________ Util
+
+    static #getIntegerSeconds(timeMS: number): number {
+        return Math.floor(timeMS / 1000);
+    }
 }
