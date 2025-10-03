@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import MenuFlyout from './MenuFlyout';
+import MenuIconFlyout from './MenuIconFlyout';
 
-const meta: Meta<typeof MenuFlyout> = {
-  title: 'Menu/Flyout',
-  component: MenuFlyout,
+const meta: Meta<typeof MenuIconFlyout> = {
+  title: 'Menu/IconFlyout',
+  component: MenuIconFlyout,
 };
 
 export default meta;
