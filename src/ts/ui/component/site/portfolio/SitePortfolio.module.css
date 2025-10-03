@@ -5,13 +5,13 @@
 	height: calc(100vh - calc(var(--grid-cell-width) * 10));
 	max-height: calc(calc(var(--grid-cell-width) * 60));
 
-    /* Vertical gradient from dark-low to dark-high to dark-low */
+    /* Vertical gradient from black-low to black-high to black-low */
     background: linear-gradient(to bottom,
-		var(--color-dark-low),
-		var(--color-dark-high),
-		var(--color-dark-high),
-		var(--color-dark-high),
-		var(--color-dark-low));
+		var(--theme-surface-low),
+		var(--theme-surface-high),
+		var(--theme-surface-high),
+		var(--theme-surface-high),
+		var(--theme-surface-low));
 
 	border: 0;
 	padding: 0;

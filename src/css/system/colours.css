@@ -1,5 +1,8 @@
 :root {
-  --color-background: #242424;
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+
+  --color-background: rgba(36, 36, 36, 1);
   --color-text: rgba(255, 255, 255, 0.87);
 
   --color-black-low: rgba(0, 0, 0, 0.25);
@@ -18,7 +21,7 @@
   --color-blue-mid: rgba(0, 0, 255, 0.5);
   --color-blue-high: rgba(0, 0, 255, 0.75);
 
-  /* Default Theme */
+  /* Default Theme Properties - See uiStore for default */
   --theme-background: var(--color-black-low);
   --theme-surface-low: var(--color-black-low);
   --theme-surface-mid: var(--color-black-mid);
