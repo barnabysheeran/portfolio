@@ -4,12 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "tsc --build --pretty false && eslint .",
-    "lint:count": "node tool/lint/lint-with-count.js",
     "preview": "vite preview",
+    "dev": "vite",
     "storybook": "storybook dev -p 6006",
+    "lint": "tsc --build --pretty false && eslint .",
+    "build": "tsc -b && vite build",
     "build-storybook": "storybook build"
   },
   "dependencies": {
