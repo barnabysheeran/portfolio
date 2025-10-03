@@ -6,5 +6,5 @@
     align-items: center;
     justify-content: center;
 
-    color: var(--color-background);
+    color: var(--theme-surface-mid);
 }
