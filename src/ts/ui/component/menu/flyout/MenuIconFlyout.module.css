@@ -1,3 +1,8 @@
 .menu-icon-flyout {
-    color: red;
+    position: absolute;
+
+    padding-left: calc(var(--grid-cell-width) * 1.0);
+    padding-right: calc(var(--grid-cell-width) * 1.0);
+    padding-top: calc(var(--grid-cell-height) * 1.0);
+    padding-bottom: calc(var(--grid-cell-height) * 1.0);
 }
