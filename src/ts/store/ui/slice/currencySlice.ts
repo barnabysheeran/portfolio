@@ -1,5 +1,5 @@
 import type { StateCreator } from 'zustand';
-import type { UIState } from './types';
+import type { UIState } from '../../typesUIState';
 
 export interface CurrencySlice {
   credits: number;
@@ -13,8 +13,11 @@ export const createCurrencySlice: StateCreator<
   [],
   CurrencySlice
 > = (set) => ({
+
+  // Default Currency
   credits: 0,
 
+  // Set
   addCredits: (amount) => set((state: UIState & CurrencySlice) => ({ credits: state.credits + amount })),
   
   subtractCredits: (amount) => set((state: UIState & CurrencySlice) => ({ credits: Math.max(0, state.credits - amount) })),

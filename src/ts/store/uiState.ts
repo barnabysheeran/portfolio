@@ -1,16 +1,23 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { createCurrencySlice, type CurrencySlice } from './currencySlice';
-import type { UIState } from './types';
 
-type UiState = UIState & CurrencySlice;
+import { createCurrencySlice, type CurrencySlice } from './ui/slice/currencySlice';
+import { createThemeSlice, type ThemeSlice } from './ui/slice/themeSlice';
 
-const useUiState = create<UiState>()(
+import type { UIState } from './typesUIState';
+
+type StoreState = UIState & CurrencySlice & ThemeSlice;
+
+const useUiState = create<StoreState>()(
   persist(
-    (...a) => ({
-      ...createCurrencySlice(...a),
-      // Add other state and actions here
-    }),
+    (...a) => {
+      const [set] = a;
+
+      return {
+        ...createCurrencySlice(...a),
+        ...createThemeSlice(...a),
+      };
+    },
     {
       name: 'ui-state',
     }

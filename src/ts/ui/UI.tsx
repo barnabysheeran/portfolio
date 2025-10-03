@@ -1,3 +1,5 @@
+import useUiState from "../store/uiState";
+
 import SiteOverlay from "./component/site/overlay/SiteOverlay";
 import SiteHeader from "./component/site/header/SiteHeader";
 import SitePortfolio from "./component/site/portfolio/SitePortfolio";
@@ -8,9 +10,13 @@ import SiteFooter from "./component/site/footer/SiteFooter";
 
 import styles from "./UI.module.css";
 
+
 export default function UI() {
+  const theme = useUiState((state) => state.themeId);
+  const themeClass = 'theme-' + (theme || 'black');
+
   return (
-    <div className={styles['ui']}>
+    <div className={`${styles.ui} ${themeClass}`}>
       <SiteHeader />
       <SitePortfolio />
       <SiteSpacer />

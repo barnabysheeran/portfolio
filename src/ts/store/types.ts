@@ -1,1 +1,0 @@
-export type UIState = Record<string, unknown>;
