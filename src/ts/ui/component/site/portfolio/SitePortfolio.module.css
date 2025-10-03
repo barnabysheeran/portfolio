@@ -11,9 +11,6 @@
         var(--color-white) 0,
         var(--theme-surface-low) calc(var(--grid-cell-height) * 1),
         var(--theme-surface-mid) calc(var(--grid-cell-height) * 2),
-        var(--theme-surface-high) calc(var(--grid-cell-height) * 4),
-		var(--theme-surface-mid) 50%,
-        var(--theme-surface-high) calc(100% - var(--grid-cell-height) * 4),
         var(--theme-surface-mid) calc(100% - var(--grid-cell-height) * 2),
         var(--theme-surface-low) calc(100% - var(--grid-cell-height) * 1),
         var(--color-white) 100%
