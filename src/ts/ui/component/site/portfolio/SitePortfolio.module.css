@@ -2,16 +2,22 @@
 	position: relative;
 
     width: 100%;
-	height: calc(100vh - calc(var(--grid-cell-width) * 10));
+	height: calc(100vh - calc(var(--grid-cell-height) * 10));
 	max-height: calc(calc(var(--grid-cell-width) * 60));
 
     /* Vertical gradient from black-low to black-high to black-low */
-    background: linear-gradient(to bottom,
-		var(--theme-surface-low),
-		var(--theme-surface-high),
-		var(--theme-surface-high),
-		var(--theme-surface-high),
-		var(--theme-surface-low));
+    background: linear-gradient(
+        to bottom,
+        var(--color-white) 0,
+        var(--theme-surface-low) calc(var(--grid-cell-height) * 1),
+        var(--theme-surface-mid) calc(var(--grid-cell-height) * 2),
+        var(--theme-surface-high) calc(var(--grid-cell-height) * 4),
+		var(--theme-surface-mid) 50%,
+        var(--theme-surface-high) calc(100% - var(--grid-cell-height) * 4),
+        var(--theme-surface-mid) calc(100% - var(--grid-cell-height) * 2),
+        var(--theme-surface-low) calc(100% - var(--grid-cell-height) * 1),
+        var(--color-white) 100%
+    );
 
 	border: 0;
 	padding: 0;
@@ -24,8 +30,6 @@
 	pointer-events: none;
 
 	overflow: hidden;
-
-	pointer-events: none;
 
 	-webkit-tap-highlight-color: transparent;
 }
