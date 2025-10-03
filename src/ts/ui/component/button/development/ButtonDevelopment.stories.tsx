@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ButtonDevelopment } from './ButtonDevelopment';
 
 const meta: Meta<typeof ButtonDevelopment> = {
-  title: 'Components/ButtonDevelopment',
+  title: 'Components/Development/ButtonDevelopment',
   component: ButtonDevelopment,
   parameters: {
     layout: 'centered',
