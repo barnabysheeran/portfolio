@@ -1,0 +1,38 @@
+.button-icon {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background: var(--color-text);
+  color: var(--color-background);
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: inherit;
+}
+
+.button-icon:hover {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.button-icon--small {
+  width: calc(var(--grid-cell-width) * 2);
+  height: calc(var(--grid-cell-height) * 2);
+}
+
+.button-icon--medium {
+  width: calc(var(--grid-cell-width) * 3);
+  height: calc(var(--grid-cell-height) * 3);
+}
+
+.button-icon--large {
+  width: calc(var(--grid-cell-width) * 4);
+  height: calc(var(--grid-cell-height) * 4);
+}
