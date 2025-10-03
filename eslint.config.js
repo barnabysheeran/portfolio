@@ -13,7 +13,7 @@ const reactRefreshConfig = reactRefresh.configs.vite
 const jsPreset = js.configs.recommended
 const tsPresets = tseslint.configs.recommended
 
-export default [globalIgnores(['dist']), {
+export default [globalIgnores(['dist', 'storybook-static']), {
   languageOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
