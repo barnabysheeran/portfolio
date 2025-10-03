@@ -12,16 +12,7 @@ import ComponentGlyphBoxWidthFull from '../../component/glyph/ComponentGlyphBoxW
 
 export default class DotMatrixViewIntro extends DotMatrixView {
 	#DRAW_GLYPH_NAME_LIST = [
-		'{heart}',
-		'1',
-		'.',
-		'0',
-		'/',
-		'0',
-		'{smile}',
-		'.',
-		'.,',
-		'-',
+		 ' {heart} ', ' {heart}', '{heart} ', ' {heart}', '{heart} ', ' {heart} ',
 	];
 
 	#drawGlyphNameIndex = -1;
