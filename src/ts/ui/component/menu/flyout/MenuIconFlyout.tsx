@@ -19,18 +19,30 @@ export default function MenuIconFlyout() {
 
   const handleClickRed = () => {
     useUiState.getState().setTheme('red');
+
+    // Close Menu
+    setIsMenuOpen(false);
   }
 
   const handleClickBlue = () => {
     useUiState.getState().setTheme('blue');
+
+    // Close Menu
+    setIsMenuOpen(false);
   }
 
   const handleClickGreen = () => {
     useUiState.getState().setTheme('green');
+
+    // Close Menu
+    setIsMenuOpen(false);
   };
 
   const handleClickBlack = () => {
     useUiState.getState().setTheme('black');
+
+    // Close Menu
+    setIsMenuOpen(false);
   }
 
   // ____________________________________________________________________ Render
