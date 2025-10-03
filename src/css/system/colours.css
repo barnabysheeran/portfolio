@@ -2,7 +2,19 @@
   --color-background: #242424;
   --color-text: rgba(255, 255, 255, 0.87);
 
-  --color-dark-low: rgba(0, 0, 0, 0.38);
-  --color-dark-mid: rgba(0, 0, 0, 0.87);
-  --color-dark-high: rgba(0, 0, 0, 0.54);
+  --color-black-low: rgba(0, 0, 0, 0.25);
+  --color-black-mid: rgba(0, 0, 0, 0.5);
+  --color-black-high: rgba(0, 0, 0, 0.75);
+
+  --color-red-low: rgba(255, 0, 0, 0.25);
+  --color-red-mid: rgba(255, 0, 0, 0.5);
+  --color-red-high: rgba(255, 0, 0, 0.75);
+
+  --color-green-low: rgba(0, 255, 0, 0.25);
+  --color-green-mid: rgba(0, 255, 0, 0.5);
+  --color-green-high: rgba(0, 255, 0, 0.75);
+
+  --color-blue-low: rgba(0, 0, 255, 0.25);
+  --color-blue-mid: rgba(0, 0, 255, 0.5);
+  --color-blue-high: rgba(0, 0, 255, 0.75);
 }

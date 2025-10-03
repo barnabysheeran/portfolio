@@ -6,9 +6,11 @@ import SiteProgress from "./component/site/progress/SiteProgress";
 import SiteEVE from "./component/site/eve/SiteEVE";
 import SiteFooter from "./component/site/footer/SiteFooter";
 
+import styles from "./UI.module.css";
+
 export default function UI() {
   return (
-    <div>
+    <div className={styles['ui']}>
       <SiteHeader />
       <SitePortfolio />
       <SiteSpacer />
