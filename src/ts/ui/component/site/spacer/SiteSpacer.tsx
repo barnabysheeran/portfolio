@@ -1,5 +1,8 @@
-import styles from './SiteSpacer.module.css';
 import { motion } from 'framer-motion';
+
+import { ANIMATION_DURATION_S } from '../../../../constant/constantsAnimation';
+
+import styles from './SiteSpacer.module.css';
 
 export default function SiteSpacer() {
   return (
@@ -7,12 +10,12 @@ export default function SiteSpacer() {
       className={styles['site-spacer']}
       initial={{ opacity: 0 }}
       animate={{
-        opacity: [0, 1, 1, 1, 0], 
+        opacity: [0, 1, 1, 0], 
         transition: {
-          duration: 4.0,
-          times: [0.0, 0.2, 0.4, 0.6, 1.0],
+          duration: ANIMATION_DURATION_S * 30,
+          times: [0.0, 0.05, 0.95, 1.0],
           repeat: Infinity,
-          ease: ["easeIn", "linear", "easeOut", "linear"],
+          ease: ["easeIn", "linear", "easeOut"],
         }
       }}
     >
