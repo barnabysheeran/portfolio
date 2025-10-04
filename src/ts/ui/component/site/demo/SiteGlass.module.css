@@ -3,7 +3,7 @@
 
     width: 100%;
 	height: calc(100vh - calc(var(--grid-cell-height) * 10));
-	max-height: calc(calc(var(--grid-cell-width) * 60));
+	max-height: calc(calc(var(--grid-cell-width) * 70));
 
     background: var(--theme-surface-mid);
 
