@@ -15,7 +15,7 @@ export default function SiteGlass() {
       // Create Glass
       glassRef.current = new Glass({
         isDebug: false,
-        assetPath: '/assets/',
+        assetPath: './assets/',
         applicationContainer: containerRef.current,
       });
     }

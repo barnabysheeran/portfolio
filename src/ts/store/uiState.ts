@@ -11,8 +11,6 @@ type StoreState = UIState & CurrencySlice & ThemeSlice;
 const useUiState = create<StoreState>()(
   persist(
     (...a) => {
-      const [set] = a;
-
       return {
         ...createCurrencySlice(...a),
         ...createThemeSlice(...a),

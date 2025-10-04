@@ -1,6 +1,6 @@
 export default class Engine {
 
-    static #applicationRunTimeMS: number = 0;
+    // static #applicationRunTimeMS: number = 0;
     static #applicationRunTimeSInt: number = 0;
 
     static #isInitialized: boolean  = false;
@@ -39,7 +39,7 @@ export default class Engine {
         if (!this.#isRunning) return;
 
         // Calculate Delta Time MS
-        const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
+        // const deltaTimeMS = applicationRunTimeMS - this.#applicationRunTimeMS;
 
         // console.log(`Engine Tick - Δ: ${deltaTimeMS}ms - T: ${applicationRunTimeMS}ms`);
 
@@ -51,7 +51,7 @@ export default class Engine {
         }
         
         // Store
-        this.#applicationRunTimeMS = applicationRunTimeMS;
+        // this.#applicationRunTimeMS = applicationRunTimeMS;
         this.#applicationRunTimeSInt = this.#getIntegerSeconds(applicationRunTimeMS);
     }
 
