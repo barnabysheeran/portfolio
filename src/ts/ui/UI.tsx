@@ -2,7 +2,7 @@ import useUiState from "../store/uiState";
 
 import SiteOverlay from "./component/site/overlay/SiteOverlay";
 import SiteHeader from "./component/site/header/SiteHeader";
-import SitePortfolio from "./component/site/portfolio/SitePortfolio";
+import SiteGlass from "./component/site/demo/SiteGlass";
 import SiteSpacer from "./component/site/spacer/SiteSpacer";
 import SiteProgress from "./component/site/progress/SiteProgress";
 import SiteEVE from "./component/site/eve/SiteEVE";
@@ -18,7 +18,7 @@ export default function UI() {
   return (
     <div className={`${styles.ui} ${themeClass}`}>
       <SiteHeader />
-      <SitePortfolio />
+      <SiteGlass />
       <SiteSpacer />
       <SiteProgress />
       <SiteEVE />
