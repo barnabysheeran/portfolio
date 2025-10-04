@@ -8,15 +8,15 @@ import SiteProgress from "./component/site/progress/SiteProgress";
 import SiteEVE from "./component/site/eve/SiteEVE";
 import SiteFooter from "./component/site/footer/SiteFooter";
 
-import styles from "./UI.module.css";
+import styles from "./UIContainer.module.css";
 
 
-export default function UI() {
+export default function UIContainer() {
   const theme = useUiState((state) => state.themeId);
   const themeClass = 'theme-' + (theme || 'black');
 
   return (
-    <div className={`${styles.ui} ${themeClass}`}>
+    <div className={`${styles['ui-container']} ${themeClass}`}>
       <SiteHeader />
       <SiteGlass />
       <SiteSpacer />

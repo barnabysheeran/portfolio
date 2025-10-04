@@ -19,6 +19,8 @@
 
 	overflow: hidden;
 
+	border-radius: var(--ui-border-radius);
+
 	-webkit-tap-highlight-color: transparent;
 }
 

@@ -1,4 +1,4 @@
 :root {
-  --grid-cell-width: 10px;
-  --grid-cell-height: 10px;
+  --grid-cell-width:  0.5rem; /* 8px */
+  --grid-cell-height:  0.5rem; /* 8px */
 }

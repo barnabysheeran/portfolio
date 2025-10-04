@@ -1,0 +1,58 @@
+:root {
+  /* Breakpoints for media queries */
+  --bp-mobile: 30rem;        /* 480px */
+  --bp-tablet: 48rem;        /* 768px */
+  --bp-laptop: 64rem;        /* 1024px */
+  --bp-desktop: 80rem;       /* 1280px */
+  --bp-wide: 96rem;          /* 1536px */
+
+  /* Container widths aligned with breakpoints */
+  --ui-container-width: 100%;
+  --ui-container-margin: 0;
+
+  --ui-border-radius: 0.5rem; /* 8px */
+}
+
+/* ___________________________________________________________________ Mobile */
+
+@media (min-width: 48rem) {
+  :root {
+    --ui-container-width: min(92vw, 56rem);
+    --ui-container-margin: 0 auto;
+
+    --ui-border-radius: 0.75rem; /* 12px */
+  }
+}
+
+/* ___________________________________________________________________ Tablet */
+
+@media (min-width: 64rem) {
+  :root {
+    --ui-container-width: min(90vw, 70rem);
+    --ui-container-margin: 0;
+
+    --ui-border-radius: 1rem; /* 16px */
+  }
+}
+
+/* __________________________________________________________________ Desktop */
+
+@media (min-width: 80rem) {
+  :root {
+    --ui-container-width: min(88vw, 75rem);
+    --ui-container-margin: 0;
+
+    --ui-border-radius: 1.5rem; /* 24px */
+  }
+}
+
+/* _____________________________________________________________________ Wide */
+
+@media (min-width: 96rem) {
+  :root {
+    --ui-container-width: min(80vw, 90rem);
+    --ui-container-margin: 0;
+
+    --ui-border-radius: 2rem; /* 32px */
+  }
+}

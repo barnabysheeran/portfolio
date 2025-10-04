@@ -1,0 +1,35 @@
+.ui-container {
+  width: 100%;
+
+  max-width: var(--bp-desktop);
+
+  height: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: var(--bp-tablet)) {
+  .ui-container {
+    width: var(--ui-container-tablet);
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: var(--bp-laptop)) {
+  .ui-container {
+    width: var(--ui-container-laptop);
+  }
+}
+
+@media (min-width: var(--bp-desktop)) {
+  .ui-container {
+    width: var(--ui-container-desktop);
+  }
+}
+
+@media (min-width: var(--bp-wide)) {
+  .ui-container {
+    width: var(--ui-container-wide);
+  }
+}

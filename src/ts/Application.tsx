@@ -4,7 +4,7 @@ import styles from './Application.module.css'
 
 import Engine from './engine/Engine';
 
-import UI from './ui/UI';
+import UIContainer from './ui/UIContainer';
 
 export default function Application() {
 
@@ -24,7 +24,7 @@ export default function Application() {
 
   return (
     <div className={styles['application']}>
-      <UI />
+      <UIContainer />
     </div>
   )
 }
