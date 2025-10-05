@@ -10,13 +10,13 @@ export default function SiteSpacer() {
       className={styles['site-spacer']}
       initial={{ opacity: 0 }}
       animate={{
-        opacity: [0, 1, 1, 0], 
+        opacity: [0, 1, 1, 0],
         transition: {
           duration: ANIMATION_DURATION_S * 30,
           times: [0.0, 0.05, 0.95, 1.0],
           repeat: Infinity,
-          ease: ["easeIn", "linear", "easeOut"],
-        }
+          ease: ['easeIn', 'linear', 'easeOut'],
+        },
       }}
     >
       /////

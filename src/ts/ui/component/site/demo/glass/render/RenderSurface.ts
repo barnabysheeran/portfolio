@@ -5,101 +5,101 @@ import Display from '../display/Display.ts';
 import styles from './RenderSurface.module.css';
 
 export default class RenderSurface {
-	static #CANVAS: HTMLCanvasElement | null = null;
-	static #GL: WebGL2RenderingContext | null = null;
-	static #TEXTURE: WebGLTexture | null = null;
-	static #FRAMEBUFFER: WebGLFramebuffer | null = null;
+  static #CANVAS: HTMLCanvasElement | null = null;
+  static #GL: WebGL2RenderingContext | null = null;
+  static #TEXTURE: WebGLTexture | null = null;
+  static #FRAMEBUFFER: WebGLFramebuffer | null = null;
 
-	static #DISPLAY_SHADER_PROGRAM: WebGLProgram | null = null;
-	static #DISPLAY_QUAD_VBO: WebGLBuffer | null = null;
-	static #DISPLAY_QUAD_VAO: WebGLVertexArrayObject | null = null;
-	static #DISPLAY_POSITION_ATTRIB_LOCATION: number;
-	static #DISPLAY_TEX_COORD_ATTRIB_LOCATION: number;
-	static #DISPLAY_TEXTURE_UNIFORM_LOCATION: WebGLUniformLocation | null = null;
+  static #DISPLAY_SHADER_PROGRAM: WebGLProgram | null = null;
+  static #DISPLAY_QUAD_VBO: WebGLBuffer | null = null;
+  static #DISPLAY_QUAD_VAO: WebGLVertexArrayObject | null = null;
+  static #DISPLAY_POSITION_ATTRIB_LOCATION: number;
+  static #DISPLAY_TEX_COORD_ATTRIB_LOCATION: number;
+  static #DISPLAY_TEXTURE_UNIFORM_LOCATION: WebGLUniformLocation | null = null;
 
-	static #width: number;
-	static #height: number;
+  static #width: number;
+  static #height: number;
 
-	static #DELAY_SHOW = 1;
-	static #delayShowCurrent = this.#DELAY_SHOW;
+  static #DELAY_SHOW = 1;
+  static #delayShowCurrent = this.#DELAY_SHOW;
 
-	static #LOG_LEVEL = 2;
+  static #LOG_LEVEL = 2;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	static initialise(width: number, height: number) {
-		ApplicationLogger.log(`RenderSurface ${width} ${height}`, this.#LOG_LEVEL);
+  static initialise(width: number, height: number) {
+    ApplicationLogger.log(`RenderSurface ${width} ${height}`, this.#LOG_LEVEL);
 
-		// Get Initial Display Dimensions
-		this.#width = width;
-		this.#height = height;
+    // Get Initial Display Dimensions
+    this.#width = width;
+    this.#height = height;
 
-		// Create Canvas
-		this.#CANVAS = document.createElement('canvas');
-		this.#CANVAS.className = styles['render-surface'];
-		this.#CANVAS.width = this.#width;
-		this.#CANVAS.height = this.#height;
+    // Create Canvas
+    this.#CANVAS = document.createElement('canvas');
+    this.#CANVAS.className = styles['render-surface'];
+    this.#CANVAS.width = this.#width;
+    this.#CANVAS.height = this.#height;
 
-		// Append Canvas to Display Holder
-		Display.getDisplayHolder().appendChild(this.#CANVAS);
+    // Append Canvas to Display Holder
+    Display.getDisplayHolder().appendChild(this.#CANVAS);
 
-		// Get WebGL2 Context
-		this.#GL = this.#CANVAS.getContext('webgl2');
+    // Get WebGL2 Context
+    this.#GL = this.#CANVAS.getContext('webgl2');
 
-		if (!this.#GL) {
-			ApplicationLogger.warn(
-				'- WebGL2 not supported or context creation failed.',
-			);
-			return;
-		}
+    if (!this.#GL) {
+      ApplicationLogger.warn(
+        '- WebGL2 not supported or context creation failed.',
+      );
+      return;
+    }
 
-		const GL = this.#GL;
+    const GL = this.#GL;
 
-		// Create Texture
-		this.#TEXTURE = this.#GL.createTexture();
-		GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
+    // Create Texture
+    this.#TEXTURE = this.#GL.createTexture();
+    GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
 
-		// Set Texture Parameters (NEAREST, CLAMP_TO_EDGE, etc.)
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
+    // Set Texture Parameters (NEAREST, CLAMP_TO_EDGE, etc.)
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
 
-		// Clear texture to transparent black (0,0,0,0)
-		this.#clearTexture();
+    // Clear texture to transparent black (0,0,0,0)
+    this.#clearTexture();
 
-		// Create Framebuffer
-		this.#FRAMEBUFFER = GL.createFramebuffer();
-		GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
-		this.#GL.framebufferTexture2D(
-			GL.FRAMEBUFFER,
-			GL.COLOR_ATTACHMENT0,
-			GL.TEXTURE_2D,
-			this.#TEXTURE,
-			0,
-		);
+    // Create Framebuffer
+    this.#FRAMEBUFFER = GL.createFramebuffer();
+    GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
+    this.#GL.framebufferTexture2D(
+      GL.FRAMEBUFFER,
+      GL.COLOR_ATTACHMENT0,
+      GL.TEXTURE_2D,
+      this.#TEXTURE,
+      0,
+    );
 
-		// Check Framebuffer Status
-		const status = this.#GL.checkFramebufferStatus(this.#GL.FRAMEBUFFER);
-		if (status !== this.#GL.FRAMEBUFFER_COMPLETE) {
-			ApplicationLogger.warn(
-				`RenderSurface Framebuffer incomplete: ${status.toString(16)}`,
-			);
-		}
+    // Check Framebuffer Status
+    const status = this.#GL.checkFramebufferStatus(this.#GL.FRAMEBUFFER);
+    if (status !== this.#GL.FRAMEBUFFER_COMPLETE) {
+      ApplicationLogger.warn(
+        `RenderSurface Framebuffer incomplete: ${status.toString(16)}`,
+      );
+    }
 
-		// Unbind
-		GL.bindTexture(GL.TEXTURE_2D, null);
-		GL.bindFramebuffer(GL.FRAMEBUFFER, null);
+    // Unbind
+    GL.bindTexture(GL.TEXTURE_2D, null);
+    GL.bindFramebuffer(GL.FRAMEBUFFER, null);
 
-		this.#initDisplayResources();
-	}
+    this.#initDisplayResources();
+  }
 
-	static #initDisplayResources() {
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+  static #initDisplayResources() {
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-		const vsSource = `
+    const vsSource = `
             attribute vec2 a_position;
             attribute vec2 a_texCoord;
             varying vec2 v_texCoord;
@@ -108,7 +108,7 @@ export default class RenderSurface {
                 v_texCoord = a_texCoord;
             }
         `;
-		const fsSource = `
+    const fsSource = `
             precision mediump float;
             uniform sampler2D u_texture;
             varying vec2 v_texCoord;
@@ -117,354 +117,364 @@ export default class RenderSurface {
             }
         `;
 
-		const vertexShader = this.#compileShader(GL.VERTEX_SHADER, vsSource);
-		const fragmentShader = this.#compileShader(GL.FRAGMENT_SHADER, fsSource);
+    const vertexShader = this.#compileShader(GL.VERTEX_SHADER, vsSource);
+    const fragmentShader = this.#compileShader(GL.FRAGMENT_SHADER, fsSource);
 
-		if (!vertexShader || !fragmentShader) {
-			ApplicationLogger.warn(
-				'RenderSurface Failed to compile display shaders.',
-			);
-			return;
-		}
+    if (!vertexShader || !fragmentShader) {
+      ApplicationLogger.warn(
+        'RenderSurface Failed to compile display shaders.',
+      );
+      return;
+    }
 
-		this.#DISPLAY_SHADER_PROGRAM = GL.createProgram();
-		GL.attachShader(this.#DISPLAY_SHADER_PROGRAM, vertexShader);
-		GL.attachShader(this.#DISPLAY_SHADER_PROGRAM, fragmentShader);
-		GL.linkProgram(this.#DISPLAY_SHADER_PROGRAM);
+    this.#DISPLAY_SHADER_PROGRAM = GL.createProgram();
+    GL.attachShader(this.#DISPLAY_SHADER_PROGRAM, vertexShader);
+    GL.attachShader(this.#DISPLAY_SHADER_PROGRAM, fragmentShader);
+    GL.linkProgram(this.#DISPLAY_SHADER_PROGRAM);
 
-		if (!GL.getProgramParameter(this.#DISPLAY_SHADER_PROGRAM, GL.LINK_STATUS)) {
-			ApplicationLogger.warn(
-				'RenderSurface Unable to initialize the display shader program: ' +
-					GL.getProgramInfoLog(this.#DISPLAY_SHADER_PROGRAM),
-			);
-			GL.deleteProgram(this.#DISPLAY_SHADER_PROGRAM);
-			this.#DISPLAY_SHADER_PROGRAM = null;
-			return;
-		}
+    if (!GL.getProgramParameter(this.#DISPLAY_SHADER_PROGRAM, GL.LINK_STATUS)) {
+      ApplicationLogger.warn(
+        'RenderSurface Unable to initialize the display shader program: ' +
+          GL.getProgramInfoLog(this.#DISPLAY_SHADER_PROGRAM),
+      );
+      GL.deleteProgram(this.#DISPLAY_SHADER_PROGRAM);
+      this.#DISPLAY_SHADER_PROGRAM = null;
+      return;
+    }
 
-		this.#DISPLAY_POSITION_ATTRIB_LOCATION = GL.getAttribLocation(
-			this.#DISPLAY_SHADER_PROGRAM,
-			'a_position',
-		);
-		this.#DISPLAY_TEX_COORD_ATTRIB_LOCATION = GL.getAttribLocation(
-			this.#DISPLAY_SHADER_PROGRAM,
-			'a_texCoord',
-		);
-		this.#DISPLAY_TEXTURE_UNIFORM_LOCATION = GL.getUniformLocation(
-			this.#DISPLAY_SHADER_PROGRAM,
-			'u_texture',
-		);
+    this.#DISPLAY_POSITION_ATTRIB_LOCATION = GL.getAttribLocation(
+      this.#DISPLAY_SHADER_PROGRAM,
+      'a_position',
+    );
+    this.#DISPLAY_TEX_COORD_ATTRIB_LOCATION = GL.getAttribLocation(
+      this.#DISPLAY_SHADER_PROGRAM,
+      'a_texCoord',
+    );
+    this.#DISPLAY_TEXTURE_UNIFORM_LOCATION = GL.getUniformLocation(
+      this.#DISPLAY_SHADER_PROGRAM,
+      'u_texture',
+    );
 
-		const quadVertices = new Float32Array([
-			-1, -1, 0, 0, 1, -1, 1, 0, -1, 1, 0, 1, -1, 1, 0, 1, 1, -1, 1, 0, 1, 1, 1,
-			1,
-		]);
-		this.#DISPLAY_QUAD_VBO = GL.createBuffer();
+    const quadVertices = new Float32Array([
+      -1, -1, 0, 0, 1, -1, 1, 0, -1, 1, 0, 1, -1, 1, 0, 1, 1, -1, 1, 0, 1, 1, 1,
+      1,
+    ]);
+    this.#DISPLAY_QUAD_VBO = GL.createBuffer();
 
-		// Setup VAO
-		this.#DISPLAY_QUAD_VAO = GL.createVertexArray();
-		GL.bindVertexArray(this.#DISPLAY_QUAD_VAO);
+    // Setup VAO
+    this.#DISPLAY_QUAD_VAO = GL.createVertexArray();
+    GL.bindVertexArray(this.#DISPLAY_QUAD_VAO);
 
-		GL.bindBuffer(GL.ARRAY_BUFFER, this.#DISPLAY_QUAD_VBO);
-		GL.bufferData(GL.ARRAY_BUFFER, quadVertices, GL.STATIC_DRAW);
+    GL.bindBuffer(GL.ARRAY_BUFFER, this.#DISPLAY_QUAD_VBO);
+    GL.bufferData(GL.ARRAY_BUFFER, quadVertices, GL.STATIC_DRAW);
 
-		GL.enableVertexAttribArray(this.#DISPLAY_POSITION_ATTRIB_LOCATION);
-		GL.vertexAttribPointer(
-			this.#DISPLAY_POSITION_ATTRIB_LOCATION,
-			2,
-			GL.FLOAT,
-			false,
-			4 * Float32Array.BYTES_PER_ELEMENT,
-			0,
-		);
+    GL.enableVertexAttribArray(this.#DISPLAY_POSITION_ATTRIB_LOCATION);
+    GL.vertexAttribPointer(
+      this.#DISPLAY_POSITION_ATTRIB_LOCATION,
+      2,
+      GL.FLOAT,
+      false,
+      4 * Float32Array.BYTES_PER_ELEMENT,
+      0,
+    );
 
-		GL.enableVertexAttribArray(this.#DISPLAY_TEX_COORD_ATTRIB_LOCATION);
-		GL.vertexAttribPointer(
-			this.#DISPLAY_TEX_COORD_ATTRIB_LOCATION,
-			2,
-			GL.FLOAT,
-			false,
-			4 * Float32Array.BYTES_PER_ELEMENT,
-			2 * Float32Array.BYTES_PER_ELEMENT,
-		);
+    GL.enableVertexAttribArray(this.#DISPLAY_TEX_COORD_ATTRIB_LOCATION);
+    GL.vertexAttribPointer(
+      this.#DISPLAY_TEX_COORD_ATTRIB_LOCATION,
+      2,
+      GL.FLOAT,
+      false,
+      4 * Float32Array.BYTES_PER_ELEMENT,
+      2 * Float32Array.BYTES_PER_ELEMENT,
+    );
 
-		GL.bindBuffer(GL.ARRAY_BUFFER, null); // Unbind VBO from current VAO config
-		GL.bindVertexArray(null); // Unbind VAO
-	}
+    GL.bindBuffer(GL.ARRAY_BUFFER, null); // Unbind VBO from current VAO config
+    GL.bindVertexArray(null); // Unbind VAO
+  }
 
-	static #compileShader(type: number, source: string): WebGLShader | null {
+  static #compileShader(type: number, source: string): WebGLShader | null {
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+    // Create Shader
+    const SHADER: WebGLShader | null = GL.createShader(type);
+    if (!SHADER) return null;
 
-		// Create Shader
-		const SHADER: WebGLShader | null = GL.createShader(type);
-		if (!SHADER) return null;
+    GL.shaderSource(SHADER, source);
+    GL.compileShader(SHADER);
+    if (!GL.getShaderParameter(SHADER, GL.COMPILE_STATUS)) {
+      ApplicationLogger.warn(
+        `RenderSurface An error occurred compiling` +
+          ` the display shaders: ${GL.getShaderInfoLog(SHADER)}`,
+      );
+      GL.deleteShader(SHADER);
+      return null;
+    }
 
-		GL.shaderSource(SHADER, source);
-		GL.compileShader(SHADER);
-		if (!GL.getShaderParameter(SHADER, GL.COMPILE_STATUS)) {
-			ApplicationLogger.warn(
-				`RenderSurface An error occurred compiling` +
-					` the display shaders: ${GL.getShaderInfoLog(SHADER)}`,
-			);
-			GL.deleteShader(SHADER);
-			return null;
-		}
+    return SHADER;
+  }
 
-		return SHADER;
-	}
+  // __________________________________________________________________ Access
 
-	// __________________________________________________________________ Access
+  static getWidth() {
+    return this.#width;
+  }
 
-	static getWidth() {
-		return this.#width;
-	}
+  static getHeight() {
+    return this.#height;
+  }
 
-	static getHeight() {
-		return this.#height;
-	}
+  static getCanvas() {
+    return this.#CANVAS;
+  }
 
-	static getCanvas() {
-		return this.#CANVAS;
-	}
+  // ____________________________________________________________________ Tick
 
-	// ____________________________________________________________________ Tick
+  static tick() {
+    // Avoid Initial Frames to Avoid Flicker
+    if (this.#delayShowCurrent > 0) {
+      this.#delayShowCurrent--;
+      return;
+    }
 
-	static tick() {
-		// Avoid Initial Frames to Avoid Flicker
-		if (this.#delayShowCurrent > 0) {
-			this.#delayShowCurrent--;
-			return;
-		}
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+    GL.bindFramebuffer(GL.FRAMEBUFFER, null);
+    GL.viewport(0, 0, GL.drawingBufferWidth, GL.drawingBufferHeight);
 
-		GL.bindFramebuffer(GL.FRAMEBUFFER, null);
-		GL.viewport(0, 0, GL.drawingBufferWidth, GL.drawingBufferHeight);
+    /* eslint-disable-next-line react-hooks/rules-of-hooks */
+    GL.useProgram(this.#DISPLAY_SHADER_PROGRAM);
+    GL.bindVertexArray(this.#DISPLAY_QUAD_VAO); // Bind VAO
 
-		/* eslint-disable-next-line react-hooks/rules-of-hooks */
-		GL.useProgram(this.#DISPLAY_SHADER_PROGRAM);
-		GL.bindVertexArray(this.#DISPLAY_QUAD_VAO); // Bind VAO
+    GL.activeTexture(GL.TEXTURE0);
+    GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
+    GL.uniform1i(this.#DISPLAY_TEXTURE_UNIFORM_LOCATION, 0);
 
-		GL.activeTexture(GL.TEXTURE0);
-		GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
-		GL.uniform1i(this.#DISPLAY_TEXTURE_UNIFORM_LOCATION, 0);
+    GL.drawArrays(GL.TRIANGLES, 0, 6);
 
-		GL.drawArrays(GL.TRIANGLES, 0, 6);
+    GL.bindVertexArray(null); // Unbind VAO
+    GL.bindTexture(GL.TEXTURE_2D, null); // Unbind texture
+  }
 
-		GL.bindVertexArray(null); // Unbind VAO
-		GL.bindTexture(GL.TEXTURE_2D, null); // Unbind texture
-	}
+  // ____________________________________________________________ Texture Data
 
-	// ____________________________________________________________ Texture Data
+  static getTextureData(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+  ): Uint8Array | null {
+    if (
+      x < 0 ||
+      y < 0 ||
+      x + width > this.#width ||
+      y + height > this.#height
+    ) {
+      // ApplicationLogger.warn(
+      // 	'RenderSurface getTextureData called with out-of-bounds coordinates.',
+      // );
+      return null;
+    }
 
-	static getTextureData(x: number, y: number, width: number, height: number): Uint8Array | null {
-		if (
-			x < 0 ||
-			y < 0 ||
-			x + width > this.#width ||
-			y + height > this.#height
-		) {
-			// ApplicationLogger.warn(
-			// 	'RenderSurface getTextureData called with out-of-bounds coordinates.',
-			// );
-			return null;
-		}
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+    // Create Buffer
+    const buffer = new Uint8Array(width * height * 4);
+    GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
 
-		// Create Buffer
-		const buffer = new Uint8Array(width * height * 4);
-		GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
+    const yGL = this.#height - (y + height);
+    GL.readPixels(x, yGL, width, height, GL.RGBA, GL.UNSIGNED_BYTE, buffer);
 
-		const yGL = this.#height - (y + height);
-		GL.readPixels(x, yGL, width, height, GL.RGBA, GL.UNSIGNED_BYTE, buffer);
+    GL.bindFramebuffer(GL.FRAMEBUFFER, null);
+    return buffer;
+  }
 
-		GL.bindFramebuffer(GL.FRAMEBUFFER, null);
-		return buffer;
-	}
+  static setTextureData(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    data: ArrayBufferView,
+  ) {
+    if (
+      x < 0 ||
+      y < 0 ||
+      x + width > this.#width ||
+      y + height > this.#height
+    ) {
+      // ApplicationLogger.log(
+      // 	`RenderSurface setTextureData out-of-bounds ${x} ${y} ${width} ${height}`,
+      // 	this.#LOG_LEVEL,
+      // );
 
-	static setTextureData(x: number, y: number, width: number, height: number, data: ArrayBufferView) {
-		if (
-			x < 0 ||
-			y < 0 ||
-			x + width > this.#width ||
-			y + height > this.#height
-		) {
-			// ApplicationLogger.log(
-			// 	`RenderSurface setTextureData out-of-bounds ${x} ${y} ${width} ${height}`,
-			// 	this.#LOG_LEVEL,
-			// );
+      return;
+    }
+    if (!data || data.byteLength !== width * height * 4) {
+      ApplicationLogger.log(
+        'RenderSurface setTextureData called with invalid data size.',
+        this.#LOG_LEVEL,
+      );
+      return;
+    }
 
-			return;
-		}
-		if (!data || data.byteLength !== width * height * 4) {
-			ApplicationLogger.log(
-				'RenderSurface setTextureData called with invalid data size.',
-				this.#LOG_LEVEL,
-			);
-			return;
-		}
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+    // Flip Y coordinate to match WebGL's coordinate system
+    const yGL = this.#height - (y + height);
 
-		// Flip Y coordinate to match WebGL's coordinate system
-		const yGL = this.#height - (y + height);
+    GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
+    GL.texSubImage2D(
+      GL.TEXTURE_2D,
+      0,
+      x,
+      yGL,
+      width,
+      height,
+      GL.RGBA,
+      GL.UNSIGNED_BYTE,
+      data,
+    );
+    GL.bindTexture(GL.TEXTURE_2D, null);
+  }
 
-		GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
-		GL.texSubImage2D(
-			GL.TEXTURE_2D,
-			0,
-			x,
-			yGL,
-			width,
-			height,
-			GL.RGBA,
-			GL.UNSIGNED_BYTE,
-			data,
-		);
-		GL.bindTexture(GL.TEXTURE_2D, null);
-	}
+  // ____________________________________________________________________ Size
 
-	// ____________________________________________________________________ Size
+  static setSize(width: number, height: number) {
+    // Width Height Changed ?
+    if (width === this.#width && height === this.#height) {
+      return;
+    }
 
-	static setSize(width: number, height: number) {
-		// Width Height Changed ?
-		if (width === this.#width && height === this.#height) {
-			return;
-		}
+    ApplicationLogger.log(
+      `RenderSurface setSize from ${this.#width} ${this.#height}` +
+        ` to ${width} ${height}`,
+      this.#LOG_LEVEL,
+    );
 
-		ApplicationLogger.log(
-			`RenderSurface setSize from ${this.#width} ${this.#height}` +
-				` to ${width} ${height}`,
-			this.#LOG_LEVEL,
-		);
+    // Store New Dimensions
+    this.#width = width;
+    this.#height = height;
 
-		// Store New Dimensions
-		this.#width = width;
-		this.#height = height;
+    // Resize Canvas
+    const CANVAS = this.#CANVAS;
+    if (!CANVAS) return null;
 
-		// Resize Canvas
-		const CANVAS = this.#CANVAS;
-		if (!CANVAS) return null;
+    CANVAS.width = this.#width;
+    CANVAS.height = this.#height;
 
-		CANVAS.width = this.#width;
-		CANVAS.height = this.#height;
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+    // Recreate Texture and clear to transparent black
+    if (this.#TEXTURE) {
+      GL.deleteTexture(this.#TEXTURE);
+    }
+    this.#TEXTURE = GL.createTexture();
+    GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
 
-		// Recreate Texture and clear to transparent black
-		if (this.#TEXTURE) {
-			GL.deleteTexture(this.#TEXTURE);
-		}
-		this.#TEXTURE = GL.createTexture();
-		GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
+    // Set Texture Parameters (NEAREST, CLAMP_TO_EDGE, etc.)
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
+    GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
+    this.#clearTexture();
 
-		// Set Texture Parameters (NEAREST, CLAMP_TO_EDGE, etc.)
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE);
-		GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE);
-		this.#clearTexture();
+    // Recreate Framebuffer
+    if (this.#FRAMEBUFFER) {
+      GL.deleteFramebuffer(this.#FRAMEBUFFER);
+    }
+    this.#FRAMEBUFFER = GL.createFramebuffer();
+    GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
+    GL.framebufferTexture2D(
+      GL.FRAMEBUFFER,
+      GL.COLOR_ATTACHMENT0,
+      GL.TEXTURE_2D,
+      this.#TEXTURE,
+      0,
+    );
 
-		// Recreate Framebuffer
-		if (this.#FRAMEBUFFER) {
-			GL.deleteFramebuffer(this.#FRAMEBUFFER);
-		}
-		this.#FRAMEBUFFER = GL.createFramebuffer();
-		GL.bindFramebuffer(GL.FRAMEBUFFER, this.#FRAMEBUFFER);
-		GL.framebufferTexture2D(
-			GL.FRAMEBUFFER,
-			GL.COLOR_ATTACHMENT0,
-			GL.TEXTURE_2D,
-			this.#TEXTURE,
-			0,
-		);
+    const status = GL.checkFramebufferStatus(GL.FRAMEBUFFER);
+    if (status !== GL.FRAMEBUFFER_COMPLETE) {
+      ApplicationLogger.warn(
+        `RenderSurface Framebuffer incomplete after resize: ${status.toString(16)}`,
+        this.#LOG_LEVEL,
+      );
+    }
 
-		const status = GL.checkFramebufferStatus(GL.FRAMEBUFFER);
-		if (status !== GL.FRAMEBUFFER_COMPLETE) {
-			ApplicationLogger.warn(
-				`RenderSurface Framebuffer incomplete after resize: ${status.toString(16)}`,
-				this.#LOG_LEVEL,
-			);
-		}
+    // Unbind
+    GL.bindTexture(GL.TEXTURE_2D, null);
+    GL.bindFramebuffer(GL.FRAMEBUFFER, null);
+  }
 
-		// Unbind
-		GL.bindTexture(GL.TEXTURE_2D, null);
-		GL.bindFramebuffer(GL.FRAMEBUFFER, null);
-	}
+  // ___________________________________________________________ Clear Texture
 
-	// ___________________________________________________________ Clear Texture
+  static #clearTexture(): void | null {
+    // Get GL
+    const GL = this.#GL;
+    if (!GL) return null;
 
-	static #clearTexture(): void | null {
-		// Get GL
-		const GL = this.#GL;
-		if (!GL) return null;
+    const emptyData = new Uint8Array(this.#width * this.#height * 4).fill(0);
+    GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
+    GL.texImage2D(
+      GL.TEXTURE_2D,
+      0,
+      GL.RGBA,
+      this.#width,
+      this.#height,
+      0,
+      GL.RGBA,
+      GL.UNSIGNED_BYTE,
+      emptyData,
+    );
+  }
 
-		const emptyData = new Uint8Array(this.#width * this.#height * 4).fill(0);
-		GL.bindTexture(GL.TEXTURE_2D, this.#TEXTURE);
-		GL.texImage2D(
-			GL.TEXTURE_2D,
-			0,
-			GL.RGBA,
-			this.#width,
-			this.#height,
-			0,
-			GL.RGBA,
-			GL.UNSIGNED_BYTE,
-			emptyData,
-		);
-	}
+  // ___________________________________________________________________ Clear
 
-	// ___________________________________________________________________ Clear
+  static reset() {
+    ApplicationLogger.log('RenderSurface Resetting texture.', this.#LOG_LEVEL);
 
-	static reset() {
-		ApplicationLogger.log('RenderSurface Resetting texture.', this.#LOG_LEVEL);
+    this.#clearTexture();
+  }
 
-		this.#clearTexture();
-	}
+  // _________________________________________________________________ Destroy
 
-	// _________________________________________________________________ Destroy
-
-	static destroy() {
-		ApplicationLogger.log(
-			'RenderSurface Destroying resources.',
-			this.#LOG_LEVEL,
-		);
-		if (this.#GL) {
-			const GL = this.#GL;
-			if (this.#FRAMEBUFFER) {
-				GL.deleteFramebuffer(this.#FRAMEBUFFER);
-				this.#FRAMEBUFFER = null;
-			}
-			if (this.#TEXTURE) {
-				GL.deleteTexture(this.#TEXTURE);
-				this.#TEXTURE = null;
-			}
-			if (this.#DISPLAY_SHADER_PROGRAM) {
-				GL.deleteProgram(this.#DISPLAY_SHADER_PROGRAM);
-				this.#DISPLAY_SHADER_PROGRAM = null;
-			}
-			if (this.#DISPLAY_QUAD_VBO) {
-				GL.deleteBuffer(this.#DISPLAY_QUAD_VBO);
-				this.#DISPLAY_QUAD_VBO = null;
-			}
-			if (this.#DISPLAY_QUAD_VAO) {
-				GL.deleteVertexArray(this.#DISPLAY_QUAD_VAO);
-				this.#DISPLAY_QUAD_VAO = null;
-			}
-		}
-		this.#GL = null;
-		this.#CANVAS = null;
-	}
+  static destroy() {
+    ApplicationLogger.log(
+      'RenderSurface Destroying resources.',
+      this.#LOG_LEVEL,
+    );
+    if (this.#GL) {
+      const GL = this.#GL;
+      if (this.#FRAMEBUFFER) {
+        GL.deleteFramebuffer(this.#FRAMEBUFFER);
+        this.#FRAMEBUFFER = null;
+      }
+      if (this.#TEXTURE) {
+        GL.deleteTexture(this.#TEXTURE);
+        this.#TEXTURE = null;
+      }
+      if (this.#DISPLAY_SHADER_PROGRAM) {
+        GL.deleteProgram(this.#DISPLAY_SHADER_PROGRAM);
+        this.#DISPLAY_SHADER_PROGRAM = null;
+      }
+      if (this.#DISPLAY_QUAD_VBO) {
+        GL.deleteBuffer(this.#DISPLAY_QUAD_VBO);
+        this.#DISPLAY_QUAD_VBO = null;
+      }
+      if (this.#DISPLAY_QUAD_VAO) {
+        GL.deleteVertexArray(this.#DISPLAY_QUAD_VAO);
+        this.#DISPLAY_QUAD_VAO = null;
+      }
+    }
+    this.#GL = null;
+    this.#CANVAS = null;
+  }
 }
