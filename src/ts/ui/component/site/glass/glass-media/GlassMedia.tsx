@@ -1,3 +1,7 @@
-export default function GlassMedia() {
-  return <div>GlassMedia ***************** </div>;
+export default class GlassMedia {
+  // ___________________________________________________________________________
+
+  constructor() {
+    // Constructor
+  }
 }

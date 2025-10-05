@@ -1,53 +1,32 @@
-import { forwardRef, useImperativeHandle } from 'react';
+import { useEffect, useRef } from 'react';
+
+import GlassMedia from './GlassMedia';
 
 import styles from './GlassMediaHolder.module.css';
 
-export interface GlassMediaHolderHandle {
-  onMediaClear: () => void;
-  onMediaShowProject: (projectIndex?: number) => void;
-}
-
-interface GlassMediaHolderProps {
-  onMediaClear: () => void;
-  onMediaShowProject: (projectIndex?: number) => void;
-}
-
-const GlassMediaHolder = forwardRef<
-  GlassMediaHolderHandle,
-  GlassMediaHolderProps
->((props, ref) => {
-  const {
-    onMediaClear: _onMediaClear,
-    onMediaShowProject: _onMediaShowProject,
-  } = props;
-
-  void _onMediaClear;
-  void _onMediaShowProject;
+export default function GlassMediaHolder() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const glassMediaRef = useRef<GlassMedia | null>(null);
 
   // _______________________________________________________________ Glass Media
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      onMediaClear: () => {
-        console.log('GlassMediaHolder: onMediaClear');
-      },
-      onMediaShowProject: (projectIndex?: number) => {
-        console.log('GlassMediaHolder: onMediaShowProject', projectIndex);
-      },
-    }),
-    [],
-  );
+  useEffect(() => {
+    // Create One Glass Instance
+    if (containerRef.current && !glassMediaRef.current) {
+      // Create Glass
+      glassMediaRef.current = new GlassMedia();
+    }
+
+    return () => {
+      // TODO: Add Stopping logic
+    };
+  }, []);
 
   // ____________________________________________________________________ Render
 
   return (
-    <div className={styles['glass-media-holder']}>
+    <div ref={containerRef} className={styles['glass-media-holder']}>
       GlassMedia *****************
     </div>
   );
-});
-
-GlassMediaHolder.displayName = 'GlassMediaHolder';
-
-export default GlassMediaHolder;
+}

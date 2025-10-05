@@ -22,8 +22,7 @@ export default function GlassHolder() {
     }
 
     return () => {
-      // TODO: Add stopping logic if Portfolio has a stop method
-      // portfolioRef.current?.stop();
+      // TODO: Add Stopping logic
     };
   }, []);
 
