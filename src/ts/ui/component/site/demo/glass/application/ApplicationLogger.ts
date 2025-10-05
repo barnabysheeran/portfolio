@@ -1,85 +1,85 @@
 export default class ApplicationLogger {
-	static #isActive = true; // Default true for initial version console output
+  static #isActive = true; // Default true for initial version console output
 
-	static #colourLog = '#999';
-	static #colourWarn = '#f00';
-	static #colourError = '#f00';
+  static #colourLog = '#999';
+  static #colourWarn = '#f00';
+  static #colourError = '#f00';
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	static initialise(isActive: boolean) {
-		this.#isActive = isActive;
-	}
+  static initialise(isActive: boolean) {
+    this.#isActive = isActive;
+  }
 
-	// _____________________________________________________________________ Log
+  // _____________________________________________________________________ Log
 
-	static log(messageIn: string, logLevel: number = 0) {
-		// Active ?
-		if (this.#isActive !== true) {
-			return;
-		}
+  static log(messageIn: string, logLevel: number = 0) {
+    // Active ?
+    if (this.#isActive !== true) {
+      return;
+    }
 
-		// Level
-		if (logLevel <= 0) {
-			return;
-		}
+    // Level
+    if (logLevel <= 0) {
+      return;
+    }
 
-		// Message
-		let message = messageIn;
+    // Message
+    let message = messageIn;
 
-		for (let i = 1; i < logLevel; i += 1) {
-			message = `  ${message}`;
-		}
+    for (let i = 1; i < logLevel; i += 1) {
+      message = `  ${message}`;
+    }
 
-		// Log
-		console.log(`%c${message}`, `color: ${this.#colourLog}`);
-	}
+    // Log
+    console.log(`%c${message}`, `color: ${this.#colourLog}`);
+  }
 
-	// ____________________________________________________________________ Warn
+  // ____________________________________________________________________ Warn
 
-	static warn(messageIn: string, logLevel: number = 0) {
-		// Active ?
-		if (this.#isActive !== true) {
-			return;
-		}
+  static warn(messageIn: string, logLevel: number = 0) {
+    // Active ?
+    if (this.#isActive !== true) {
+      return;
+    }
 
-		// Level
-		if (logLevel <= 0) {
-			return;
-		}
+    // Level
+    if (logLevel <= 0) {
+      return;
+    }
 
-		// Message
-		let message = messageIn;
+    // Message
+    let message = messageIn;
 
-		for (let i = 1; i < logLevel; i += 1) {
-			message = `  ${message}`;
-		}
+    for (let i = 1; i < logLevel; i += 1) {
+      message = `  ${message}`;
+    }
 
-		// Log
-		console.log(`%c${message}`, `color: ${this.#colourWarn}`);
-	}
+    // Log
+    console.log(`%c${message}`, `color: ${this.#colourWarn}`);
+  }
 
-	// ___________________________________________________________________ Error
+  // ___________________________________________________________________ Error
 
-	static error(messageIn: string, logLevel: number = 0) {
-		// Active ?
-		if (this.#isActive !== true) {
-			return;
-		}
+  static error(messageIn: string, logLevel: number = 0) {
+    // Active ?
+    if (this.#isActive !== true) {
+      return;
+    }
 
-		// Level
-		if (logLevel <= 0) {
-			return;
-		}
+    // Level
+    if (logLevel <= 0) {
+      return;
+    }
 
-		// Message
-		let message = messageIn;
+    // Message
+    let message = messageIn;
 
-		for (let i = 1; i < logLevel; i += 1) {
-			message = `  ${message}`;
-		}
+    for (let i = 1; i < logLevel; i += 1) {
+      message = `  ${message}`;
+    }
 
-		// Log
-		console.error(`%c${message}`, `color: ${this.#colourError}`);
-	}
+    // Log
+    console.error(`%c${message}`, `color: ${this.#colourError}`);
+  }
 }

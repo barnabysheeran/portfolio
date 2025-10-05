@@ -1,156 +1,158 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import ApplicationDispatcher from '../application/ApplicationDispatcher.ts';
 
-import DataController from '../data/DataController.ts';
+import DataController from '../../data/DataController.ts';
 import Display from '../display/Display.ts';
 import GridData from '../grid/GridData.ts';
 import MediaSurface from '../media/MediaSurface.ts';
 import RenderSurface from '../render/RenderSurface.ts';
-import InteractiveSurface, { IdData } from '../interactive/InteractiveSurface.ts';
+import InteractiveSurface, {
+  IdData,
+} from '../interactive/InteractiveSurface.ts';
 import Director from '../director/Director.ts';
 
 export default class Controller {
-	#FRAMERATE_FPS = 60;
-	#FRAMERATE_MS = 1000 / this.#FRAMERATE_FPS;
+  #FRAMERATE_FPS = 60;
+  #FRAMERATE_MS = 1000 / this.#FRAMERATE_FPS;
 
-	#frameRateDelayMS = 0;
+  #frameRateDelayMS = 0;
 
-	#LOG_LEVEL = 1;
+  #LOG_LEVEL = 1;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	constructor() {
-		ApplicationLogger.log(
-			`Controller Initialising with Frame Rate ${this.#FRAMERATE_FPS} FPS`,
-			this.#LOG_LEVEL,
-		);
+  constructor() {
+    ApplicationLogger.log(
+      `Controller Initialising with Frame Rate ${this.#FRAMERATE_FPS} FPS`,
+      this.#LOG_LEVEL,
+    );
 
-		// Order Important
-		DataController.initialise();
-		Display.initialise();
+    // Order Important
+    DataController.initialise();
+    Display.initialise();
 
-		const DISPLAY_WIDTH = Display.getWidthPx();
-		const DISPLAY_HEIGHT = Display.getHeightPx();
+    const DISPLAY_WIDTH = Display.getWidthPx();
+    const DISPLAY_HEIGHT = Display.getHeightPx();
 
-		GridData.initialize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		MediaSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		RenderSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		InteractiveSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    GridData.initialize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    MediaSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    RenderSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    InteractiveSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-		Director.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    Director.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
-		// Application Dispatcher Events
-		ApplicationDispatcher.on(
-			'project-menu-open',
-			this.#onProjectMenuOpen.bind(this),
-		);
+    // Application Dispatcher Events
+    ApplicationDispatcher.on(
+      'project-menu-open',
+      this.#onProjectMenuOpen.bind(this),
+    );
 
-		ApplicationDispatcher.on(
-			'project-menu-close',
-			this.#onProjectMenuClose.bind(this),
-		);
+    ApplicationDispatcher.on(
+      'project-menu-close',
+      this.#onProjectMenuClose.bind(this),
+    );
 
-		ApplicationDispatcher.on(
-			'view-project-menu-select',
-			this.#onViewProjectMenuSelect.bind(this),
-		);
-	}
+    ApplicationDispatcher.on(
+      'view-project-menu-select',
+      this.#onViewProjectMenuSelect.bind(this),
+    );
+  }
 
-	// ____________________________________________________________________ Tick
+  // ____________________________________________________________________ Tick
 
-	tick(frameDeltaMS: number) {
-		// Frame Rate Delay
-		this.#frameRateDelayMS += frameDeltaMS;
+  tick(frameDeltaMS: number) {
+    // Frame Rate Delay
+    this.#frameRateDelayMS += frameDeltaMS;
 
-		// Next Frame Rate Frame ?
-		if (this.#frameRateDelayMS > this.#FRAMERATE_MS) {
-			// Reset
-			this.#frameRateDelayMS -= this.#FRAMERATE_MS;
+    // Next Frame Rate Frame ?
+    if (this.#frameRateDelayMS > this.#FRAMERATE_MS) {
+      // Reset
+      this.#frameRateDelayMS -= this.#FRAMERATE_MS;
 
-			// Tick at Frame Rate FPS
+      // Tick at Frame Rate FPS
 
-			// Display
-			const IS_DISPLAY_UPDATED = Display.tick();
+      // Display
+      const IS_DISPLAY_UPDATED = Display.tick();
 
-			if (IS_DISPLAY_UPDATED) {
-				this.#onDisplayUpdated();
-			}
+      if (IS_DISPLAY_UPDATED) {
+        this.#onDisplayUpdated();
+      }
 
-			// Tick Director
-			Director.tick(frameDeltaMS);
-		}
+      // Tick Director
+      Director.tick(frameDeltaMS);
+    }
 
-		// Tick at Max Frame Rate
+    // Tick at Max Frame Rate
 
-		// Media Surface
-		MediaSurface.tick(frameDeltaMS);
+    // Media Surface
+    MediaSurface.tick(frameDeltaMS);
 
-		// Tick Render Surface
-		RenderSurface.tick();
-	}
+    // Tick Render Surface
+    RenderSurface.tick();
+  }
 
-	// _______________________________________________________________ On Events
+  // _______________________________________________________________ On Events
 
-	#onProjectMenuOpen() {
-		ApplicationLogger.log(`Controller onProjectMenuOpen`, this.#LOG_LEVEL);
+  #onProjectMenuOpen() {
+    ApplicationLogger.log(`Controller onProjectMenuOpen`, this.#LOG_LEVEL);
 
-		// Director
-		Director.onProjectMenuOpen();
+    // Director
+    Director.onProjectMenuOpen();
 
-		// Media Surface
-		MediaSurface.clear();
-	}
+    // Media Surface
+    MediaSurface.clear();
+  }
 
-	#onProjectMenuClose() {
-		ApplicationLogger.log(`Controller onProjectMenuClose`, this.#LOG_LEVEL);
+  #onProjectMenuClose() {
+    ApplicationLogger.log(`Controller onProjectMenuClose`, this.#LOG_LEVEL);
 
-		// Director
-		Director.onProjectMenuClose();
+    // Director
+    Director.onProjectMenuClose();
 
-		// Media Surface
-		MediaSurface.clear();
-	}
+    // Media Surface
+    MediaSurface.clear();
+  }
 
-	#onViewProjectMenuSelect(data: unknown) {
-		ApplicationLogger.log(
-			`Controller onViewProjectMenuSelect`,
-			this.#LOG_LEVEL,
-		);
+  #onViewProjectMenuSelect(data: unknown) {
+    ApplicationLogger.log(
+      `Controller onViewProjectMenuSelect`,
+      this.#LOG_LEVEL,
+    );
 
-		// Handle IdData or plain object
-		if (data instanceof Object) {
-			console.log(' - IdData ******************** ', data);
+    // Handle IdData or plain object
+    if (data instanceof Object) {
+      console.log(' - IdData ******************** ', data);
 
-			// Get Project Id
-			const PROJECT_INDEX = (data as IdData).id;
+      // Get Project Id
+      const PROJECT_INDEX = (data as IdData).id;
 
-			console.log(' - projectIndex', PROJECT_INDEX);
-			
-			// Director
-			Director.onViewProjectMenuSelect(PROJECT_INDEX);
+      console.log(' - projectIndex', PROJECT_INDEX);
 
-			// Media Surface
-			MediaSurface.showProject(PROJECT_INDEX);
-		}
-	}
+      // Director
+      Director.onViewProjectMenuSelect(PROJECT_INDEX);
 
-	// _________________________________________________________________ Display
+      // Media Surface
+      MediaSurface.showProject(PROJECT_INDEX);
+    }
+  }
 
-	#onDisplayUpdated() {
-		const DISPLAY_WIDTH = Display.getWidthPx();
-		const DISPLAY_HEIGHT = Display.getHeightPx();
+  // _________________________________________________________________ Display
 
-		ApplicationLogger.log(
-			`Controller onDisplayUpdated ${DISPLAY_WIDTH} ${DISPLAY_HEIGHT}`,
-			this.#LOG_LEVEL,
-		);
+  #onDisplayUpdated() {
+    const DISPLAY_WIDTH = Display.getWidthPx();
+    const DISPLAY_HEIGHT = Display.getHeightPx();
 
-		// Set Sizes
-		GridData.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		MediaSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		RenderSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		InteractiveSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    ApplicationLogger.log(
+      `Controller onDisplayUpdated ${DISPLAY_WIDTH} ${DISPLAY_HEIGHT}`,
+      this.#LOG_LEVEL,
+    );
 
-		Director.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-	}
+    // Set Sizes
+    GridData.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    MediaSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    RenderSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    InteractiveSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+    Director.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+  }
 }

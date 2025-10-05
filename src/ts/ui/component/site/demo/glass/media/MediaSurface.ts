@@ -1,6 +1,6 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
-import DataController from '../data/DataController.ts';
-import type { DataProjectMedia } from '../data/DataController.ts';
+import DataController from '../../data/DataController.ts';
+import type { DataProjectMedia } from '../../data/DataController.ts';
 
 import Display from '../display/Display.ts';
 

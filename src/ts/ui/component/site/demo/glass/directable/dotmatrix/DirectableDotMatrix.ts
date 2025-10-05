@@ -1,6 +1,6 @@
 import ApplicationLogger from '../../application/ApplicationLogger.ts';
 
-import DataController from '../../data/DataController.ts';
+import DataController from '../../../data/DataController.ts';
 
 import DotManager from './dot/DotManager.ts';
 import ShapeManager from './shape/ShapeManager.ts';

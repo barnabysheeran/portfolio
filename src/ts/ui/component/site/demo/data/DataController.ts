@@ -46,10 +46,7 @@ export default class DataController {
   }
 
   static getProjectByIndex(index: number): DataProject {
-    if (
-      index >= 0 &&
-      index < this.#DATA_PROJECTS.length
-    ) {
+    if (index >= 0 && index < this.#DATA_PROJECTS.length) {
       return this.#DATA_PROJECTS[index];
     }
     return this.#DATA_PROJECTS[0];
