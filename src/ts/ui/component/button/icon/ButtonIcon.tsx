@@ -7,6 +7,8 @@ interface ButtonIconProps {
   onClick?: () => void;
   children?: React.ReactNode;
   icon?: React.ReactNode;
+  offsetLeft?: string;
+  offsetTop?: string;
 }
 
 export const ButtonIcon = ({
@@ -14,6 +16,8 @@ export const ButtonIcon = ({
   onClick,
   children,
   icon,
+  offsetLeft = '0rem',
+  offsetTop = '0rem',
   ...props
 }: ButtonIconProps) => {
   const handleClick = () => {
@@ -24,6 +28,8 @@ export const ButtonIcon = ({
 
   const className = `${styles['button-icon']} ${styles[`button-icon--${size}`]}`;
 
+  const content = children || icon;
+
   return (
     <button
       type="button"
@@ -31,7 +37,9 @@ export const ButtonIcon = ({
       onClick={handleClick}
       {...props}
     >
-      {children || icon}
+      <span style={{ transform: `translate(${offsetLeft}, ${offsetTop})` }}>
+        {content}
+      </span>
     </button>
   );
 };

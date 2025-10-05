@@ -13,6 +13,12 @@ export default function SiteFooter() {
   // ____________________________________________________________________ Render
 
   return <div className={styles['site-footer']}>
-    <ButtonIcon size="large" icon={<LuGithub />} onClick={handleClickGithub} />
+    <ButtonIcon
+      size="medium"
+      icon={<LuGithub />}
+      offsetLeft="0.04rem"
+      offsetTop="0.24rem"
+      onClick={handleClickGithub}
+    />
   </div>;
 }
