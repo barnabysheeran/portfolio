@@ -6,7 +6,7 @@ interface ButtonIconProps {
   size?: ButtonIconSize;
   onClick?: () => void;
   children?: React.ReactNode;
-  icon?: string;
+  icon?: React.ReactNode;
 }
 
 export const ButtonIcon = ({

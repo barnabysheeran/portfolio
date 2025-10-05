@@ -1,4 +1,7 @@
+import { LuGithub } from "react-icons/lu";
+
 import { ButtonIcon } from '../../button/icon/ButtonIcon';
+
 import styles from './SiteFooter.module.css';
 
 export default function SiteFooter() {
@@ -10,6 +13,6 @@ export default function SiteFooter() {
   // ____________________________________________________________________ Render
 
   return <div className={styles['site-footer']}>
-    <ButtonIcon size="small" icon="🐱" onClick={handleClickGithub} />
+    <ButtonIcon size="small" icon={<LuGithub />} onClick={handleClickGithub} />
   </div>;
 }
