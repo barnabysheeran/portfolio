@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
-import Glass from "./Glass";
+import Glass from './Glass';
 
-import styles from "./GlassHolder.module.css";
+import styles from './GlassHolder.module.css';
 
 export default function GlassHolder() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,7 +16,7 @@ export default function GlassHolder() {
       // Create Glass
       glassRef.current = new Glass({
         isDebug: false,
-        assetPath: "./assets/",
+        assetPath: './assets/',
         applicationContainer: containerRef.current,
       });
     }
@@ -29,5 +29,5 @@ export default function GlassHolder() {
 
   // ____________________________________________________________________ Render
 
-  return <div ref={containerRef} className={styles["glass-holder"]}></div>;
+  return <div ref={containerRef} className={styles['glass-holder']}></div>;
 }

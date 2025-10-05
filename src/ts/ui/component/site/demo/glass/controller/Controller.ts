@@ -4,12 +4,14 @@ import ApplicationDispatcher from '../application/ApplicationDispatcher.ts';
 import DataController from '../../data/DataController.ts';
 import Display from '../display/Display.ts';
 import GridData from '../grid/GridData.ts';
-import MediaSurface from '../media/MediaSurface.ts';
+// import MediaSurface from '../media/MediaSurface.ts';
 import RenderSurface from '../render/RenderSurface.ts';
 import InteractiveSurface, {
   IdData,
 } from '../interactive/InteractiveSurface.ts';
 import Director from '../director/Director.ts';
+
+// TODO Remove MediaSurface
 
 export default class Controller {
   #FRAMERATE_FPS = 60;
@@ -35,7 +37,7 @@ export default class Controller {
     const DISPLAY_HEIGHT = Display.getHeightPx();
 
     GridData.initialize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    MediaSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    // MediaSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     RenderSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     InteractiveSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
@@ -85,7 +87,7 @@ export default class Controller {
     // Tick at Max Frame Rate
 
     // Media Surface
-    MediaSurface.tick(frameDeltaMS);
+    // MediaSurface.tick(frameDeltaMS);
 
     // Tick Render Surface
     RenderSurface.tick();
@@ -100,7 +102,7 @@ export default class Controller {
     Director.onProjectMenuOpen();
 
     // Media Surface
-    MediaSurface.clear();
+    // MediaSurface.clear();
   }
 
   #onProjectMenuClose() {
@@ -110,7 +112,7 @@ export default class Controller {
     Director.onProjectMenuClose();
 
     // Media Surface
-    MediaSurface.clear();
+    // MediaSurface.clear();
   }
 
   #onViewProjectMenuSelect(data: unknown) {
@@ -132,7 +134,7 @@ export default class Controller {
       Director.onViewProjectMenuSelect(PROJECT_INDEX);
 
       // Media Surface
-      MediaSurface.showProject(PROJECT_INDEX);
+      // MediaSurface.showProject(PROJECT_INDEX);
     }
   }
 
@@ -149,7 +151,7 @@ export default class Controller {
 
     // Set Sizes
     GridData.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    MediaSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    // MediaSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     RenderSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     InteractiveSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
