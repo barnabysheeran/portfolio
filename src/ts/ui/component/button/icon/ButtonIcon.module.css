@@ -14,6 +14,11 @@
   align-items: center;
   justify-content: center;
 
+  text-align: center;
+
+  color: var(--theme-color);
+  background: var(--theme-background);
+
   font-size: inherit;
 }
 
@@ -25,14 +30,26 @@
 .button-icon--small {
   width: calc(var(--grid-cell-width) * 2);
   height: calc(var(--grid-cell-height) * 2);
+
+  border-radius: calc(var(--grid-cell-width) * 1);
+
+  font-size: 0.75rem;
 }
 
 .button-icon--medium {
   width: calc(var(--grid-cell-width) * 3);
   height: calc(var(--grid-cell-height) * 3);
+
+  border-radius: calc(var(--grid-cell-width) * 1.5);
+
+  font-size: 1.0rem;
 }
 
 .button-icon--large {
   width: calc(var(--grid-cell-width) * 4);
   height: calc(var(--grid-cell-height) * 4);
+
+  border-radius: calc(var(--grid-cell-width) * 2);
+
+  font-size: 1.25rem;
 }

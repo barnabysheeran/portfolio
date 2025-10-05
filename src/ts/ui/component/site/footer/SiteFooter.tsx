@@ -7,12 +7,12 @@ import styles from './SiteFooter.module.css';
 export default function SiteFooter() {
 
   const handleClickGithub = () => {
-    window.open('https://github.com/your-repo', '_blank');
+    window.open('https://github.com/barnabysheeran', '_blank');
   };
 
   // ____________________________________________________________________ Render
 
   return <div className={styles['site-footer']}>
-    <ButtonIcon size="small" icon={<LuGithub />} onClick={handleClickGithub} />
+    <ButtonIcon size="large" icon={<LuGithub />} onClick={handleClickGithub} />
   </div>;
 }
