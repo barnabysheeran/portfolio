@@ -1,83 +1,87 @@
 export default class DirectableDotMatrixConstants {
-	// ____________________________________________________________________ Line
+  // ____________________________________________________________________ Line
 
-	static #LINE_HEIGHT_IN_GRID_CELLS = 7;
+  static #LINE_HEIGHT_IN_GRID_CELLS = 7;
 
-	static getLineHeightInGridCells() {
-		return this.#LINE_HEIGHT_IN_GRID_CELLS;
-	}
+  static getLineHeightInGridCells() {
+    return this.#LINE_HEIGHT_IN_GRID_CELLS;
+  }
 
-	// __________________________________________________________________ Header
+  // __________________________________________________________________ Header
 
-	static #HEADER_HEIGHT_IN_LINES = 5;
+  static #HEADER_HEIGHT_IN_LINES = 5;
 
-	static getHeaderHeightInLines() {
-		return this.#HEADER_HEIGHT_IN_LINES;
-	}
+  static getHeaderHeightInLines() {
+    return this.#HEADER_HEIGHT_IN_LINES;
+  }
 
-	static getHeaderHeightInGridCells() {
-		return this.#HEADER_HEIGHT_IN_LINES * this.#LINE_HEIGHT_IN_GRID_CELLS;
-	}
+  static getHeaderHeightInGridCells() {
+    return this.#HEADER_HEIGHT_IN_LINES * this.#LINE_HEIGHT_IN_GRID_CELLS;
+  }
 
-	// __________________________________________________________________ Footer
+  // __________________________________________________________________ Footer
 
-	static #FOOTER_HEIGHT_IN_LINES = 7;
+  static #FOOTER_HEIGHT_IN_LINES = 7;
 
-	static getFooterHeightInLines() {
-		return this.#FOOTER_HEIGHT_IN_LINES;
-	}
+  static getFooterHeightInLines() {
+    return this.#FOOTER_HEIGHT_IN_LINES;
+  }
 
-	static getFooterHeightInGridCells() {
-		return this.#FOOTER_HEIGHT_IN_LINES * this.#LINE_HEIGHT_IN_GRID_CELLS;
-	}
+  static getFooterHeightInGridCells() {
+    return this.#FOOTER_HEIGHT_IN_LINES * this.#LINE_HEIGHT_IN_GRID_CELLS;
+  }
 
-	// ___________________________________________________________________ Glyph
+  // ___________________________________________________________________ Glyph
 
-	static #CHARACTER_HEIGHT = 5;
+  static #CHARACTER_HEIGHT = 5;
 
-	static getCharacterHeight() {
-		return this.#CHARACTER_HEIGHT;
-	}
+  static getCharacterHeight() {
+    return this.#CHARACTER_HEIGHT;
+  }
 
-	static #GLYPH_WIDTH_SPACE = 3;
+  static #GLYPH_WIDTH_SPACE = 3;
 
-	static getWidthSpace() {
-		return this.#GLYPH_WIDTH_SPACE;
-	}
+  static getWidthSpace() {
+    return this.#GLYPH_WIDTH_SPACE;
+  }
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	static #GLYPH_SPACING_X = 1;
+  static #GLYPH_SPACING_X = 1;
 
-	static getGlyphSpacingX() {
-		return this.#GLYPH_SPACING_X;
-	}
+  static getGlyphSpacingX() {
+    return this.#GLYPH_SPACING_X;
+  }
 
-	// ___________________________________________________ Delay Page Transition
+  // ___________________________________________________ Delay Page Transition
 
-	// TODO Move to Views
+  // TODO Move to Views
 
-	static #DELAY_PAGE_TRANSITION = 20;
+  static #DELAY_PAGE_TRANSITION = 20;
 
-	static getDelayPageTransition() {
-		return this.#DELAY_PAGE_TRANSITION;
-	}
+  static getDelayPageTransition() {
+    return this.#DELAY_PAGE_TRANSITION;
+  }
 
-	// _____________________________________________________ DelayGlyph Position
+  // _____________________________________________________ DelayGlyph Position
 
-	static getDelayFromGridPosition(gridX: number, gridY: number) {
-		// Calculate Delay
-		const DELAY = gridX * 1 + gridY * 1;
+  static getDelayFromGridPosition(gridX: number, gridY: number) {
+    // Calculate Delay
+    const DELAY = gridX * 1 + gridY * 1;
 
-		return Math.floor(DELAY);
-	}
+    return Math.floor(DELAY);
+  }
 
-	static getDelayFromGridPositionQuadratic(gridY: number, gridYStart: number, gridYMax: number) {
-		// Calculate Delay
-		const DELAY = Math.floor(
-			Math.pow(gridY - gridYStart, 2) / Math.pow(gridYMax - gridYStart, 2),
-		);
+  static getDelayFromGridPositionQuadratic(
+    gridY: number,
+    gridYStart: number,
+    gridYMax: number,
+  ) {
+    // Calculate Delay
+    const DELAY = Math.floor(
+      Math.pow(gridY - gridYStart, 2) / Math.pow(gridYMax - gridYStart, 2),
+    );
 
-		return DELAY;
-	}
+    return DELAY;
+  }
 }

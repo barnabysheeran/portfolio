@@ -6,105 +6,105 @@ import GridData from '../grid/GridData.ts';
 import styles from './Display.module.css';
 
 export default class Display {
-	static #APPLICATION_CONTAINER: HTMLElement;
-	static #DISPLAY_HOLDER: HTMLElement;
+  static #APPLICATION_CONTAINER: HTMLElement;
+  static #DISPLAY_HOLDER: HTMLElement;
 
-	static #widthPx = -1;
-	static #heightPx = -1;
+  static #widthPx = -1;
+  static #heightPx = -1;
 
-	static #LOG_LEVEL = 2;
+  static #LOG_LEVEL = 2;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	static initialise() {
-		ApplicationLogger.log('Display', this.#LOG_LEVEL);
+  static initialise() {
+    ApplicationLogger.log('Display', this.#LOG_LEVEL);
 
-		// Store Application Container
-		this.#APPLICATION_CONTAINER =
-			ApplicationConfiguration.getApplicationContainer();
+    // Store Application Container
+    this.#APPLICATION_CONTAINER =
+      ApplicationConfiguration.getApplicationContainer();
 
-		// Create Display Holder
-		this.#DISPLAY_HOLDER = document.createElement('div');
-		this.#DISPLAY_HOLDER.classList.add(styles['display']);
+    // Create Display Holder
+    this.#DISPLAY_HOLDER = document.createElement('div');
+    this.#DISPLAY_HOLDER.classList.add(styles['display']);
 
-		// Append
-		this.#APPLICATION_CONTAINER.appendChild(this.#DISPLAY_HOLDER);
+    // Append
+    this.#APPLICATION_CONTAINER.appendChild(this.#DISPLAY_HOLDER);
 
-		// Set Initial
-		this.tick();
-	}
+    // Set Initial
+    this.tick();
+  }
 
-	// __________________________________________________________________ Resize
+  // __________________________________________________________________ Resize
 
-	static tick() {
-		// Assume No Change
-		let didResizeThisFrame = false;
+  static tick() {
+    // Assume No Change
+    let didResizeThisFrame = false;
 
-		// Get Application Rectangle
-		const APPLICATION_RECTANGLE =
-			this.#APPLICATION_CONTAINER.getBoundingClientRect();
+    // Get Application Rectangle
+    const APPLICATION_RECTANGLE =
+      this.#APPLICATION_CONTAINER.getBoundingClientRect();
 
-		// Get Dimensions
-		const APPLICATION_WIDTH = APPLICATION_RECTANGLE.width;
-		const APPLICATION_HEIGHT = APPLICATION_RECTANGLE.height;
+    // Get Dimensions
+    const APPLICATION_WIDTH = APPLICATION_RECTANGLE.width;
+    const APPLICATION_HEIGHT = APPLICATION_RECTANGLE.height;
 
-		let width;
-		let height;
+    let width;
+    let height;
 
-		// Max Width Square
-		if (APPLICATION_WIDTH > APPLICATION_HEIGHT) {
-			// Square
-			width = APPLICATION_HEIGHT;
-			height = APPLICATION_HEIGHT;
-		} else {
-			// Full Width
-			width = APPLICATION_WIDTH;
-			height = APPLICATION_HEIGHT;
-		}
+    // Max Width Square
+    if (APPLICATION_WIDTH > APPLICATION_HEIGHT) {
+      // Square
+      width = APPLICATION_HEIGHT;
+      height = APPLICATION_HEIGHT;
+    } else {
+      // Full Width
+      width = APPLICATION_WIDTH;
+      height = APPLICATION_HEIGHT;
+    }
 
-		// Get Grid Cell Width
-		const GRID_CELL_WIDTH_PX = GridData.getGridCellWidthPx();
+    // Get Grid Cell Width
+    const GRID_CELL_WIDTH_PX = GridData.getGridCellWidthPx();
 
-		// Round Width Down to Nearest Grid Cell Width
-		width = Math.floor(width / GRID_CELL_WIDTH_PX) * GRID_CELL_WIDTH_PX;
+    // Round Width Down to Nearest Grid Cell Width
+    width = Math.floor(width / GRID_CELL_WIDTH_PX) * GRID_CELL_WIDTH_PX;
 
-		// Int
-		width = Math.floor(width);
-		height = Math.floor(height);
+    // Int
+    width = Math.floor(width);
+    height = Math.floor(height);
 
-		// Changed Width Height ?
-		if (width !== this.#widthPx || height !== this.#heightPx) {
-			ApplicationLogger.log(
-				`Display - Resizing to ${width} ${height}`,
-				this.#LOG_LEVEL,
-			);
+    // Changed Width Height ?
+    if (width !== this.#widthPx || height !== this.#heightPx) {
+      ApplicationLogger.log(
+        `Display - Resizing to ${width} ${height}`,
+        this.#LOG_LEVEL,
+      );
 
-			// Store
-			this.#widthPx = width;
-			this.#heightPx = height;
+      // Store
+      this.#widthPx = width;
+      this.#heightPx = height;
 
-			// Set Display Holder Size
-			this.#DISPLAY_HOLDER.style.width = `${this.#widthPx}px`;
-			this.#DISPLAY_HOLDER.style.height = `${this.#heightPx}px`;
+      // Set Display Holder Size
+      this.#DISPLAY_HOLDER.style.width = `${this.#widthPx}px`;
+      this.#DISPLAY_HOLDER.style.height = `${this.#heightPx}px`;
 
-			// Resized This Frame
-			didResizeThisFrame = true;
-		}
+      // Resized This Frame
+      didResizeThisFrame = true;
+    }
 
-		return didResizeThisFrame;
-	}
+    return didResizeThisFrame;
+  }
 
-	// __________________________________________________________________ Access
+  // __________________________________________________________________ Access
 
-	static getWidthPx() {
-		return this.#widthPx;
-	}
+  static getWidthPx() {
+    return this.#widthPx;
+  }
 
-	static getHeightPx() {
-		return this.#heightPx;
-	}
+  static getHeightPx() {
+    return this.#heightPx;
+  }
 
-	static getDisplayHolder() {
-		return this.#DISPLAY_HOLDER;
-	}
+  static getDisplayHolder() {
+    return this.#DISPLAY_HOLDER;
+  }
 }
