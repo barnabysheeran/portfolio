@@ -1,6 +1,6 @@
 import ApplicationLogger from './ApplicationLogger.ts';
 
-import type { CreationParameters } from './../types/types.ts';
+import type { CreationParameters } from '../types/types.ts';
 
 export default class ApplicationConfiguration {
   static #applicationContainer: HTMLElement;
