@@ -17,6 +17,8 @@ const meta: Meta<typeof ButtonIcon> = {
     onClick: { action: 'clicked' },
     children: { control: 'text' },
     icon: { control: 'text' },
+    offsetLeft: { control: 'text' },
+    offsetTop: { control: 'text' },
   },
 };
 
@@ -48,5 +50,7 @@ export const WithIconProp: Story = {
   args: {
     size: 'medium',
     icon: '⚡',
+    offsetLeft: '0rem',
+    offsetTop: '-0.15rem',
   },
 };
