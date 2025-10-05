@@ -7,7 +7,10 @@ interface MenuIconFlyoutProps {
   children: ReactNode;
 }
 
-export default function MenuIconFlyout({ trigger, children }: MenuIconFlyoutProps) {
+export default function MenuIconFlyout({
+  trigger,
+  children,
+}: MenuIconFlyoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleToggleOpenClose = () => {
@@ -17,11 +20,7 @@ export default function MenuIconFlyout({ trigger, children }: MenuIconFlyoutProp
   return (
     <div className={styles['menu-icon-flyout']}>
       {trigger(handleToggleOpenClose)}
-      {isMenuOpen && (
-        <div className={styles['flyout-menu']}>
-          {children}
-        </div>
-      )}
+      {isMenuOpen && <div className={styles['flyout-menu']}>{children}</div>}
     </div>
   );
 }

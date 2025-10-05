@@ -11,132 +11,132 @@ import type { FillStrategyTypeValue } from '../../type/FillStrategyType.ts';
 import type { DrawTypeValue } from '../../type/DrawType.ts';
 
 export default class ComponentGlyphLineCentered extends Component {
-	// Unique Parameters
-	TEXT;
+  // Unique Parameters
+  TEXT;
 
-	gridXCentered = 0;
-	gridXCenteredStart = 0;
-	gridWidth = 0;
+  gridXCentered = 0;
+  gridXCenteredStart = 0;
+  gridWidth = 0;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	constructor(
-		shapeManager: ShapeManager,
-		text: string,
-		gridY: number,
-		delay: number,
-		delayGlyph: number,
-		fillType: FillTypeValue,
-		fillStrategyType: FillStrategyTypeValue,
-		drawType: DrawTypeValue,
-	) {
-		super(
-			shapeManager,
-			0,
-			gridY,
-			delay,
-			delayGlyph,
-			fillType,
-			fillStrategyType,
-			drawType,
-		);
+  constructor(
+    shapeManager: ShapeManager,
+    text: string,
+    gridY: number,
+    delay: number,
+    delayGlyph: number,
+    fillType: FillTypeValue,
+    fillStrategyType: FillStrategyTypeValue,
+    drawType: DrawTypeValue,
+  ) {
+    super(
+      shapeManager,
+      0,
+      gridY,
+      delay,
+      delayGlyph,
+      fillType,
+      fillStrategyType,
+      drawType,
+    );
 
-		// Store Unique Parameters
-		this.TEXT = text;
+    // Store Unique Parameters
+    this.TEXT = text;
 
-		// Create Shape
-		this.#createShape();
-	}
+    // Create Shape
+    this.#createShape();
+  }
 
-	// ____________________________________________________________ Create Shape
+  // ____________________________________________________________ Create Shape
 
-	#createShape() {
-		// Get Constants
-		const GLYPH_SPACING_X = DirectableDotMatrixConstants.getGlyphSpacingX();
+  #createShape() {
+    // Get Constants
+    const GLYPH_SPACING_X = DirectableDotMatrixConstants.getGlyphSpacingX();
 
-		// Get Grid Data
-		const GRID_WIDTH_IN_CELLS = GridData.getGridWidthInCells();
+    // Get Grid Data
+    const GRID_WIDTH_IN_CELLS = GridData.getGridWidthInCells();
 
-		// Parse Text to Glyph Codes
-		const GLYPH_CODES = this.SHAPE_MANAGER.parseTextToGlyphCodes(this.TEXT);
+    // Parse Text to Glyph Codes
+    const GLYPH_CODES = this.SHAPE_MANAGER.parseTextToGlyphCodes(this.TEXT);
 
-		// Start at Grid X Position
-		let gridX = 0;
+    // Start at Grid X Position
+    let gridX = 0;
 
-		// Calculate Total Width of Text
-		for (let i = 0; i < GLYPH_CODES.length; i += 1) {
-			// Get Glyph Code
-			const GLYPH_CODE = GLYPH_CODES[i];
+    // Calculate Total Width of Text
+    for (let i = 0; i < GLYPH_CODES.length; i += 1) {
+      // Get Glyph Code
+      const GLYPH_CODE = GLYPH_CODES[i];
 
-			// Get Glyph Width
-			const GLYPH_WIDTH = this.SHAPE_MANAGER.getShapeGlyphWidth(GLYPH_CODE);
+      // Get Glyph Width
+      const GLYPH_WIDTH = this.SHAPE_MANAGER.getShapeGlyphWidth(GLYPH_CODE);
 
-			// Increment Current Grid X Position
-			gridX += GLYPH_WIDTH + GLYPH_SPACING_X;
-		}
+      // Increment Current Grid X Position
+      gridX += GLYPH_WIDTH + GLYPH_SPACING_X;
+    }
 
-		// Remove Last Glyph Spacing
-		gridX -= GLYPH_SPACING_X;
+    // Remove Last Glyph Spacing
+    gridX -= GLYPH_SPACING_X;
 
-		// Center Glyphs
-		gridX = Math.floor((GRID_WIDTH_IN_CELLS - gridX + GLYPH_SPACING_X) / 2);
+    // Center Glyphs
+    gridX = Math.floor((GRID_WIDTH_IN_CELLS - gridX + GLYPH_SPACING_X) / 2);
 
-		// Store Grid X Centered Start
-		this.gridXCenteredStart = gridX;
+    // Store Grid X Centered Start
+    this.gridXCenteredStart = gridX;
 
-		// Add Letter Shapes through Text
-		for (let i = 0; i < GLYPH_CODES.length; i += 1) {
-			// Get Glyph Name
-			const GLYPH_CODE = GLYPH_CODES[i];
+    // Add Letter Shapes through Text
+    for (let i = 0; i < GLYPH_CODES.length; i += 1) {
+      // Get Glyph Name
+      const GLYPH_CODE = GLYPH_CODES[i];
 
-			if (GLYPH_CODE === 'space') {
-				gridX += DirectableDotMatrixConstants.getWidthSpace() + GLYPH_SPACING_X;
+      if (GLYPH_CODE === 'space') {
+        gridX += DirectableDotMatrixConstants.getWidthSpace() + GLYPH_SPACING_X;
 
-				// Skip Space Glyphs
-				continue;
-			}
+        // Skip Space Glyphs
+        continue;
+      }
 
-			if (GLYPH_CODE === 'space') {
-				gridX += GLYPH_SPACING_X;
+      if (GLYPH_CODE === 'space') {
+        gridX += GLYPH_SPACING_X;
 
-				// Skip Space Glyphs
-				continue;
-			}
+        // Skip Space Glyphs
+        continue;
+      }
 
-			// Create Shape Glyph
-			const SHAPE = this.SHAPE_MANAGER.addShapeGlyph(
-				GLYPH_CODE,
-				gridX,
-				this.GRID_Y,
-				this.DELAY + i * this.DELAY_GLYPH,
-				this.FILL_TYPE,
-				this.FILL_STRATEGY_TYPE,
-				this.DRAW_TYPE,
-			);
+      // Create Shape Glyph
+      const SHAPE = this.SHAPE_MANAGER.addShapeGlyph(
+        GLYPH_CODE,
+        gridX,
+        this.GRID_Y,
+        this.DELAY + i * this.DELAY_GLYPH,
+        this.FILL_TYPE,
+        this.FILL_STRATEGY_TYPE,
+        this.DRAW_TYPE,
+      );
 
-			if(SHAPE){
-				// Store
-				this.SHAPES.push(SHAPE);
+      if (SHAPE) {
+        // Store
+        this.SHAPES.push(SHAPE);
 
-				// Increment Current Grid X Position
-				gridX += SHAPE.getGlyphWidth() + GLYPH_SPACING_X;
-			}
-		}
+        // Increment Current Grid X Position
+        gridX += SHAPE.getGlyphWidth() + GLYPH_SPACING_X;
+      }
+    }
 
-		// Remove Last Glyph Spacing
-		gridX -= GLYPH_SPACING_X;
+    // Remove Last Glyph Spacing
+    gridX -= GLYPH_SPACING_X;
 
-		// Store Grid Width
-		this.gridWidth = gridX - this.gridXCenteredStart;
-	}
+    // Store Grid Width
+    this.gridWidth = gridX - this.gridXCenteredStart;
+  }
 
-	// __________________________________________________________________ Access
+  // __________________________________________________________________ Access
 
-	getGridXCenteredStart() {
-		return this.gridXCenteredStart;
-	}
+  getGridXCenteredStart() {
+    return this.gridXCenteredStart;
+  }
 
-	getGridWidth() {
-		return this.gridWidth;
-	}
+  getGridWidth() {
+    return this.gridWidth;
+  }
 }

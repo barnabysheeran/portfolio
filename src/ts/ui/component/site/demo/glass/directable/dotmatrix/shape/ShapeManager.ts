@@ -18,225 +18,225 @@ import ShapeGlyph from './glyph/ShapeGlyph.ts';
 import type Shape from './Shape.ts';
 
 export default class ShapeManager {
-	#DOT_MANAGER: DotManager;
+  #DOT_MANAGER: DotManager;
 
-	#SHAPES: Shape[] = [];
+  #SHAPES: Shape[] = [];
 
-	#LOG_LEVEL = -1; // 4;
+  #LOG_LEVEL = -1; // 4;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	constructor(dotManager: DotManager) {
-		ApplicationLogger.log('ShapeManager', this.#LOG_LEVEL);
+  constructor(dotManager: DotManager) {
+    ApplicationLogger.log('ShapeManager', this.#LOG_LEVEL);
 
-		// Store
-		this.#DOT_MANAGER = dotManager;
-	}
+    // Store
+    this.#DOT_MANAGER = dotManager;
+  }
 
-	// ___________________________________________________________________ Reset
+  // ___________________________________________________________________ Reset
 
-	reset() {
-		ApplicationLogger.log('ShapeManager reset', this.#LOG_LEVEL);
+  reset() {
+    ApplicationLogger.log('ShapeManager reset', this.#LOG_LEVEL);
 
-		// Clear Shapes Array
-		this.#SHAPES = [];
-	}
+    // Clear Shapes Array
+    this.#SHAPES = [];
+  }
 
-	// __________________________________________________________________ Remove
+  // __________________________________________________________________ Remove
 
-	removeShape(shapeId: string) {
-		ApplicationLogger.log(
-			`ShapeManager removeShape ${shapeId}`,
-			this.#LOG_LEVEL,
-		);
+  removeShape(shapeId: string) {
+    ApplicationLogger.log(
+      `ShapeManager removeShape ${shapeId}`,
+      this.#LOG_LEVEL,
+    );
 
-		// Find Index by ID
-		for (let i = 0; i < this.#SHAPES.length; i += 1) {
-			if (this.#SHAPES[i].getShapeId() === shapeId) {
-				// Remove Shape
-				this.#SHAPES.splice(i, 1);
+    // Find Index by ID
+    for (let i = 0; i < this.#SHAPES.length; i += 1) {
+      if (this.#SHAPES[i].getShapeId() === shapeId) {
+        // Remove Shape
+        this.#SHAPES.splice(i, 1);
 
-				ApplicationLogger.log(` - removed ${shapeId}`, this.#LOG_LEVEL);
+        ApplicationLogger.log(` - removed ${shapeId}`, this.#LOG_LEVEL);
 
-				return true;
-			}
-		}
-	}
+        return true;
+      }
+    }
+  }
 
-	// _________________________________________________________ Line Horizontal
+  // _________________________________________________________ Line Horizontal
 
-	addShapeLineHorizontal(
-		gridX: number,
-		gridY: number,
-		length: number,
-		delay = 0,
-		fillType: FillTypeValue = FillType.PassThrough,
-		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
-		drawType: DrawTypeValue = DrawType.Fill,
-	) {
-		// Create Shape
-		const SHAPE = new ShapeLineHorizontal(
-			this.#DOT_MANAGER,
-			gridX,
-			gridY,
-			length,
-			delay,
-			fillType,
-			fillStrategyType,
-			drawType,
-		);
+  addShapeLineHorizontal(
+    gridX: number,
+    gridY: number,
+    length: number,
+    delay = 0,
+    fillType: FillTypeValue = FillType.PassThrough,
+    fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+    drawType: DrawTypeValue = DrawType.Fill,
+  ) {
+    // Create Shape
+    const SHAPE = new ShapeLineHorizontal(
+      this.#DOT_MANAGER,
+      gridX,
+      gridY,
+      length,
+      delay,
+      fillType,
+      fillStrategyType,
+      drawType,
+    );
 
-		// Store
-		this.#SHAPES.push(SHAPE);
+    // Store
+    this.#SHAPES.push(SHAPE);
 
-		// Return
-		return SHAPE;
-	}
+    // Return
+    return SHAPE;
+  }
 
-	// _______________________________________________________________ Rectangle
+  // _______________________________________________________________ Rectangle
 
-	addShapeRectangle(
-		gridX: number,
-		gridY: number,
-		gridWidth: number,
-		gridHeight: number,
-		delay = 0,
-		fillType: FillTypeValue = FillType.PassThrough,
-		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
-		drawType: DrawTypeValue = DrawType.Fill,
-	) {
-		// Create Shape
-		const SHAPE = new ShapeRectangle(
-			this.#DOT_MANAGER,
-			gridX,
-			gridY,
-			gridWidth,
-			gridHeight,
-			delay,
-			fillType,
-			fillStrategyType,
-			drawType,
-		);
+  addShapeRectangle(
+    gridX: number,
+    gridY: number,
+    gridWidth: number,
+    gridHeight: number,
+    delay = 0,
+    fillType: FillTypeValue = FillType.PassThrough,
+    fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+    drawType: DrawTypeValue = DrawType.Fill,
+  ) {
+    // Create Shape
+    const SHAPE = new ShapeRectangle(
+      this.#DOT_MANAGER,
+      gridX,
+      gridY,
+      gridWidth,
+      gridHeight,
+      delay,
+      fillType,
+      fillStrategyType,
+      drawType,
+    );
 
-		// Store
-		this.#SHAPES.push(SHAPE);
+    // Store
+    this.#SHAPES.push(SHAPE);
 
-		// Return
-		return SHAPE;
-	}
+    // Return
+    return SHAPE;
+  }
 
-	// ___________________________________________________________________ Glyph
+  // ___________________________________________________________________ Glyph
 
-	addShapeGlyph(
-		glyphCode: string,
-		gridX: number,
-		gridY: number,
-		delay: number = 0,
-		fillType: FillTypeValue = FillType.PassThrough,
-		fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
-		drawType: DrawTypeValue = DrawType.Fill,
-	) {
-		const glyphData = this.#getShapeGlyphData(glyphCode);
+  addShapeGlyph(
+    glyphCode: string,
+    gridX: number,
+    gridY: number,
+    delay: number = 0,
+    fillType: FillTypeValue = FillType.PassThrough,
+    fillStrategyType: FillStrategyTypeValue = FillStrategyType.PassThrough,
+    drawType: DrawTypeValue = DrawType.Fill,
+  ) {
+    const glyphData = this.#getShapeGlyphData(glyphCode);
 
-		if (!glyphData) {
-			ApplicationLogger.warn(
-				`ShapeManager addShapeGlyph Unknown glyphCode '${glyphCode}'`,
-				this.#LOG_LEVEL,
-			);
-			return null;
-		}
+    if (!glyphData) {
+      ApplicationLogger.warn(
+        `ShapeManager addShapeGlyph Unknown glyphCode '${glyphCode}'`,
+        this.#LOG_LEVEL,
+      );
+      return null;
+    }
 
-		// Create Shape
-		const SHAPE = new ShapeGlyph(
-			this.#DOT_MANAGER,
-			gridX,
-			gridY,
-			glyphData,
-			delay,
-			fillType,
-			fillStrategyType,
-			drawType,
-		);
+    // Create Shape
+    const SHAPE = new ShapeGlyph(
+      this.#DOT_MANAGER,
+      gridX,
+      gridY,
+      glyphData,
+      delay,
+      fillType,
+      fillStrategyType,
+      drawType,
+    );
 
-		// Store
-		this.#SHAPES.push(SHAPE);
+    // Store
+    this.#SHAPES.push(SHAPE);
 
-		// Return
-		return SHAPE;
-	}
+    // Return
+    return SHAPE;
+  }
 
-	#getShapeGlyphData(glyphCode: string): GlyphData | undefined {
-		// Try direct match first (for special chars and multi-char keys like 'heart')
-		let glyphData = SHAPE_GLYPH_DATA[glyphCode];
-		if (glyphData) return glyphData;
+  #getShapeGlyphData(glyphCode: string): GlyphData | undefined {
+    // Try direct match first (for special chars and multi-char keys like 'heart')
+    let glyphData = SHAPE_GLYPH_DATA[glyphCode];
+    if (glyphData) return glyphData;
 
-		// Fallback to uppercase for standard alphabet
-		const upperChar = glyphCode.toUpperCase();
-		glyphData = SHAPE_GLYPH_DATA[upperChar];
+    // Fallback to uppercase for standard alphabet
+    const upperChar = glyphCode.toUpperCase();
+    glyphData = SHAPE_GLYPH_DATA[upperChar];
 
-		if (!glyphData) {
-			ApplicationLogger.warn(
-				`ShapeManager getShapeGlyphData Unknown glyphCode '${glyphCode}'`,
-				this.#LOG_LEVEL,
-			);
-			return undefined;
-		}
+    if (!glyphData) {
+      ApplicationLogger.warn(
+        `ShapeManager getShapeGlyphData Unknown glyphCode '${glyphCode}'`,
+        this.#LOG_LEVEL,
+      );
+      return undefined;
+    }
 
-		return glyphData;
-	}
+    return glyphData;
+  }
 
-	getShapeGlyphWidth(glyphCode: string) {
-		const glyphData = this.#getShapeGlyphData(glyphCode);
+  getShapeGlyphWidth(glyphCode: string) {
+    const glyphData = this.#getShapeGlyphData(glyphCode);
 
-		if (!glyphData) {
-			return 0;
-		}
+    if (!glyphData) {
+      return 0;
+    }
 
-		return glyphData.points[0].length;
-	}
+    return glyphData.points[0].length;
+  }
 
-	getShapeGlyphHeight(glyphCode: string) {
-		const glyphData = this.#getShapeGlyphData(glyphCode);
+  getShapeGlyphHeight(glyphCode: string) {
+    const glyphData = this.#getShapeGlyphData(glyphCode);
 
-		if (!glyphData) {
-			return 0;
-		}
+    if (!glyphData) {
+      return 0;
+    }
 
-		return glyphData.points.length;
-	}
+    return glyphData.points.length;
+  }
 
-	// _____________________________________________________________ Glyph Codes
+  // _____________________________________________________________ Glyph Codes
 
-	// Non-Standard Glyphs are enclosed in curly braces {}, e.g. {heart}
+  // Non-Standard Glyphs are enclosed in curly braces {}, e.g. {heart}
 
-	parseTextToGlyphCodes(text: string) {
-		const GLYPH_CODES: string[] = [];
+  parseTextToGlyphCodes(text: string) {
+    const GLYPH_CODES: string[] = [];
 
-		let i = 0;
+    let i = 0;
 
-		while (i < text.length) {
-			const char = text[i];
+    while (i < text.length) {
+      const char = text[i];
 
-			if (char === '{') {
-				const endIndex = text.indexOf('}', i);
-				if (endIndex !== -1) {
-					const glyph = text.substring(i + 1, endIndex);
-					GLYPH_CODES.push(glyph);
-					i = endIndex + 1;
-				} else {
-					// Treat as a literal character if no closing brace is found
-					GLYPH_CODES.push(char);
-					i += 1;
-				}
-			} else if (char === ' ') {
-				GLYPH_CODES.push('space');
-				i += 1;
-			} else {
-				GLYPH_CODES.push(char);
-				i += 1;
-			}
-		}
+      if (char === '{') {
+        const endIndex = text.indexOf('}', i);
+        if (endIndex !== -1) {
+          const glyph = text.substring(i + 1, endIndex);
+          GLYPH_CODES.push(glyph);
+          i = endIndex + 1;
+        } else {
+          // Treat as a literal character if no closing brace is found
+          GLYPH_CODES.push(char);
+          i += 1;
+        }
+      } else if (char === ' ') {
+        GLYPH_CODES.push('space');
+        i += 1;
+      } else {
+        GLYPH_CODES.push(char);
+        i += 1;
+      }
+    }
 
-		return GLYPH_CODES;
-	}
+    return GLYPH_CODES;
+  }
 }

@@ -3,56 +3,56 @@ import ApplicationLogger from '../../../application/ApplicationLogger.ts';
 import type Component from './Component.ts';
 
 export default class ComponentManager {
-	#COMPONENTS: Component[] = [];
+  #COMPONENTS: Component[] = [];
 
-	#LOG_LEVEL = 4;
+  #LOG_LEVEL = 4;
 
-	// _________________________________________________________________________
+  // _________________________________________________________________________
 
-	constructor() {}
+  constructor() {}
 
-	// ____________________________________________________________________ Tick
+  // ____________________________________________________________________ Tick
 
-	tick() {
-		// Tick Components
-		for (let i = 0; i < this.#COMPONENTS.length; i += 1) {
-			const IS_COMPLETE = this.#COMPONENTS[i].tick();
+  tick() {
+    // Tick Components
+    for (let i = 0; i < this.#COMPONENTS.length; i += 1) {
+      const IS_COMPLETE = this.#COMPONENTS[i].tick();
 
-			if (IS_COMPLETE) {
-				// Remove Component
-				this.#COMPONENTS.splice(i, 1);
-				i -= 1; // Adjust index after removal
-			}
-		}
-	}
+      if (IS_COMPLETE) {
+        // Remove Component
+        this.#COMPONENTS.splice(i, 1);
+        i -= 1; // Adjust index after removal
+      }
+    }
+  }
 
-	// ___________________________________________________________ Add Component
+  // ___________________________________________________________ Add Component
 
-	addComponent(component: Component) {
-		// Store Component
-		this.#COMPONENTS.push(component);
-	}
+  addComponent(component: Component) {
+    // Store Component
+    this.#COMPONENTS.push(component);
+  }
 
-	// ___________________________________________________________________ Reset
+  // ___________________________________________________________________ Reset
 
-	reset() {
-		ApplicationLogger.log('ComponentManager reset', this.#LOG_LEVEL);
+  reset() {
+    ApplicationLogger.log('ComponentManager reset', this.#LOG_LEVEL);
 
-		// Clear Components Array
-		this.#COMPONENTS = [];
-	}
+    // Clear Components Array
+    this.#COMPONENTS = [];
+  }
 
-	stopUnstartedShapes() {
-		// Remove Components with > 0 Delay
-		for (let i = 0; i < this.#COMPONENTS.length; i += 1) {
-			this.#COMPONENTS[i].stopUnstartedShapes();
-		}
-	}
+  stopUnstartedShapes() {
+    // Remove Components with > 0 Delay
+    for (let i = 0; i < this.#COMPONENTS.length; i += 1) {
+      this.#COMPONENTS[i].stopUnstartedShapes();
+    }
+  }
 
-	// __________________________________________________________________ Access
+  // __________________________________________________________________ Access
 
-	getActiveComponentTotal() {
-		// Return Active Component Total
-		return this.#COMPONENTS.length;
-	}
+  getActiveComponentTotal() {
+    // Return Active Component Total
+    return this.#COMPONENTS.length;
+  }
 }

@@ -13,12 +13,17 @@ export const createCurrencySlice: StateCreator<
   [],
   CurrencySlice
 > = (set) => ({
-
   // Default Currency
   credits: 0,
 
   // Set
-  addCredits: (amount) => set((state: UIState & CurrencySlice) => ({ credits: state.credits + amount })),
-  
-  subtractCredits: (amount) => set((state: UIState & CurrencySlice) => ({ credits: Math.max(0, state.credits - amount) })),
+  addCredits: (amount) =>
+    set((state: UIState & CurrencySlice) => ({
+      credits: state.credits + amount,
+    })),
+
+  subtractCredits: (amount) =>
+    set((state: UIState & CurrencySlice) => ({
+      credits: Math.max(0, state.credits - amount),
+    })),
 });

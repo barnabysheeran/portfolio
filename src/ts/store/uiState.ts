@@ -1,7 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { createCurrencySlice, type CurrencySlice } from './ui/slice/currencySlice';
+import {
+  createCurrencySlice,
+  type CurrencySlice,
+} from './ui/slice/currencySlice';
 import { createThemeSlice, type ThemeSlice } from './ui/slice/themeSlice';
 
 import type { UIState } from './typesUIState';
@@ -18,8 +21,8 @@ const useUiState = create<StoreState>()(
     },
     {
       name: 'ui-state',
-    }
-  )
+    },
+  ),
 );
 
 export default useUiState;
