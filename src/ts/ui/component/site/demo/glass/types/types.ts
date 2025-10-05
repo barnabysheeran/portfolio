@@ -1,5 +1,5 @@
 export interface CreationParameters {
-  isDebug: boolean;
+  isDevelopment: boolean;
   assetPath: string;
   applicationContainer: HTMLElement;
 }

@@ -15,7 +15,7 @@ export default function GlassHolder() {
     if (containerRef.current && !glassRef.current) {
       // Create Glass
       glassRef.current = new Glass({
-        isDebug: false,
+        isDevelopment: false,
         assetPath: './assets/',
         applicationContainer: containerRef.current,
       });

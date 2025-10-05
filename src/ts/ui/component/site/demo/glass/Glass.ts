@@ -18,9 +18,9 @@ export default class Glass {
     // Order Important
 
     // Initialise Application Logger
-    ApplicationLogger.initialise(creationParameters.isDebug);
+    ApplicationLogger.initialise(creationParameters.isDevelopment);
 
-    ApplicationLogger.log('Portfolio', this.#LOG_LEVEL);
+    ApplicationLogger.log('Glass', this.#LOG_LEVEL);
 
     // Initialise Application Configuration
     ApplicationConfiguration.initialise(creationParameters);

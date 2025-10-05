@@ -1,6 +1,6 @@
 import ApplicationLogger from './ApplicationLogger.ts';
 
-import type { CreationParameters } from './../types/types.ts'; // Add this import
+import type { CreationParameters } from './../types/types.ts';
 
 export default class ApplicationConfiguration {
   static #applicationContainer: HTMLElement;
@@ -9,7 +9,7 @@ export default class ApplicationConfiguration {
 
   static #LOG_LEVEL = -1;
 
-  // _________________________________________________________________________
+  // ________________________________________________________________ Initialise
 
   static initialise(creationParameters: CreationParameters) {
     ApplicationLogger.log('ApplicationConfiguration', this.#LOG_LEVEL);
@@ -17,24 +17,22 @@ export default class ApplicationConfiguration {
     // Store
     this.#applicationContainer = creationParameters.applicationContainer;
     this.#assetPath = creationParameters.assetPath;
-    this.isDevelopment = creationParameters.isDebug;
+    this.#isDevelopment = creationParameters.isDevelopment;
   }
 
-  // ___________________________________________________ Application Container
+  // _____________________________________________________ Application Container
 
   static getApplicationContainer() {
     return this.#applicationContainer;
   }
 
-  // ______________________________________________________________ Asset Path
+  // ________________________________________________________________ Asset Path
 
   static getAssetPath() {
     return this.#assetPath;
   }
 
-  // ________________________________________________________________ Is Debug
-
-  // TODO Rename isDebug
+  // ____________________________________________________________ Is Development
 
   static set isDevelopment(value) {
     this.#isDevelopment = value;
