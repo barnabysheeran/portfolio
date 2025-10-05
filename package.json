@@ -6,10 +6,11 @@
   "scripts": {
     "preview": "vite preview",
     "dev": "vite",
-    "storybook": "storybook dev -p 6006",
     "lint": "tsc --build --pretty false && eslint .",
     "build": "tsc -b && vite build",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "todo": "leasot \"src/**/*.{ts,tsx,js,jsx,css}\" || exit 0"
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.7",
@@ -42,6 +43,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-storybook": "^9.1.9",
     "globals": "^16.4.0",
+    "leasot": "^14.4.0",
     "playwright": "^1.55.1",
     "prettier": "^3.6.2",
     "storybook": "^9.1.9",
