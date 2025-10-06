@@ -3,7 +3,7 @@ import ApplicationDispatcher from '../application/ApplicationDispatcher.ts';
 
 import Glass from '../Glass.ts';
 
-import DataController from '../../data/DataController.ts';
+import DataController from '../data/DataController.ts';
 import Display from '../display/Display.ts';
 import GridData from '../grid/GridData.ts';
 import RenderSurface from '../render/RenderSurface.ts';

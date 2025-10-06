@@ -1,5 +1,5 @@
 import ApplicationDispatcher from '../../../../application/ApplicationDispatcher.ts';
-import DataController from '../../../../../data/DataController.ts';
+import DataController from '../../../../data/DataController.ts';
 
 import GridData from '../../../../grid/GridData.ts';
 import InteractiveSurface from '../../../../interactive/InteractiveSurface.ts';

@@ -1,4 +1,4 @@
-import DataController from '../data/DataController.ts';
+import DataController from './data/DataController.ts';
 import ApplicationConfiguration from './application/ApplicationConfiguration.ts';
 import ApplicationLogger from './application/ApplicationLogger.ts';
 

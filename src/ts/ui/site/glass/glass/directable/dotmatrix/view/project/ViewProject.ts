@@ -1,4 +1,4 @@
-import DataController from '../../../../../data/DataController.ts';
+import DataController from '../../../../data/DataController.ts';
 
 import DotMatrixView from '../DotMatrixView.ts';
 

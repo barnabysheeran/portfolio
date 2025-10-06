@@ -1,5 +1,5 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
-import DataController from '../../data/DataController.ts';
+import DataController from '../data/DataController.ts';
 
 import DirectableDotMatrix from '../directable/dotmatrix/DirectableDotMatrix.ts';
 
