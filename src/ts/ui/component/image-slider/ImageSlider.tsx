@@ -1,3 +1,5 @@
+import ImageSliderInteraction from './interaction/ImageSliderInteraction';
+
 import styles from './ImageSlider.module.css';
 
 export default function ImageSlider() {
@@ -5,7 +7,7 @@ export default function ImageSlider() {
 
   return (
     <div className={styles['image-slider']}>
-      <h2>Image Slider</h2>
+      <ImageSliderInteraction />
     </div>
   );
 }
