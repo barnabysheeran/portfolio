@@ -1,7 +1,7 @@
-import useUiState from '../../../../store/uiState';
+import useUiState from '../../../store/uiState';
 
-import MenuIconFlyout from '../../menu/flyout/MenuIconFlyout';
-import { ButtonColorCircle } from '../../button/colorCircle/ButtonColorCircle';
+import MenuIconFlyout from '../../component/menu/flyout/MenuIconFlyout';
+import { ButtonColorCircle } from '../../component/button/colorCircle/ButtonColorCircle';
 
 import styles from './SiteOverlay.module.css';
 

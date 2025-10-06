@@ -1,6 +1,6 @@
 import styles from './SiteProgress.module.css';
 
-import SiteProgressBarRadix from '../progress/bar/SiteProgressBarRadix';
+import SiteProgressBarRadix from './bar/SiteProgressBarRadix';
 
 export default function SiteProgress() {
   return (

@@ -1,6 +1,6 @@
 import { LuGithub } from 'react-icons/lu';
 
-import { ButtonIcon } from '../../button/icon/ButtonIcon';
+import { ButtonIcon } from '../../component/button/icon/ButtonIcon';
 
 import styles from './SiteFooter.module.css';
 

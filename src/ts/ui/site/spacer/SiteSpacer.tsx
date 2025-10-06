@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import { ANIMATION_DURATION_S } from '../../../../constant/constantsAnimation';
+import { ANIMATION_DURATION_S } from '../../../constant/constantsAnimation';
 
 import styles from './SiteSpacer.module.css';
 

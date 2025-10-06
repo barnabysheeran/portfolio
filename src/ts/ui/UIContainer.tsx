@@ -1,12 +1,12 @@
 import useUiState from '../store/uiState';
 
 // import SiteOverlay from "./component/site/overlay/SiteOverlay";
-import SiteHeader from './component/site/header/SiteHeader';
-import SiteGlass from './component/site/glass/SiteGlass';
+import SiteHeader from './site/header/SiteHeader';
+import SiteGlass from './site/glass/SiteGlass';
 // import SiteSpacer from "./component/site/spacer/SiteSpacer";
 // import SiteProgress from "./component/site/progress/SiteProgress";
 // import SiteEVE from "./component/site/eve/SiteEVE";
-import SiteFooter from './component/site/footer/SiteFooter';
+import SiteFooter from './site/footer/SiteFooter';
 
 import styles from './UIContainer.module.css';
 
