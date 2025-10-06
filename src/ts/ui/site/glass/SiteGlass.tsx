@@ -12,8 +12,8 @@ export default function SiteGlass() {
   useEffect(() => {
     if (glassRef.current && !glassInstanceRef.current) {
       const creationParameters: GlassCreationParameters = {
-        isDevelopment: false,
         applicationContainer: glassRef.current,
+        isDevelopment: false,
       };
 
       glassInstanceRef.current = new Glass(creationParameters);

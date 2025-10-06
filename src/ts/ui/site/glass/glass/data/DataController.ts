@@ -1,26 +1,22 @@
 import DATA_JSON from './data.json';
 
+import type { ImageDescriptions } from '../../../../../type/image';
+
+interface DataJson {
+  projects: DataProject[];
+}
+
 export interface DataCredit {
   text: string;
   url: string;
-}
-
-export interface DataProjectMedia {
-  type: 'image' | 'vimeo';
-  url?: string;
-  'vimeo-id'?: string;
 }
 
 export interface DataProject {
   id: string;
   name: string;
   'name-short': string;
-  media: DataProjectMedia[];
+  images: ImageDescriptions;
   credit: DataCredit[];
-}
-
-interface DataJson {
-  projects: DataProject[];
 }
 
 export default class DataController {
@@ -52,10 +48,10 @@ export default class DataController {
     return this.#DATA_PROJECTS[0];
   }
 
-  static getMediaByIndex(projectIndex: number): DataProjectMedia[] {
+  static getMediaByIndex(projectIndex: number): ImageDescriptions {
     const project = this.getProjectByIndex(projectIndex);
     if (project) {
-      return project.media;
+      return project.images;
     }
     return [];
   }

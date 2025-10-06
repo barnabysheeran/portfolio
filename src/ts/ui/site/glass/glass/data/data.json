@@ -1,37 +1,31 @@
 {
     "projects": [
-
         {
             "id": "battlebuilder",
             "name": "BattleBuilder",
             "name-short": "BattleBuilder",
-            "media": [
+            "images": [
                 {
-                    "type": "image",
                     "url": "project/battlebuilder/1.jpg",
                     "width": 1920,
                     "height": 1080
                 },
                 {
-                    "type": "image",
                     "url": "project/battlebuilder/2.jpg",
                     "width": 1920,
                     "height": 1080
                 },
                 {
-                    "type": "image",
                     "url": "project/battlebuilder/3.jpg",
                     "width": 1920,
                     "height": 1080
                 },
                 {
-                    "type": "image",
                     "url": "project/battlebuilder/4.jpg",
                     "width": 1920,
                     "height": 1080
                 },
                 {
-                    "type": "image",
                     "url": "project/battlebuilder/5.jpg",
                     "width": 1920,
                     "height": 1080
