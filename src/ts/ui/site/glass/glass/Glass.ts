@@ -7,8 +7,10 @@ import type { ImageDescriptions } from '../../../../type/image';
 import Controller from './controller/Controller';
 
 export interface GlassCreationParameters {
-  isDevelopment: boolean;
   applicationContainer: HTMLElement;
+  onMediaShowProject: (imageDescriptions: ImageDescriptions) => void;
+  onMediaClear: () => void;
+  isDevelopment: boolean;
 }
 
 export default class Glass {
@@ -18,6 +20,9 @@ export default class Glass {
 
   #LOG_LEVEL = 1;
 
+  #onMediaShowProjectCallback?: (imageDescriptions: ImageDescriptions) => void;
+  #onMediaClearCallback?: () => void;
+
   // _________________________________________________________________________
 
   constructor(creationParameters: GlassCreationParameters) {
@@ -25,11 +30,14 @@ export default class Glass {
 
     // Initialise Application Logger
     ApplicationLogger.initialise(creationParameters.isDevelopment);
-
     ApplicationLogger.log('Glass', this.#LOG_LEVEL);
 
     // Initialise Application Configuration
     ApplicationConfiguration.initialise(creationParameters);
+
+    // Store Callbacks
+    this.#onMediaShowProjectCallback = creationParameters.onMediaShowProject;
+    this.#onMediaClearCallback = creationParameters.onMediaClear;
 
     // Create Controller
     this.#CONTROLLER = new Controller(this);
@@ -65,12 +73,12 @@ export default class Glass {
 
     console.log('PROJECT_IMAGE_DESCRIPTIONS', PROJECT_IMAGE_DESCRIPTIONS);
 
-    // TODO Pass out to SiteGlass
+    this.#onMediaShowProjectCallback?.(PROJECT_IMAGE_DESCRIPTIONS);
   }
 
   onMediaClear() {
     console.log('Glass onMediaClear');
 
-    // TODO Pass out to SiteGlass
+    this.#onMediaClearCallback?.();
   }
 }
