@@ -26,7 +26,7 @@ export default class Glass {
     ApplicationConfiguration.initialise(creationParameters);
 
     // Create Controller
-    this.#CONTROLLER = new Controller();
+    this.#CONTROLLER = new Controller(this);
 
     // Start Main Loop
     window.requestAnimationFrame(this.#tick.bind(this));
@@ -46,5 +46,15 @@ export default class Glass {
 
     // Loop
     window.requestAnimationFrame(this.#tick.bind(this));
+  }
+
+  // ______________________________________________________________ External API
+
+  onMediaShowProject(projectIndex: number) {
+    console.log('Glass onMediaShowProject', projectIndex);
+  }
+
+  onMediaClear() {
+    console.log('Glass onMediaClear');
   }
 }

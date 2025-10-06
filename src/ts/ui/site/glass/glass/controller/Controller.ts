@@ -1,10 +1,11 @@
 import ApplicationLogger from '../application/ApplicationLogger.ts';
 import ApplicationDispatcher from '../application/ApplicationDispatcher.ts';
 
+import Glass from '../Glass.ts';
+
 import DataController from '../../data/DataController.ts';
 import Display from '../display/Display.ts';
 import GridData from '../grid/GridData.ts';
-// import MediaSurface from '../media/MediaSurface.ts';
 import RenderSurface from '../render/RenderSurface.ts';
 import InteractiveSurface, {
   IdData,
@@ -14,6 +15,8 @@ import Director from '../director/Director.ts';
 // TODO Remove MediaSurface
 
 export default class Controller {
+  #GLASS;
+
   #FRAMERATE_FPS = 60;
   #FRAMERATE_MS = 1000 / this.#FRAMERATE_FPS;
 
@@ -21,13 +24,16 @@ export default class Controller {
 
   #LOG_LEVEL = 1;
 
-  // _________________________________________________________________________
+  // ___________________________________________________________________________
 
-  constructor() {
+  constructor(glass: Glass) {
     ApplicationLogger.log(
       `Controller Initialising with Frame Rate ${this.#FRAMERATE_FPS} FPS`,
       this.#LOG_LEVEL,
     );
+
+    // Store
+    this.#GLASS = glass;
 
     // Order Important
     DataController.initialise();
@@ -37,7 +43,6 @@ export default class Controller {
     const DISPLAY_HEIGHT = Display.getHeightPx();
 
     GridData.initialize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    // MediaSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     RenderSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     InteractiveSurface.initialise(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
@@ -60,7 +65,7 @@ export default class Controller {
     );
   }
 
-  // ____________________________________________________________________ Tick
+  // ______________________________________________________________________ Tick
 
   tick(frameDeltaMS: number) {
     // Frame Rate Delay
@@ -86,14 +91,11 @@ export default class Controller {
 
     // Tick at Max Frame Rate
 
-    // Media Surface
-    // MediaSurface.tick(frameDeltaMS);
-
     // Tick Render Surface
     RenderSurface.tick();
   }
 
-  // _______________________________________________________________ On Events
+  // _________________________________________________________________ On Events
 
   #onProjectMenuOpen() {
     ApplicationLogger.log(`Controller onProjectMenuOpen`, this.#LOG_LEVEL);
@@ -101,8 +103,8 @@ export default class Controller {
     // Director
     Director.onProjectMenuOpen();
 
-    // Media Surface
-    // MediaSurface.clear();
+    // Media
+    this.#GLASS.onMediaClear();
   }
 
   #onProjectMenuClose() {
@@ -111,8 +113,8 @@ export default class Controller {
     // Director
     Director.onProjectMenuClose();
 
-    // Media Surface
-    // MediaSurface.clear();
+    // Media
+    this.#GLASS.onMediaClear();
   }
 
   #onViewProjectMenuSelect(data: unknown) {
@@ -123,22 +125,18 @@ export default class Controller {
 
     // Handle IdData or plain object
     if (data instanceof Object) {
-      console.log(' - IdData ******************** ', data);
-
       // Get Project Id
       const PROJECT_INDEX = (data as IdData).id;
-
-      console.log(' - projectIndex', PROJECT_INDEX);
 
       // Director
       Director.onViewProjectMenuSelect(PROJECT_INDEX);
 
-      // Media Surface
-      // MediaSurface.showProject(PROJECT_INDEX);
+      // Media
+      this.#GLASS.onMediaShowProject(PROJECT_INDEX);
     }
   }
 
-  // _________________________________________________________________ Display
+  // ___________________________________________________________________ Display
 
   #onDisplayUpdated() {
     const DISPLAY_WIDTH = Display.getWidthPx();
@@ -151,7 +149,6 @@ export default class Controller {
 
     // Set Sizes
     GridData.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    // MediaSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     RenderSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
     InteractiveSurface.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
 
