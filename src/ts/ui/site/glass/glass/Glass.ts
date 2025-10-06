@@ -1,3 +1,4 @@
+import DataController from '../data/DataController.ts';
 import ApplicationConfiguration from './application/ApplicationConfiguration.ts';
 import ApplicationLogger from './application/ApplicationLogger.ts';
 
@@ -52,9 +53,18 @@ export default class Glass {
 
   onMediaShowProject(projectIndex: number) {
     console.log('Glass onMediaShowProject', projectIndex);
+
+    // Get Project Data
+    const PROJECT_DATA_JSON = DataController.getProjectByIndex(projectIndex);
+
+    console.log('PROJECT_DATA_JSON', PROJECT_DATA_JSON);
+
+    // TODO Pass out through GlassHolder to SiteGlass
   }
 
   onMediaClear() {
     console.log('Glass onMediaClear');
+
+    // TODO Pass out through GlassHolder to SiteGlass
   }
 }
