@@ -48,7 +48,7 @@ export default class DataController {
     return this.#DATA_PROJECTS[0];
   }
 
-  static getMediaByIndex(projectIndex: number): ImageDescriptions {
+  static getProjectImages(projectIndex: number): ImageDescriptions {
     const project = this.getProjectByIndex(projectIndex);
     if (project) {
       return project.images;

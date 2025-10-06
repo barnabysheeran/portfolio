@@ -1,8 +1,10 @@
-import DataController from './data/DataController.ts';
-import ApplicationConfiguration from './application/ApplicationConfiguration.ts';
-import ApplicationLogger from './application/ApplicationLogger.ts';
+import DataController from './data/DataController';
+import ApplicationConfiguration from './application/ApplicationConfiguration';
+import ApplicationLogger from './application/ApplicationLogger';
 
-import Controller from './controller/Controller.ts';
+import type { ImageDescriptions } from '../../../../type/image';
+
+import Controller from './controller/Controller';
 
 export interface GlassCreationParameters {
   isDevelopment: boolean;
@@ -58,9 +60,10 @@ export default class Glass {
     console.log('Glass onMediaShowProject', projectIndex);
 
     // Get Project Data
-    const PROJECT_DATA = DataController.getProjectByIndex(projectIndex);
+    const PROJECT_IMAGE_DESCRIPTIONS: ImageDescriptions =
+      DataController.getProjectImages(projectIndex);
 
-    console.log('PROJECT_DATA', PROJECT_DATA);
+    console.log('PROJECT_IMAGE_DESCRIPTIONS', PROJECT_IMAGE_DESCRIPTIONS);
 
     // TODO Pass out to SiteGlass
   }
