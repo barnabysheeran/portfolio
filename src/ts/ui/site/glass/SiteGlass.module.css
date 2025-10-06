@@ -21,6 +21,8 @@
 
 	border-radius: var(--ui-border-radius);
 
+    margin-bottom: calc(var(--grid-cell-height) * 2);
+
 	-webkit-tap-highlight-color: transparent;
 }
 

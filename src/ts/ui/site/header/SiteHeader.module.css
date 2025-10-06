@@ -7,4 +7,6 @@
     justify-content: center;
 
     color: var(--color-white);
+
+    margin-bottom: calc(var(--grid-cell-height) * 2);
 }
