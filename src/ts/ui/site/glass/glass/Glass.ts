@@ -4,7 +4,11 @@ import ApplicationLogger from './application/ApplicationLogger.ts';
 
 import Controller from './controller/Controller.ts';
 
-import type { CreationParameters } from './types/types.ts';
+export interface GlassCreationParameters {
+  isDevelopment: boolean;
+  assetPath: string;
+  applicationContainer: HTMLElement;
+}
 
 export default class Glass {
   #CONTROLLER;
@@ -15,7 +19,7 @@ export default class Glass {
 
   // _________________________________________________________________________
 
-  constructor(creationParameters: CreationParameters) {
+  constructor(creationParameters: GlassCreationParameters) {
     // Order Important
 
     // Initialise Application Logger

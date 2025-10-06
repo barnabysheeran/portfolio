@@ -1,6 +1,6 @@
 import ApplicationLogger from './ApplicationLogger.ts';
 
-import type { CreationParameters } from '../types/types.ts';
+import type { GlassCreationParameters } from '../Glass.ts';
 
 export default class ApplicationConfiguration {
   static #applicationContainer: HTMLElement;
@@ -11,7 +11,7 @@ export default class ApplicationConfiguration {
 
   // ________________________________________________________________ Initialise
 
-  static initialise(creationParameters: CreationParameters) {
+  static initialise(creationParameters: GlassCreationParameters) {
     ApplicationLogger.log('ApplicationConfiguration', this.#LOG_LEVEL);
 
     // Store

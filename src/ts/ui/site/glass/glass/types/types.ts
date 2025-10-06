@@ -1,9 +1,3 @@
-export interface CreationParameters {
-  isDevelopment: boolean;
-  assetPath: string;
-  applicationContainer: HTMLElement;
-}
-
 export class PositionGrid {
   public x: number;
   public y: number;
