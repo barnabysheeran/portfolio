@@ -9,7 +9,7 @@ export type ImageSliderHandle = {
   clear: () => void;
 };
 
-const ImageSlider = forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
+export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
   useImperativeHandle(
     ref,
     () => ({
@@ -29,5 +29,3 @@ const ImageSlider = forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
     </div>
   );
 });
-
-export default ImageSlider;
