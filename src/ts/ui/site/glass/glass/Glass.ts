@@ -58,16 +58,16 @@ export default class Glass {
     console.log('Glass onMediaShowProject', projectIndex);
 
     // Get Project Data
-    const PROJECT_DATA_JSON = DataController.getProjectByIndex(projectIndex);
+    const PROJECT_DATA = DataController.getProjectByIndex(projectIndex);
 
-    console.log('PROJECT_DATA_JSON', PROJECT_DATA_JSON);
+    console.log('PROJECT_DATA', PROJECT_DATA);
 
-    // TODO Pass out through GlassHolder to SiteGlass
+    // TODO Pass out to SiteGlass
   }
 
   onMediaClear() {
     console.log('Glass onMediaClear');
 
-    // TODO Pass out through GlassHolder to SiteGlass
+    // TODO Pass out to SiteGlass
   }
 }
