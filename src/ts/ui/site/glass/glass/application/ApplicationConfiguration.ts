@@ -4,7 +4,6 @@ import type { GlassCreationParameters } from '../Glass.ts';
 
 export default class ApplicationConfiguration {
   static #applicationContainer: HTMLElement;
-  static #assetPath: string;
   static #isDevelopment = false;
 
   static #LOG_LEVEL = -1;
@@ -16,7 +15,6 @@ export default class ApplicationConfiguration {
 
     // Store
     this.#applicationContainer = creationParameters.applicationContainer;
-    this.#assetPath = creationParameters.assetPath;
     this.#isDevelopment = creationParameters.isDevelopment;
   }
 
@@ -26,17 +24,7 @@ export default class ApplicationConfiguration {
     return this.#applicationContainer;
   }
 
-  // ________________________________________________________________ Asset Path
-
-  static getAssetPath() {
-    return this.#assetPath;
-  }
-
   // ____________________________________________________________ Is Development
-
-  static set isDevelopment(value) {
-    this.#isDevelopment = value;
-  }
 
   static get isDevelopment() {
     return this.#isDevelopment;

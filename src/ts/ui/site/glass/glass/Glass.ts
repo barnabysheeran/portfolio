@@ -6,7 +6,6 @@ import Controller from './controller/Controller.ts';
 
 export interface GlassCreationParameters {
   isDevelopment: boolean;
-  assetPath: string;
   applicationContainer: HTMLElement;
 }
 

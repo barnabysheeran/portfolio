@@ -13,7 +13,6 @@ export default function SiteGlass() {
     if (glassRef.current && !glassInstanceRef.current) {
       const creationParameters: GlassCreationParameters = {
         isDevelopment: false,
-        assetPath: '/assets/glass/',
         applicationContainer: glassRef.current,
       };
 
