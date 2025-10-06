@@ -1,6 +1,8 @@
 import { useRef, useEffect, useCallback } from 'react';
 
-import ImageSlider from '../../component/image-slider/ImageSlider';
+import ImageSlider, {
+  type ImageSliderHandle,
+} from '../../component/image-slider/ImageSlider';
 import Glass, { type GlassCreationParameters } from './glass/Glass';
 import type { ImageDescriptions } from '../../../type/image';
 
@@ -9,18 +11,19 @@ import styles from './SiteGlass.module.css';
 export default function SiteGlass() {
   const glassRef = useRef<HTMLDivElement>(null);
   const glassInstanceRef = useRef<Glass | null>(null);
+  const imageSliderRef = useRef<ImageSliderHandle | null>(null);
 
   // _____________________________________________________________________ Media
 
   const handleMediaShowProject = useCallback(
     (imageDescriptions: ImageDescriptions) => {
-      console.log('SiteGlass handleMediaShowProject', imageDescriptions);
+      imageSliderRef.current?.showImages(imageDescriptions);
     },
     [],
   );
 
   const handleMediaClear = useCallback(() => {
-    console.log('SiteGlass handleMediaClear');
+    imageSliderRef.current?.clear();
   }, []);
 
   // _____________________________________________________________________ Glass
@@ -42,7 +45,7 @@ export default function SiteGlass() {
 
   return (
     <div className={styles['site-glass']}>
-      <ImageSlider />
+      <ImageSlider ref={imageSliderRef} />
       <div ref={glassRef} className={styles['glass-container']}></div>
     </div>
   );

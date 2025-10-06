@@ -65,20 +65,14 @@ export default class Glass {
   // ______________________________________________________________ External API
 
   onMediaShowProject(projectIndex: number) {
-    console.log('Glass onMediaShowProject', projectIndex);
-
     // Get Project Data
     const PROJECT_IMAGE_DESCRIPTIONS: ImageDescriptions =
       DataController.getProjectImages(projectIndex);
-
-    console.log('PROJECT_IMAGE_DESCRIPTIONS', PROJECT_IMAGE_DESCRIPTIONS);
 
     this.#onMediaShowProjectCallback?.(PROJECT_IMAGE_DESCRIPTIONS);
   }
 
   onMediaClear() {
-    console.log('Glass onMediaClear');
-
     this.#onMediaClearCallback?.();
   }
 }
