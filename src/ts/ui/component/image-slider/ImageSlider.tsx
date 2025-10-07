@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle } from 'react';
 
+import ImageSliderGallery from './gallery/ImageSliderGallery';
 import ImageSliderInteraction from './interaction/ImageSliderInteraction';
 
 import type { ImageDescriptions } from '../../../type/image';
@@ -27,6 +28,7 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
 
   return (
     <div className={styles['image-slider']}>
+      <ImageSliderGallery />
       <ImageSliderInteraction />
     </div>
   );
