@@ -4,8 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 
-  background: var(--color-text);
-  color: var(--color-background);
+
 
   cursor: pointer;
   pointer-events: auto;
@@ -16,8 +15,8 @@
 
   text-align: center;
 
-  color: var(--theme-color);
-  background: var(--theme-background);
+  background: var(--theme-surface-full);
+  color: var(--color-white);
 
   font-size: inherit;
 }
