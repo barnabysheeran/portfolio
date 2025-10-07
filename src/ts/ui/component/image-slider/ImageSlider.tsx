@@ -1,8 +1,10 @@
 import { forwardRef, useImperativeHandle } from 'react';
 
-import styles from './ImageSlider.module.css';
+import ImageSliderInteraction from './interaction/ImageSliderInteraction';
 
 import type { ImageDescriptions } from '../../../type/image';
+
+import styles from './ImageSlider.module.css';
 
 export type ImageSliderHandle = {
   showImages: (imageDescriptions: ImageDescriptions) => void;
@@ -25,7 +27,7 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
 
   return (
     <div className={styles['image-slider']}>
-      <span>Image slider placeholder</span>
+      <ImageSliderInteraction />
     </div>
   );
 });
