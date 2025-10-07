@@ -361,7 +361,6 @@ const SHAPE_GLYPH_DATA: ShapeGlyphDataType = {
   },
   heart: {
     points: [
-      [0, 0, 0, 0, 0],
       [0, 1, 0, 1, 0],
       [1, 1, 1, 1, 1],
       [1, 1, 1, 1, 1],
@@ -477,14 +476,12 @@ const SHAPE_GLYPH_DATA: ShapeGlyphDataType = {
       [1, 0],
       [1, 0],
       [1, 0],
-      [1, 0],
       [0, 1],
     ],
   },
   ')': {
     points: [
       [1, 0],
-      [0, 1],
       [0, 1],
       [0, 1],
       [0, 1],
@@ -497,7 +494,6 @@ const SHAPE_GLYPH_DATA: ShapeGlyphDataType = {
       [1, 0],
       [1, 0],
       [1, 0],
-      [1, 0],
       [1, 1],
     ],
   },
@@ -507,13 +503,11 @@ const SHAPE_GLYPH_DATA: ShapeGlyphDataType = {
       [0, 1],
       [0, 1],
       [0, 1],
-      [0, 1],
       [1, 1],
     ],
   },
   _: {
     points: [
-      [0, 0, 0, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0],
       [0, 0, 0, 0],
@@ -529,6 +523,15 @@ const SHAPE_GLYPH_DATA: ShapeGlyphDataType = {
       [1, 0, 1, 0, 1],
       [1, 0, 0, 1, 1],
       [0, 1, 1, 0, 1],
+    ],
+  },
+  '#': {
+    points: [
+      [0, 1, 0, 1, 0],
+      [1, 1, 1, 1, 1],
+      [0, 1, 0, 1, 0],
+      [1, 1, 1, 1, 1],
+      [0, 1, 0, 1, 0],
     ],
   },
 };
