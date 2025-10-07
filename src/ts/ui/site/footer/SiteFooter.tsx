@@ -17,7 +17,7 @@ export default function SiteFooter() {
         size="medium"
         icon={<LuGithub />}
         offsetLeft="0.04rem"
-        offsetTop="0.28rem"
+        offsetTop="0.2rem"
         onClick={handleClickGithub}
       />
     </div>
