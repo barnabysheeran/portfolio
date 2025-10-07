@@ -24,6 +24,8 @@
     margin-bottom: calc(var(--grid-cell-height) * 2);
 
 	-webkit-tap-highlight-color: transparent;
+
+	transition: background-color var(--duration-color-change) ease-out;
 }
 
 .site-glass img {

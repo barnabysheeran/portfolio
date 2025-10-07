@@ -1,6 +1,7 @@
 @import "./system/grid.css";
 @import "./system/colours.css";
 @import "./system/breakpoints.css";
+@import "./system/animation.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -4,8 +4,6 @@
   padding: 0;
   box-sizing: border-box;
 
-
-
   cursor: pointer;
   pointer-events: auto;
 
@@ -19,6 +17,8 @@
   color: var(--color-white);
 
   font-size: inherit;
+
+  transition: background-color var(--duration-color-change) ease-out;
 }
 
 .button-icon:hover {
