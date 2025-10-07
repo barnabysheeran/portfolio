@@ -12,19 +12,16 @@ import ComponentGlyphBoxWidthFull from '../../component/glyph/ComponentGlyphBoxW
 
 export default class DotMatrixViewIntro extends DotMatrixView {
   #DRAW_GLYPH_NAME_LIST = [
-    ' {heart}',
-    ' ',
-    ' ',
+    '{heart}',
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ - ',
     '0123456789',
     '!@#^*()[]_',
     '0A1B2C3D4E5F6G7H8I9J * ',
-    'import default function() {}',
+    'export default function() {}',
     '{heart} ',
     '-A-1B-2C-3D-4E-5F-6G-7H-8I-9J-',
     '0123456789',
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ ',
-    ' {heart}',
   ];
 
   #drawGlyphNameIndex = -1;
@@ -33,7 +30,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
   #DELAY_GLYPH_OUT = 0;
   #delayGlyph = 0;
 
-  // ___________________________________________________________________ Start
+  // _____________________________________________________________________ Start
 
   start(delayFrames: number) {
     super.start(delayFrames);
@@ -61,7 +58,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
     this.draw(delayFrames, DrawType.Clear);
   }
 
-  // ____________________________________________________________________ Draw
+  // ______________________________________________________________________ Draw
 
   draw(delayFrames: number, drawType: DrawTypeValue = DrawType.Fill) {
     super.draw(delayFrames, drawType);
@@ -96,7 +93,6 @@ export default class DotMatrixViewIntro extends DotMatrixView {
 
       const COMPONENT = new ComponentGlyphBoxWidthFull(
         this.SHAPE_MANAGER,
-        // this.#drawGlyphName,
         this.#getNextDrawGlyphName(),
         0,
         GRID_Y,
@@ -112,7 +108,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
     }
   }
 
-  // ___________________________________________________________ Draw Complete
+  // _____________________________________________________________ Draw Complete
 
   onDrawComplete() {
     super.onDrawComplete();
@@ -130,7 +126,7 @@ export default class DotMatrixViewIntro extends DotMatrixView {
     this.draw(120, DrawType.Fill);
   }
 
-  // ___________________________________________________________________ Glyph
+  // _____________________________________________________________________ Glyph
 
   #getNextDrawGlyphName() {
     this.#drawGlyphNameIndex += 1;
