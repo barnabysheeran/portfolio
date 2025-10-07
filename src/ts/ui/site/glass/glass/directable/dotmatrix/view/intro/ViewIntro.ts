@@ -11,7 +11,20 @@ import DrawType, { type DrawTypeValue } from '../../type/DrawType.ts';
 import ComponentGlyphBoxWidthFull from '../../component/glyph/ComponentGlyphBoxWidthFull.ts';
 
 export default class DotMatrixViewIntro extends DotMatrixView {
-  #DRAW_GLYPH_NAME_LIST = [' {heart}', '{heart} '];
+  #DRAW_GLYPH_NAME_LIST = [
+    ' {heart}',
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ - ',
+    '0123456789',
+    '!@#$%^&*()[]_&',
+    '0A1B2C3D4E5F6G7H8I9J * ',
+    'import default function() {}',
+    '{heart} ',
+    '-A-1B-2C-3D-4E-5F-6G-7H-8I-9J-',
+    '!@# $%^ &*() []_ &',
+    '0123456789',
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ ',
+    ' {heart}',
+  ];
 
   #drawGlyphNameIndex = -1;
 
