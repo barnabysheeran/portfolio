@@ -1,1 +1,26 @@
-.loading-circle {}
+.loading-circle-circle {
+    width: calc(var(--grid-cell-width) * 4);
+    height: calc(var(--grid-cell-height) * 4);
+}
+
+.loading-circle-arc {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    border: 2px solid transparent;
+    border-top-color: #660000;
+    border-radius: 50%;
+
+    animation: spin var(--duration-loading-circle) linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

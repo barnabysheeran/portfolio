@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+
 import LoadingDots from '../../loading/loading-dots/LoadingDots';
+
 import styles from './ImageWrapper.module.css';
 
 type ImageWrapperProps = {
