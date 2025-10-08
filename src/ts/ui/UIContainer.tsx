@@ -2,7 +2,7 @@ import useUiState from '../store/uiState';
 
 import SiteOverlay from './site/overlay/SiteOverlay';
 import SiteHeader from './site/header/SiteHeader';
-import SiteGlass from './site/glass/SiteGlass';
+import SiteGlass from './site/portfolio/SiteGlass';
 // import SiteSpacer from './site/spacer/SiteSpacer';
 // import SiteProgress from './site/progress/SiteProgress';
 import SiteFooter from './site/footer/SiteFooter';
