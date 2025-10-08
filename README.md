@@ -17,7 +17,7 @@ Deployed to:
 
 `npm run preview` - Starts Vite preview  
 `npm run dev` - Starts Vite development server  
-`npm run lint` - Lints by tsc and eslint in series  
+`npm run lint` - Lints by tsc, eslint, & stylelint in series  
 `npm run build` - Builds project to /dist  
 
 `npm run storybook` - Starts storybook development server  
