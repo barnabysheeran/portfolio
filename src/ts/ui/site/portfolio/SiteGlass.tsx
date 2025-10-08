@@ -1,5 +1,6 @@
 import { useRef, useEffect, useCallback } from 'react';
 
+import SiteGlassThree from './glass-three/SiteGlassThree';
 import ImageSlider, {
   type ImageSliderHandle,
 } from '../../component/image-slider/ImageSlider';
@@ -45,6 +46,7 @@ export default function SiteGlass() {
 
   return (
     <div className={styles['site-glass']}>
+      <SiteGlassThree />
       <ImageSlider ref={imageSliderRef} />
       <div ref={glassRef} className={styles['glass-container']}></div>
     </div>
