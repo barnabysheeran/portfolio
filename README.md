@@ -23,7 +23,8 @@ Deployed to:
 `npm run storybook` - Starts storybook development server  
 `npm run build-storybook` - builds storybook to /storybook-static  
 
-`npm run todo` - Lists TODO in /src
+`npm run todo` - Lists TODO in /src  
+
+`npm run depcruise` - Updates tool/depcruise/dependencygraph.svg (requires GraphViz `dot`)  
 
 ### _
-
