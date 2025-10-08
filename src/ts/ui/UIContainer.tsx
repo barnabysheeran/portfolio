@@ -1,12 +1,11 @@
 import useUiState from '../store/uiState';
 
-// import SiteOverlay from "./component/site/overlay/SiteOverlay";
-import SiteHeader from './component/site/header/SiteHeader';
-import SiteGlass from './component/site/glass/SiteGlass';
-// import SiteSpacer from "./component/site/spacer/SiteSpacer";
-// import SiteProgress from "./component/site/progress/SiteProgress";
-// import SiteEVE from "./component/site/eve/SiteEVE";
-import SiteFooter from './component/site/footer/SiteFooter';
+import SiteOverlay from './site/overlay/SiteOverlay';
+import SiteHeader from './site/header/SiteHeader';
+import SiteGlass from './site/portfolio/SiteGlass';
+// import SiteSpacer from './site/spacer/SiteSpacer';
+// import SiteProgress from './site/progress/SiteProgress';
+import SiteFooter from './site/footer/SiteFooter';
 
 import styles from './UIContainer.module.css';
 
@@ -20,10 +19,9 @@ export default function UIContainer() {
       <SiteGlass />
       {/* <SiteSpacer />
       <SiteProgress />
-      <SiteEVE />
       <SiteSpacer /> */}
       <SiteFooter />
-      {/* <SiteOverlay /> */}
+      <SiteOverlay />
     </div>
   );
 }

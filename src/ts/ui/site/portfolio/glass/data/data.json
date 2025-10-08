@@ -1,0 +1,42 @@
+{
+    "projects": [
+        {
+            "id": "battlebuilder",
+            "name": "BattleBuilder",
+            "name-short": "BattleBuilder",
+            "images": [
+                {
+                    "url": "project/battlebuilder/1.jpg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                {
+                    "url": "project/battlebuilder/2.jpg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                {
+                    "url": "project/battlebuilder/3.jpg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                {
+                    "url": "project/battlebuilder/4.jpg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                {
+                    "url": "project/battlebuilder/5.jpg",
+                    "width": 1920,
+                    "height": 1080
+                }
+            ],
+            "credit": [
+                {
+                    "text": "BATTLEBUILDER.NET",
+                    "url": "https://battlebuilder.net"
+                }
+            ]
+        }
+    ]
+}

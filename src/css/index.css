@@ -1,6 +1,7 @@
 @import "./system/grid.css";
 @import "./system/colours.css";
 @import "./system/breakpoints.css";
+@import "./system/animation.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -9,6 +10,9 @@
 
   color-scheme: light dark;
   background-color: #fff;
+
+  min-height: 100vh;
+  height: 100%;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,7 +25,15 @@ body {
   padding: 0;
 
   box-sizing: border-box;
+
+  min-height: 100vh;
+  height: 100%;
   
   user-select: none;
   -webkit-user-drag: none;
+}
+
+#root {
+  min-height: 100vh;
+  height: 100vh;
 }
