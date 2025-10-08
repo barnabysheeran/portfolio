@@ -13,7 +13,7 @@
     border-top-color: #660000;
     border-radius: 50%;
 
-    animation: spin var(--duration-loading-circle) linear infinite;
+    animation: spin var(--duration-loading-circle) ease-in-out infinite;
 }
 
 @keyframes spin {
