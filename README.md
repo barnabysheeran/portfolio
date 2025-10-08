@@ -2,14 +2,6 @@
 Vite - Typescript - CSS Modules - React - WebGL
   
 Work in Progress  
-  
-### _
-
-Deployed to:  
-[barnabysheeran.com](http://barnabysheeran.com)  
-&
-[todo vercel] vercel
-
 
 ### _
 
