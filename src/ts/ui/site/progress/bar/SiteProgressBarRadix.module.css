@@ -2,7 +2,7 @@
   width: 100px;
   height: 20px;
 
-  background: var(--color-background);
+  background: var(--theme-background);
   border-radius: 5px;
 
   overflow: hidden;
@@ -10,5 +10,5 @@
 
 .site-progress-bar-radix-indicator {
   height: 100%;
-  background: var(--color-text);
+  background: var(--theme-mid);
 }

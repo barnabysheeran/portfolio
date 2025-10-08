@@ -7,7 +7,7 @@
   box-sizing: border-box;
 
   background: linear-gradient(135deg, var(--button-color) 0%, darken(var(--button-color), 10%) 100%); /* Base gradient */
-  color: var(--color-background);
+  color: var(--theme-background);
 
   cursor: pointer;
   pointer-events: auto;

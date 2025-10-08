@@ -22,7 +22,7 @@
 }
 
 .button-icon:hover {
-  background: var(--color-background);
+  background: var(--theme-background);
   color: var(--color-text);
 }
 

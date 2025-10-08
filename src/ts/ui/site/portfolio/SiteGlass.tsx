@@ -3,7 +3,7 @@ import { useRef, useEffect, useCallback } from 'react';
 import SiteGlassThree from './glass-three/SiteGlassThree';
 import ImageSlider, {
   type ImageSliderHandle,
-} from '../../component/image-slider/ImageSlider';
+} from '../../component/image/image-slider/ImageSlider';
 import Glass, { type GlassCreationParameters } from './glass/Glass';
 import type { ImageDescriptions } from '../../../type/image';
 
