@@ -18,9 +18,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    src: 'https://source.unsplash.com/random/800x600',
+    src: 'https://fastly.picsum.photos/id/932/200/300.jpg?hmac=OPuowRV-58KJtDQbeEri4K8Am_UBqq9o0OFtn3S1ZYk',
     alt: 'A random image',
     width: 400,
     height: 300,
+  },
+};
+
+export const FromProps: Story = {
+  args: {
+    src: 'https://fastly.picsum.photos/id/932/200/300.jpg?hmac=OPuowRV-58KJtDQbeEri4K8Am_UBqq9o0OFtn3S1ZYk',
+    alt: 'Another random image',
+    width: 200,
+    height: 150,
   },
 };

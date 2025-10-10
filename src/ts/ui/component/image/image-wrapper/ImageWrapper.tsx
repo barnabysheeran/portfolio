@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
-import LoadingDots from '../../loading/loading-dots/LoadingDots';
+import LoadingCircle from '../../loading/loading-circle/LoadingCircle';
 
 import styles from './ImageWrapper.module.css';
 
 type ImageWrapperProps = {
   src: string;
   alt: string;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
 };
 
 export default function ImageWrapper({
@@ -32,7 +32,7 @@ export default function ImageWrapper({
     >
       {isLoading && (
         <div className={styles['loading-container']}>
-          <LoadingDots />
+          <LoadingCircle />
         </div>
       )}
       <img
