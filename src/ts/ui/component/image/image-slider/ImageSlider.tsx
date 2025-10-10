@@ -66,20 +66,11 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
 
   // _____________________________________________________________________ Swipe
 
-  const handleSwipe = useCallback((event: SwipeEventData) => {
-    console.log('* ImageSlider handleSwipe', {
-      deltaX: event.deltaX,
-      dir: event.dir,
-      velocity: event.velocity,
-    });
-    galleryRef.current?.handleSwipe(event);
+  const handleSwiped = useCallback((event: SwipeEventData) => {
+    galleryRef.current?.handleSwiped(event);
   }, []);
 
   const handleSwiping = useCallback((event: SwipeEventData) => {
-    console.log('* ImageSlider handleSwiping', {
-      deltaX: event.deltaX,
-      dir: event.dir,
-    });
     galleryRef.current?.handleSwiping(event);
   }, []);
 
@@ -93,7 +84,7 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
       />
       <ImageSliderInteraction
         ref={interactionRef}
-        onSwipe={handleSwipe}
+        onSwiped={handleSwiped}
         onSwiping={handleSwiping}
       />
     </div>

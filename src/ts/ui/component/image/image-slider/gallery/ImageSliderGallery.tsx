@@ -14,7 +14,7 @@ type ImageSliderGalleryProps = {
 };
 
 export type ImageSliderGalleryHandle = {
-  handleSwipe: (event: SwipeEventData) => void;
+  handleSwiped: (event: SwipeEventData) => void;
   handleSwiping: (event: SwipeEventData) => void;
 };
 
@@ -27,19 +27,10 @@ export default forwardRef<ImageSliderGalleryHandle, ImageSliderGalleryProps>(
     // _____________________________________________________________________ API
 
     useImperativeHandle(ref, () => ({
-      handleSwipe(event: SwipeEventData) {
-        console.log('** ImageSliderGallery handleSwipe', {
-          deltaX: event.deltaX,
-          dir: event.dir,
-          velocity: event.velocity,
-        });
-        blockRef.current?.handleSwipe(event);
+      handleSwiped(event: SwipeEventData) {
+        blockRef.current?.handleSwiped(event);
       },
       handleSwiping(event: SwipeEventData) {
-        console.log('** ImageSliderGallery handleSwiping', {
-          deltaX: event.deltaX,
-          dir: event.dir,
-        });
         blockRef.current?.handleSwiping(event);
       },
     }));

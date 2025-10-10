@@ -7,7 +7,7 @@ import styles from './ImageSliderInteraction.module.css';
 // nearform.com/open-source/react-swipeable/docs/examples/feature-test-console
 
 type ImageSliderInteractionProps = {
-  onSwipe: (event: SwipeEventData) => void;
+  onSwiped: (event: SwipeEventData) => void;
   onSwiping?: (event: SwipeEventData) => void;
 };
 
@@ -19,7 +19,7 @@ export type ImageSliderInteractionHandle = {
 export default forwardRef<
   ImageSliderInteractionHandle,
   ImageSliderInteractionProps
->(function ImageSliderInteraction({ onSwipe, onSwiping }, ref) {
+>(function ImageSliderInteraction({ onSwiped, onSwiping }, ref) {
   const [isVisible, setIsVisible] = useState(true);
 
   // _______________________________________________________________________ API
@@ -42,7 +42,7 @@ export default forwardRef<
         dir: eventData.dir,
         velocity: eventData.velocity,
       });
-      onSwipe(eventData);
+      onSwiped(eventData);
     },
 
     onSwiping: (eventData) => {
