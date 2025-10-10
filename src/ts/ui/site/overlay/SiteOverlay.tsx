@@ -31,6 +31,7 @@ export default function SiteOverlay() {
           <ButtonIcon
             size="medium"
             icon={<LuPalette />}
+            offsetTop="0.12rem"
             ariaLabel="Choose Theme Color"
             onClick={toggle}
           />
