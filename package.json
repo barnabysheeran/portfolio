@@ -13,7 +13,9 @@
     "build": "tsc -b && vite build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "depcruise": "depcruise --config ./tool/depcruise/config.mjs --output-type dot src | dot -T svg > ./tool/depcruise/dependencygraph.svg",
+    "depcruise": "npm run depcruise:all && npm run depcruise:selected",
+    "depcruise:all": "depcruise --config ./tool/depcruise/config.mjs --output-type dot src | dot -T svg > ./tool/depcruise/dependencygraph.svg",
+    "depcruise:selected": "depcruise --config ./tool/depcruise/config-selected.mjs --output-type dot src | dot -T svg > ./tool/depcruise/dependencygraph-selected.svg",
     "todo": "leasot \"src/**/*.{ts,tsx,js,jsx,css}\" || exit 0"
   },
   "dependencies": {
