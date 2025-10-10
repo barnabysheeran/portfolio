@@ -1,0 +1,13 @@
+.site-eve {
+    position: relative;
+
+    width: 100%;
+	height: calc(100vh - calc(var(--grid-cell-height) * 10));
+	max-height: calc(calc(var(--grid-cell-width) * 70));
+
+    background: var(--theme-surface-full);
+
+	border: 0;
+	padding: 0;
+	margin: 0;
+}

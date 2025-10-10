@@ -6,7 +6,7 @@ import styles from './SiteFooter.module.css';
 
 export default function SiteFooter() {
   const handleClickGithub = () => {
-    window.open('https://github.com/barnabysheeran', '_blank');
+    window.open('https://github.com/barnabysheeran/portfolio', '_blank');
   };
 
   // ____________________________________________________________________ Render
@@ -19,6 +19,7 @@ export default function SiteFooter() {
         offsetLeft="0.04rem"
         offsetTop="0.2rem"
         onClick={handleClickGithub}
+        ariaLabel="GitHub"
       />
     </div>
   );
