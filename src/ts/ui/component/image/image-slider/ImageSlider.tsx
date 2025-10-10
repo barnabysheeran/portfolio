@@ -1,9 +1,11 @@
-import { forwardRef, useImperativeHandle } from 'react';
+import type { SwipeEventData } from 'react-swipeable';
+
+import { forwardRef, useCallback, useImperativeHandle } from 'react';
 
 import ImageSliderGallery from './gallery/ImageSliderGallery';
 import ImageSliderInteraction from './interaction/ImageSliderInteraction';
 
-import type { ImageDescriptions } from '../../../type/image';
+import type { ImageDescriptions } from '../../../../type/image';
 
 import styles from './ImageSlider.module.css';
 
@@ -13,10 +15,12 @@ export type ImageSliderHandle = {
 };
 
 export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
+  // _______________________________________________________________________ API
+
   useImperativeHandle(
     ref,
     () => ({
-      showImages(imageDescriptions) {
+      showImages(imageDescriptions: ImageDescriptions) {
         console.log('ImageSlider showImages', imageDescriptions);
       },
       clear() {
@@ -26,10 +30,29 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
     [],
   );
 
+  // _____________________________________________________________________ Swipe
+
+  const handleSwipe = useCallback((event: SwipeEventData) => {
+    console.log('ImageSlider onSwipe', {
+      deltaX: event.deltaX,
+      dir: event.dir,
+      velocity: event.velocity,
+    });
+  }, []);
+
+  const handleSwiping = useCallback((event: SwipeEventData) => {
+    console.log('ImageSlider onSwiping', {
+      deltaX: event.deltaX,
+      dir: event.dir,
+    });
+  }, []);
+
+  // ____________________________________________________________________ Render
+
   return (
     <div className={styles['image-slider']}>
       <ImageSliderGallery />
-      <ImageSliderInteraction />
+      <ImageSliderInteraction onSwipe={handleSwipe} onSwiping={handleSwiping} />
     </div>
   );
 });
