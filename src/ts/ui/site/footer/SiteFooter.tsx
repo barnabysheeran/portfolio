@@ -19,6 +19,7 @@ export default function SiteFooter() {
         offsetLeft="0.04rem"
         offsetTop="0.2rem"
         onClick={handleClickGithub}
+        ariaLabel="GitHub"
       />
     </div>
   );

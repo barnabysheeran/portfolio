@@ -6,11 +6,13 @@ interface ButtonColorCircleProps {
   size?: ButtonIconSize;
   color: string;
   onClick: () => void;
+  ariaLabel: string;
 }
 
 export const ButtonColorCircle = ({
   color,
   onClick,
+  ariaLabel,
   ...props
 }: ButtonColorCircleProps) => {
   const handleClick = () => {
@@ -26,6 +28,7 @@ export const ButtonColorCircle = ({
       className={className}
       style={{ backgroundColor: color }}
       onClick={handleClick}
+      aria-label={ariaLabel}
       {...props}
     />
   );

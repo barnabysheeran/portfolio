@@ -9,6 +9,7 @@ interface ButtonIconProps {
   icon?: React.ReactNode;
   offsetLeft?: string;
   offsetTop?: string;
+  ariaLabel: string;
 }
 
 export const ButtonIcon = ({
@@ -18,6 +19,7 @@ export const ButtonIcon = ({
   icon,
   offsetLeft = '0rem',
   offsetTop = '0rem',
+  ariaLabel,
   ...props
 }: ButtonIconProps) => {
   const handleClick = () => {
@@ -35,6 +37,7 @@ export const ButtonIcon = ({
       type="button"
       className={className}
       onClick={handleClick}
+      aria-label={ariaLabel}
       {...props}
     >
       <span style={{ transform: `translate(${offsetLeft}, ${offsetTop})` }}>
