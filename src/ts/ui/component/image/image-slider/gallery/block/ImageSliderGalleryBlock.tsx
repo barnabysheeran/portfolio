@@ -8,6 +8,7 @@ import {
 } from 'react';
 
 import ImageWrapper from '../../../image-wrapper/ImageWrapper';
+import type { ImageWrapperHandle } from '../../../image-wrapper/ImageWrapper';
 
 import type {
   ImageDescription,
@@ -39,6 +40,7 @@ export default forwardRef<
   const containerRef = useRef<HTMLDivElement>(null);
   const currentOffsetRef = useRef(0);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const imageWrapperRefs = useRef<(ImageWrapperHandle | null)[]>([]);
 
   // _______________________________________________________________________ API
 
@@ -90,8 +92,6 @@ export default forwardRef<
         const SCALE: number = CONTAINER_HEIGHT / IMAGE_DESCRIPTION.height;
         const SCALED_WIDTH: number = IMAGE_DESCRIPTION.width * SCALE;
 
-        left += SCALED_WIDTH;
-
         console.log(` - Image ${i} scale and position:`, SCALE, left);
 
         const ELEMENT = imageRefs.current[i];
@@ -102,6 +102,14 @@ export default forwardRef<
           ELEMENT.style.width = `${SCALED_WIDTH}px`;
           ELEMENT.style.height = `${CONTAINER_HEIGHT}px`;
         }
+
+        imageWrapperRefs.current[i]?.setDimensions(
+          SCALED_WIDTH,
+          CONTAINER_HEIGHT,
+        );
+
+        // Store Width
+        left += SCALED_WIDTH;
       }
 
       // Set container width to total cumulative width
@@ -147,6 +155,9 @@ export default forwardRef<
           }}
         >
           <ImageWrapper
+            ref={(el) => {
+              imageWrapperRefs.current[index] = el;
+            }}
             src={imageDescription.url}
             alt={`Image ${index + 1}`}
             width={imageDescription.width}

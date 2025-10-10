@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 
 import LoadingCircle from '../../loading/loading-circle/LoadingCircle';
 
@@ -11,36 +11,52 @@ type ImageWrapperProps = {
   height: number;
 };
 
-export default function ImageWrapper({
-  src,
-  alt,
-  width,
-  height,
-}: ImageWrapperProps) {
-  const [isLoading, setIsLoading] = useState(true);
+export type ImageWrapperHandle = {
+  setDimensions: (width: number, height: number) => void;
+};
 
-  useEffect(() => {
-    const img = new Image();
-    img.src = src;
-    img.onload = () => setIsLoading(false);
-  }, [src]);
+export default forwardRef<ImageWrapperHandle, ImageWrapperProps>(
+  function ImageWrapper({ src, alt, width, height }, ref) {
+    // _____________________________________________________________________ State
 
-  return (
-    <div
-      className={styles['image-wrapper']}
-      style={{ width: width, height: height }}
-    >
-      {isLoading && (
-        <div className={styles['loading-container']}>
-          <LoadingCircle />
-        </div>
-      )}
-      <img
-        src={src}
-        alt={alt}
-        className={`${styles.image} ${isLoading ? styles.loading : ''}`}
-        onLoad={() => setIsLoading(false)}
-      />
-    </div>
-  );
-}
+    const [isLoading, setIsLoading] = useState(true);
+    const [dimensions, setDimensions] = useState({ width, height });
+
+    // _____________________________________________________________________ Image
+
+    useEffect(() => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => setIsLoading(false);
+    }, [src]);
+
+    // _______________________________________________________________________ API
+
+    useImperativeHandle(ref, () => ({
+      setDimensions: (newWidth: number, newHeight: number) => {
+        setDimensions({ width: newWidth, height: newHeight });
+      },
+    }));
+
+    // ____________________________________________________________________ Render
+
+    return (
+      <div
+        className={styles['image-wrapper']}
+        style={{ width: dimensions.width, height: dimensions.height }}
+      >
+        {isLoading && (
+          <div className={styles['loading-container']}>
+            <LoadingCircle />
+          </div>
+        )}
+        <img
+          src={src}
+          alt={alt}
+          className={`${styles.image} ${isLoading ? styles.loading : ''}`}
+          onLoad={() => setIsLoading(false)}
+        />
+      </div>
+    );
+  },
+);
