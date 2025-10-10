@@ -6,7 +6,7 @@ import styles from './SiteFooter.module.css';
 
 export default function SiteFooter() {
   const handleClickGithub = () => {
-    window.open('https://github.com/barnabysheeran', '_blank');
+    window.open('https://github.com/barnabysheeran/portfolio', '_blank');
   };
 
   // ____________________________________________________________________ Render
