@@ -50,22 +50,22 @@
 }
 
 .button-color-circle--small {
-  width: calc(var(--grid-cell-width) * 2);
-  height: calc(var(--grid-cell-height) * 2);
-
-  border-radius: calc(var(--grid-cell-width) * 1);
-}
-
-.button-color-circle--medium {
-  width: calc(var(--grid-cell-width) * 3);
-  height: calc(var(--grid-cell-height) * 3);
-
-  border-radius: calc(var(--grid-cell-width) * 1.5);
-}
-
-.button-color-circle--large {
   width: calc(var(--grid-cell-width) * 4);
   height: calc(var(--grid-cell-height) * 4);
 
   border-radius: calc(var(--grid-cell-width) * 2);
+}
+
+.button-color-circle--medium {
+  width: calc(var(--grid-cell-width) * 5);
+  height: calc(var(--grid-cell-height) * 5);
+
+  border-radius: calc(var(--grid-cell-width) * 2.5);
+}
+
+.button-color-circle--large {
+  width: calc(var(--grid-cell-width) * 8);
+  height: calc(var(--grid-cell-height) * 8);
+
+  border-radius: calc(var(--grid-cell-width) * 4);
 }

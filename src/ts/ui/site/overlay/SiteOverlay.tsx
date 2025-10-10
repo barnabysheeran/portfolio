@@ -1,9 +1,11 @@
 import useUiState from '../../../store/uiState';
 
 import MenuIconFlyout from '../../component/menu/flyout/MenuIconFlyout';
+import { ButtonIcon } from '../../component/button/icon/ButtonIcon';
 import { ButtonColorCircle } from '../../component/button/colorCircle/ButtonColorCircle';
 
 import styles from './SiteOverlay.module.css';
+import { LuPalette } from 'react-icons/lu';
 
 export default function SiteOverlay() {
   const handleClickRed = () => {
@@ -26,9 +28,9 @@ export default function SiteOverlay() {
     <div className={styles['site-overlay']}>
       <MenuIconFlyout
         trigger={(toggle) => (
-          <ButtonColorCircle
+          <ButtonIcon
             size="medium"
-            color="red"
+            icon={<LuPalette />}
             ariaLabel="Choose Theme Color"
             onClick={toggle}
           />
