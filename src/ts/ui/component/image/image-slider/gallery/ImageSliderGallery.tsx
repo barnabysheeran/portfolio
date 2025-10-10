@@ -1,7 +1,19 @@
+import ImageSliderGalleryBlock from './block/ImageSliderGalleryBlock';
+
+import type { ImageDescriptions } from '../../../../../type/image';
+
 import styles from './ImageSliderGallery.module.css';
 
-export default function ImageSliderGallery() {
+type ImageSliderGalleryProps = {
+  imageDescriptions: ImageDescriptions;
+};
+
+export default function ImageSliderGallery({
+  imageDescriptions,
+}: ImageSliderGalleryProps) {
   return (
-    <div className={styles['image-slider-gallery']}>Image Slider Gallery</div>
+    <div className={styles['image-slider-gallery']}>
+      <ImageSliderGalleryBlock imageDescriptions={imageDescriptions} />
+    </div>
   );
 }

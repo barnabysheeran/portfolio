@@ -1,6 +1,6 @@
 import type { SwipeEventData } from 'react-swipeable';
 
-import { forwardRef, useCallback, useImperativeHandle } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 
 import ImageSliderGallery from './gallery/ImageSliderGallery';
 import ImageSliderInteraction from './interaction/ImageSliderInteraction';
@@ -15,6 +15,12 @@ export type ImageSliderHandle = {
 };
 
 export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
+  // _____________________________________________________________________ State
+
+  const [imageDescriptions, setImageDescriptions] = useState<ImageDescriptions>(
+    [],
+  );
+
   // _______________________________________________________________________ API
 
   useImperativeHandle(
@@ -22,9 +28,11 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
     () => ({
       showImages(imageDescriptions: ImageDescriptions) {
         console.log('ImageSlider showImages', imageDescriptions);
+        setImageDescriptions(imageDescriptions);
       },
       clear() {
         console.log('ImageSlider clear');
+        setImageDescriptions([]);
       },
     }),
     [],
@@ -51,7 +59,7 @@ export default forwardRef<ImageSliderHandle>(function ImageSlider(_, ref) {
 
   return (
     <div className={styles['image-slider']}>
-      <ImageSliderGallery />
+      <ImageSliderGallery imageDescriptions={imageDescriptions} />
       <ImageSliderInteraction onSwipe={handleSwipe} onSwiping={handleSwiping} />
     </div>
   );
